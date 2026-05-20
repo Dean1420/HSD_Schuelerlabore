@@ -1,0 +1,23 @@
+{
+    "description": "Builder for the Student Workshop Webpage of the HSD",
+    "license": "ISC",
+    "author": "Dean Braband",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+        "======= SETUP =======":"",
+        "======= BUILD =======":"",
+        "======= COMPRESS =======":"",
+        "======= RUN =======":"",
+        "======= CLEAN =======":"",
+            "CLEAN": "npm run CLEAN:dist && npm run CLEAN:dependencies",
+            "CLEAN:dist": "rm -r ./app/dist",
+            "CLEAN:dependencies": "rm -r ./node_modules"
+    },
+    "dependencies": {
+        "esbuild": "^0.28.0",
+        "lessc": "^1.0.2",
+        "minify": "^15.3.1",
+        "terser": "^5.47.1"
+    }
+}
