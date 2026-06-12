@@ -1,0 +1,218 @@
+/*
+
+===================== Variables =====================
+
+*/
+:root {
+    --border-color: black;
+    --border-style: solid;
+    --border-width: 0.1rem;
+}
+
+/*
+
+===================== Fontdesign =====================
+
+*/
+
+html,
+body {
+    font-size: 16px;
+    font-family: Verdana, Tahoma, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+
+
+header {
+    font-size: 1rem;
+}
+
+
+
+main {
+    font-size: 1rem;
+}
+
+
+
+footer {
+    font-size: 1rem;
+}
+
+
+
+div,
+p,
+section,
+nav,
+#page-navigation,
+header,
+aside,
+a,
+span {
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+    border-width: var(--border-width);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*
+
+===================== Header =====================
+
+*/
+
+header {
+    display: flex;
+    flex-direction: row;
+
+    #header-logo-container {
+        width: 50%;
+        height: 5rem;
+
+        #header-logo {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    #page-navigation {
+        width: 50%;
+    }
+}
+
+
+
+main {
+    display: flex;
+
+    #schülerlabore-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        #schülerlabore-banner {
+            width: 100%;
+            overflow: hidden;
+            height: 50rem;
+
+            #schülerlabore-banner-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        #schülerlabore-description {
+            display: flex;
+            flex-direction: column;
+            padding: 5%;
+
+            #schülerlabore-description-text {
+                #schülerlabore-description-text-content {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                }
+            }
+
+            #schülerlabore-description-bottom {
+                display: flex;
+                flex-direction: row;
+
+                #schülerlabore-description-left {
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    width: 50%;
+                    height: 15rem;
+
+                    #schülerlabore-description-link {
+                        width: 100%;
+                        height: 100%;
+
+                        #schülerlabore-description-link-img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            display: block;
+                        }
+                    }
+                }
+
+                #schülerlabore-description-right {
+                    width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    #schülerlabore-description-quote {
+                        display: block;
+                        word-break: break-word;
+                        overflow-wrap: break-word;
+                    }
+                }
+            }
+        }
+
+        #schülerlabore-kursangebot {
+            display: flex;
+            flex-direction: row;
+            padding: 5%;
+
+            #schülerlabore-kursangebot-left {
+                display: flex;
+                flex-direction: column;
+                width: 25%;
+
+                #schülerlabore-kursangebot-title {
+                    display: block;
+                }
+
+                #schülerlabore-kursangebot-description {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                }
+            }
+
+            #schülerlabore-kursangebot-right {
+                display: flex;
+                flex-direction: column;
+                width: 75%;
+
+                #schülerlabore-kursangebot-filter {}
+
+                #schülerlabore-kursangebot-content {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .workshop-card {
+                        display: flex;
+                        flex-direction: column;
+                        width: 30%;
+                        margin: 1%;
+                        overflow: hidden;
+
+                        .workshop-thumbnail {
+                            width: 100%;
+                            height: 10rem;
+                            object-fit: cover;
+                            display: block;
+                        }
+
+                        .workshop-text {
+                            display: block;
+                            word-break: break-word;
+                            overflow-wrap: break-word;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
