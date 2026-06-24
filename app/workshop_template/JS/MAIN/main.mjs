@@ -95,7 +95,7 @@ function insertEditorControls(workshopContent) {
     CONTAINER.id = "editor-controls";
     CONTAINER.classList.add("remove-on-export");
     workshopContent.appendChild(CONTAINER);
-
+    
     //
     // export button
     const EXPORT_BUTTON = document.createElement("button");
@@ -103,14 +103,5 @@ function insertEditorControls(workshopContent) {
     EXPORT_BUTTON.addEventListener("click", () => {
         document.querySelectorAll(".remove-on-export").forEach(el => el.remove());
     });
-
-    //
-    // make content not editable
-    EXPORT_BUTTON.addEventListener("click", () => {
-        workshopContent.querySelectorAll("*").forEach(el => {
-            el.contentEditable = "false";
-        });
-    });
-
     CONTAINER.appendChild(EXPORT_BUTTON);
 }
