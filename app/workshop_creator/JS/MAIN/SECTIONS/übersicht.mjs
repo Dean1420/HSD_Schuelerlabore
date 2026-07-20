@@ -82,9 +82,9 @@ function insertQuickFactsRight(übersichtQuickFacts) {
     CONTAINER.id = "übersicht-facts-right";
     übersichtQuickFacts.appendChild(CONTAINER);
 
-    CONTAINER.appendChild(createFactItem("übersicht-themen", "....................."));
-    CONTAINER.appendChild(createFactItem("übersicht-fachliche-voraussetzungen", "....................."));
-    CONTAINER.appendChild(createFactItem("übersicht-dauer", "Workshop-Dauer", "....................."));
+    CONTAINER.appendChild(createFactItem("übersicht-themen", "Themen des Workshops", "....................."));
+    CONTAINER.appendChild(createFactItem("übersicht-fachliche-voraussetzungen", "Fachliche Voraussetzungen", "....................."));
+    CONTAINER.appendChild(createFactItem("übersicht-dauer", "Workshop - Dauer", "....................."));
 }
 
 

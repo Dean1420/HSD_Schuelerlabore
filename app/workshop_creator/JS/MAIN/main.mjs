@@ -78,7 +78,35 @@ function createWorkshopContent(workshopNavigationArea) {
     addSection(WORKSHOP_CONTENT, NAVIGATION_LINK_CONTAINER, "impressionen", "05", "Impressionen", createImpressionen);
     addSection(WORKSHOP_CONTENT, NAVIGATION_LINK_CONTAINER, "beteiligte", "06", "Beteiligte", createBeteiligte);
 
+    setupScrollSpy(WORKSHOP_CONTENT, NAVIGATION_LINK_CONTAINER);
+
     return WORKSHOP_CONTENT;
+}
+
+/**
+ * Highlights the navigation link of the section that is currently
+ * scrolled into view by adding the "active" class to it.
+ *
+ * @param {DOM} workshopContent
+ * @param {DOM} navigationContainer
+ */
+function setupScrollSpy(workshopContent, navigationContainer) {
+    const SECTIONS = Array.from(workshopContent.querySelectorAll(":scope > section"));
+    const LINKS = Array.from(navigationContainer.querySelectorAll("a"));
+
+    const OBSERVER = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            const ACTIVE_LINK = LINKS.find(link => link.getAttribute("href") === `#${entry.target.id}`);
+            if (!ACTIVE_LINK) return;
+
+            LINKS.forEach(link => link.classList.remove("active"));
+            ACTIVE_LINK.classList.add("active");
+        });
+    }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+
+    SECTIONS.forEach(section => OBSERVER.observe(section));
 }
 
 function addSection(workshopContent, navigationContainer, id, number, text, createFn) {
