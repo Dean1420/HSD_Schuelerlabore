@@ -27,8 +27,8 @@ function createHeaderLogo() {
 
     const LOGO_IMG = document.createElement("img");
     LOGO_IMG.id = "header-logo";
-    LOGO_IMG.src = "IMAGES/placeholder.jpg";
-    LOGO_IMG.alt = "Logo";
+    LOGO_IMG.src = "IMAGES/HSD_Logo.svg";
+    LOGO_IMG.alt = "HSD Logo";
 
     LOGO_LINK.appendChild(LOGO_IMG);
     HEADER_LOGO_CONTAINER.appendChild(LOGO_LINK);
