@@ -299,12 +299,12 @@ main {
 
                     #übersicht-vision-text::before {
                         content: open-quote;
-                        color: var(--color-red);
+                        color: var(--color-text);
                     }
 
                     #übersicht-vision-text::after {
                         content: close-quote;
-                        color: var(--color-red);
+                        color: var(--color-text);
                     }
                 }
 
@@ -579,18 +579,6 @@ main {
                         font-size: 1.35rem;
                         font-style: italic;
                         line-height: 1.5;
-                        position: relative;
-                        padding-left: 2rem;
-                    }
-
-                    #lehrende-intro-quote::before {
-                        content: "“";
-                        position: absolute;
-                        left: 0;
-                        top: -0.75rem;
-                        font-size: 3rem;
-                        font-style: normal;
-                        color: var(--color-red);
                     }
                 }
 

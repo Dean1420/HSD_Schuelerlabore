@@ -163,7 +163,7 @@ function insertImpressionText(übersichtImpression) {
     TEXT_CONTAINER.appendChild(LINK_INPUT);
 
     const LINK = document.createElement("a");
-    LINK.textContent = "Mehr Informationen";
+    LINK.textContent = "Weitere Informationen";
     TEXT_CONTAINER.appendChild(LINK);
 
     LINK_INPUT.addEventListener("input", () => {
