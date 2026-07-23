@@ -64,10 +64,23 @@ function createWorkshopContent(workshopNavigationArea) {
     const WORKSHOP_CONTENT = document.createElement("div");
     WORKSHOP_CONTENT.id = "workshop-content";
     //
+    // toggle button for collapsing/expanding the navigation (used in the mobile layout)
+    const NAVIGATION_TOGGLE = document.createElement("button");
+    NAVIGATION_TOGGLE.id = "workshop-navigation-toggle";
+    NAVIGATION_TOGGLE.type = "button";
+    NAVIGATION_TOGGLE.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg><span class="workshop-navigation-toggle-label">Menü</span>`;
+    NAVIGATION_TOGGLE.setAttribute("aria-expanded", "true");
+    workshopNavigationArea.appendChild(NAVIGATION_TOGGLE);
+    //
     // navigation link container
     const NAVIGATION_LINK_CONTAINER = document.createElement("nav");
     NAVIGATION_LINK_CONTAINER.id = "workshop-navigation-link-container";
     workshopNavigationArea.appendChild(NAVIGATION_LINK_CONTAINER);
+
+    NAVIGATION_TOGGLE.addEventListener("click", () => {
+        const IS_COLLAPSED = workshopNavigationArea.classList.toggle("collapsed");
+        NAVIGATION_TOGGLE.setAttribute("aria-expanded", String(!IS_COLLAPSED));
+    });
 
     insertEditorControls(WORKSHOP_CONTENT);
 
