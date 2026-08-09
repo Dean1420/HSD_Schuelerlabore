@@ -4,88 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info - Schülerlabore</title>
-    <style>
-        body {
-            font-family: 'Inria Sans', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .info-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            border-bottom: 3px solid #E3001B;
-            padding-bottom: 10px;
-        }
-        h2 {
-            color: #555;
-            margin-top: 30px;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-        .info-section {
-            margin-bottom: 30px;
-        }
-        ul {
-            color: #666;
-            line-height: 1.8;
-        }
-    </style>
+
+    <link rel="stylesheet" href="../workshop_creator/CSS/landscape.css" />
+    <link rel="stylesheet" href="../workshop_creator/CSS/portrait.css" />
+
+    <script type="module" src="./JS/info.js"></script>
 </head>
 <body>
-    <div class="info-container">
-        <h1>Informationen zu den Schülerlaboren</h1>
+    
+    <img src="./IMAGES/placeholder.jpg" alt="Schülerlabor Placeholder" style="width: 100vw; max-width: 100vw; margin-left: calc(-50vw + 50%); height: 400px; object-fit: cover; display: block;">
+
+    <main class="info-container" style="display: block !important; width: 100%; max-width: 900px; margin: 0 auto; padding: 40px; box-sizing: border-box;">
         
-        <div class="info-section">
-            <h2>Was sind Schülerlabore?</h2>
-            <p>
-                Schülerlabore sind außerschulische Lernorte, in denen Schülerinnen und Schüler 
-                naturwissenschaftliche und technische Experimente selbstständig durchführen können. 
-                Sie bieten die Möglichkeit, Theorie in der Praxis zu erleben und wissenschaftliche 
-                Arbeitsweisen kennenzulernen.
+        <h1 style="font-family: serif; font-size: 3rem; color: #333; margin-bottom: 50px;">Informationen zu den Schülerlaboren</h1>
+        
+        <div class="info-section" style="margin-bottom: 50px; display: block;">
+            <h2 style="border-bottom: 1px solid #d3d3d3; padding-bottom: 10px; margin-bottom: 20px;">
+                <span style="color: #333; font-family: serif; font-style: normal; font-weight: bold; font-size: 1.6rem;">Interdisziplinär & Zukunftsweisend</span>
+            </h2>
+            <p style="color: #555; line-height: 1.8;">
+                Unsere Schülerlabore sind außerschulische Lernorte, die am Hochschulcampus in Derendorf stattfinden. Mit aktuell 16 neuen Kursen bilden wir die gesamte Themenvielfalt der Hochschule Düsseldorf ab. Statt klassischem Frontalunterricht bieten wir interaktive Erlebnisse in hochrelevanten Bereichen wie Künstlicher Intelligenz, Klimawandel, Diversität und der Gefährdung der Demokratie.
             </p>
         </div>
 
-        <div class="info-section">
-            <h2>Ziele</h2>
-            <ul>
-                <li>Förderung des naturwissenschaftlichen Verständnisses</li>
-                <li>Praktische Anwendung von Schulwissen</li>
-                <li>Entwicklung von Interesse für MINT-Fächer</li>
-                <li>Vermittlung von beruflichen Perspektiven</li>
+        <div class="info-section" style="margin-bottom: 50px; display: block;">
+            <h2 style="border-bottom: 1px solid #d3d3d3; padding-bottom: 10px; margin-bottom: 20px;">
+                <span style="color: #333; font-family: serif; font-style: normal; font-weight: bold; font-size: 1.6rem;">Unsere Themenbereiche</span>
+            </h2>
+            <p style="color: #555; line-height: 1.8;">Das Angebot erstreckt sich über verschiedene Fachbereiche der HSD und bündelt sich in drei Kernbereichen:</p>
+            <ul style="color: #555; line-height: 1.8; margin-bottom: 20px;">
+                <li><strong>Gesellschaft & Demokratie:</strong> Spielerische Vermittlung von Wahlabläufen, Stärkung der demokratischen Resilienz und Sensibilisierung für kulturelle Vielfalt und digitale Gewalt.</li>
+                <li><strong>Technik & Nachhaltigkeit:</strong> Praktische Erfahrungen in der Automatisierungstechnik, dem Bau von Elektromotoren, Papierrecycling und der modernen Flugsystemtechnik.</li>
+                <li><strong>Medien, KI & Digitalität:</strong> Kritisches Hinterfragen von Fake News und DeepFakes, Reflexion von Körperbildern in Medien sowie die kreative Anwendung von 3D-Design und Augmented Reality.</li>
             </ul>
         </div>
 
-        <div class="info-section">
-            <h2>Angebot</h2>
-            <p>
-                Unsere Schülerlabore bieten verschiedene Kurse und Workshops in den Bereichen:
-            </p>
-            <ul>
-                <li>Physik</li>
-                <li>Chemie</li>
-                <li>Biologie</li>
-                <li>Informatik</li>
-                <li>Technik</li>
+        <div class="info-section" style="margin-bottom: 50px; display: block;">
+            <h2 style="border-bottom: 1px solid #d3d3d3; padding-bottom: 10px; margin-bottom: 20px;">
+                <span style="color: #333; font-family: serif; font-style: normal; font-weight: bold; font-size: 1.6rem;">Beispielhafte Kurse</span>
+            </h2>
+            <ul style="color: #555; line-height: 1.8; margin-bottom: 20px;">
+                <li><strong>Eine Klasse lernt fliegen:</strong> Einblicke in Aerodynamik und Flugsystemtechnik mithilfe von Drohnen und Simulatoren.</li>
+                <li><strong>AI to 3D – Dein Charakter in AR:</strong> Eine immersive Lernerfahrung, die Künstliche Intelligenz, 3D-Design und Augmented Reality verbindet.</li>
+                <li><strong>FakeNews & DeepFakes:</strong> Ein Kurs zur kritischen Reflexion der eigenen Mediennutzung und dem Erkennen von Falschmeldungen.</li>
+                <li><strong>Hass hinter Glas:</strong> Ein Workshop gegen Cybermobbing und für ein faires Miteinander in sozialen Netzwerken.</li>
             </ul>
         </div>
 
-        <div class="info-section">
-            <h2>Kontakt & Anmeldung</h2>
-            <p>
-                Interessierte Schulen und Lehrkräfte können sich für weitere Informationen 
-                und zur Anmeldung mit uns in Verbindung setzen.
+        <div class="info-section" style="margin-bottom: 50px; display: block;">
+            <h2 style="border-bottom: 1px solid #d3d3d3; padding-bottom: 10px; margin-bottom: 20px;">
+                <span style="color: #333; font-family: serif; font-style: normal; font-weight: bold; font-size: 1.6rem;">Rahmenbedingungen</span>
+            </h2>
+            <p style="color: #555; line-height: 1.8;">
+                Unser breites Angebot richtet sich je nach Kurs an Schülerinnen und Schüler von der 5. Klasse bis hin zur gymnasialen Oberstufe (Q2). Die Kursdauer variiert themenabhängig zwischen 3 und 8 Stunden. Wir arbeiten intensiv in Kleingruppen mit einer durchschnittlichen Teilnehmerzahl von 15 bis 30 Personen.
             </p>
         </div>
-    </div>
+    </main>
+
 </body>
 </html>

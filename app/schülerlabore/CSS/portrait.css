@@ -1,1 +1,232 @@
+/*
 
+===================== Handy-Ansicht (Portrait) =====================
+
+Diese Regeln überschreiben landscape.css nur auf schmalen Bildschirmen.
+Auf breiten Bildschirmen bleibt landscape.css unverändert wirksam.
+
+*/
+
+@media (max-width: 768px) {
+
+    main {
+        flex-direction: column;
+
+        #workshop-navigation-area {
+            width: 100%;
+            flex-shrink: 1;
+            margin: 0;
+            padding: 1rem 5% 1rem 9%;
+            border-right: none;
+            border-bottom: var(--border-width) var(--border-style) var(--border-color);
+            position: relative;
+
+            #workshop-navigation-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                position: absolute;
+                top: 1rem;
+                left: 4%;
+                padding: 0;
+                background: none;
+                border: none;
+                color: var(--color-text);
+                font-family: var(--font-serif);
+                font-size: 0.85rem;
+                cursor: pointer;
+
+                svg {
+                    flex-shrink: 0;
+                    transition: transform 0.2s ease;
+                }
+
+                .workshop-navigation-toggle-label {
+                    display: none;
+                }
+            }
+
+            #workshop-navigation-link-container {
+                flex-direction: column;
+                position: static;
+                gap: 0.75rem;
+                overflow: hidden;
+                max-height: 40rem;
+                transition: max-height 0.3s ease;
+
+                a {
+                    flex-direction: row;
+                    align-items: baseline;
+                    gap: 0.5rem;
+                    width: 100%;
+                    border-left: none;
+
+                    .workshop-navigation-number {
+                        flex-shrink: 0;
+                    }
+
+                    .navigation-text {
+                        flex-shrink: 0;
+                    }
+                }
+
+                a::after {
+                    content: "";
+                    flex: 1;
+                    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+                    margin-bottom: 0.35rem;
+                }
+
+                a.active {
+                    border-left: none;
+                }
+            }
+
+            &.collapsed {
+                padding-bottom: 1.5rem;
+
+                #workshop-navigation-toggle {
+
+                    svg {
+                        transform: rotate(180deg);
+                    }
+
+                    .workshop-navigation-toggle-label {
+                        display: inline;
+                    }
+                }
+
+                #workshop-navigation-link-container {
+                    max-height: 0;
+                }
+            }
+        }
+
+        #workshop-content {
+
+            #übersicht {
+
+                #übersicht-impression {
+                    flex-direction: column;
+
+                    #übersicht-image {
+                        width: 100%;
+                    }
+
+                    #übersicht-intro {
+                        width: 100%;
+                    }
+                }
+
+                #übersicht-description {
+                    flex-direction: column;
+
+                    #übersicht-vision {
+                        width: 100%;
+                    }
+
+                    #übersicht-summary {
+                        width: 100%;
+                        margin-top: 1.5rem;
+                    }
+                }
+
+                #übersicht-quick-facts {
+                    flex-direction: column;
+
+                    #übersicht-facts-left,
+                    #übersicht-facts-right {
+                        width: 100%;
+                    }
+
+                    #übersicht-facts-left {
+                        padding-right: 0;
+                        margin-bottom: 1.75rem;
+                    }
+
+                    #übersicht-facts-right {
+                        padding-left: 0;
+                        border-left: none;
+                    }
+                }
+            }
+
+            #anleitung {
+
+                #anleitung-introduction {
+                    flex-direction: column;
+
+                    #anleitung-intro-text {
+                        width: 100%;
+                    }
+
+                    #anleitung-intro-image {
+                        width: 100%;
+                    }
+                }
+
+                #anleitung-tables-wrapper {
+
+                    .anleitung-table {
+
+                        .anleitung-table-lower {
+                            flex-direction: column;
+                            gap: 0.75rem;
+
+                            .anleitung-table-col-left,
+                            .anleitung-table-col-middle,
+                            .anleitung-table-col-right {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #materialien {
+
+                .add-material-content-buttons-container,
+                .material-link-container,
+                .material-file-container {
+                    width: 100%;
+                }
+            }
+
+            #für-lehrende {
+
+                #lehrende-overview {
+                    flex-direction: column;
+
+                    #lehrende-intro {
+                        width: 100%;
+                    }
+
+                    #lehrende-quick-facts {
+                        width: 100%;
+                        margin-top: 1.5rem;
+                    }
+                }
+            }
+
+            #impressionen {
+
+                .eindrück-col-1,
+                .galerie-col-1,
+                .eindrück-col-2,
+                .galerie-col-2,
+                .eindrück-col-3,
+                .galerie-col-3 {
+                    width: 100%;
+                }
+            }
+
+            #beteiligte {
+
+                .beteiligte-card {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
