@@ -1,12 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 /*
 
 ===================== Variables =====================
 
 */
 :root {
-    --border-color: black;
+    --border-color: #1a1a1a;
     --border-style: solid;
-    --border-width: 0.1rem;
+    --border-width: 0.0625rem;
+
+    --color-red: #E20031;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5c5c5c;
+
+    --font-serif: "Inria Serif", "Times New Roman", serif;
 }
 
 /*
@@ -18,7 +26,8 @@
 html,
 body {
     font-size: 16px;
-    font-family: Verdana, Tahoma, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-serif);
+    color: var(--color-text);
 }
 
 
@@ -52,11 +61,48 @@ a,
 span {
     border-color: var(--border-color);
     border-style: var(--border-style);
-    border-width: var(--border-width);
+    border-width: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
 }
 
 * {
     box-sizing: border-box;
+}
+
+/*
+
+===================== Section / Subsection Titles =====================
+
+*/
+
+.section-title {
+    display: block;
+    white-space: pre;
+    color: var(--color-red);
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 3rem 5% 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+}
+
+.subsection-title {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 1.5rem 5% 1rem;
 }
 
 /*
@@ -68,10 +114,15 @@ span {
 header {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    padding: 0 5% 0 1rem;
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
 
     #header-logo-container {
-        width: 50%;
-        height: 5rem;
+        width: auto;
+        height: 100%;
 
         #header-logo {
             height: 100%;
@@ -80,7 +131,21 @@ header {
     }
 
     #page-navigation {
-        width: 50%;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+
+        a {
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        a:hover {
+            color: var(--color-red);
+        }
     }
 }
 
@@ -89,128 +154,627 @@ header {
 main {
     display: flex;
 
-    #schülerlabore-content {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+    #workshop-navigation-area {
+        width: 8%;
+        flex-shrink: 0;
+        margin: 0;
+        padding: 2rem 0;
+        border-right: var(--border-width) var(--border-style) var(--border-color);
 
-        #schülerlabore-banner {
-            width: 100%;
-            overflow: hidden;
-            height: 50rem;
-
-            #schülerlabore-banner-img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
+        #workshop-navigation-toggle {
+            display: none;
         }
 
-        #schülerlabore-description {
+        #workshop-navigation-link-container {
             display: flex;
             flex-direction: column;
-            padding: 5%;
+            gap: 1.5rem;
+            position: sticky;
+            top: 2rem;
 
-            #schülerlabore-description-text {
-                #schülerlabore-description-text-content {
-                    display: block;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
+            a {
+                display: flex;
+                flex-direction: column;
+                word-break: break-word;
+                text-decoration: none;
+                color: var(--color-text-muted);
+                padding: 0 0.75rem;
+                gap: 0.15rem;
+                border-left: 0.15rem var(--border-style) transparent;
+
+                .workshop-navigation-number {
+                    color: var(--color-red);
+                    font-weight: 700;
+                    font-size: 0.8rem;
+                }
+
+                .navigation-text {
+                    font-size: 0.65rem;
+                    letter-spacing: 0.03em;
                 }
             }
 
-            #schülerlabore-description-bottom {
+            a:hover {
+                color: var(--color-text);
+            }
+
+            a.active {
+                color: var(--color-text);
+                border-left-color: var(--color-red);
+
+                .navigation-text {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    #workshop-content {
+        flex: 1;
+
+        #übersicht {
+            display: flex;
+            flex-direction: column;
+
+            #übersicht-impression {
                 display: flex;
-                flex-direction: row;
+                gap: 4%;
+                margin: 0 5% 3rem;
+                align-items: stretch;
 
-                #schülerlabore-description-left {
-                    display: flex;
-                    flex-direction: column;
-                    overflow: hidden;
+                #übersicht-image {
                     width: 50%;
-                    height: 15rem;
 
-                    #schülerlabore-description-link {
+                    #übersicht-img {
                         width: 100%;
                         height: 100%;
-
-                        #schülerlabore-description-link-img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            display: block;
-                        }
+                        aspect-ratio: 1 / 1;
+                        object-fit: cover;
+                        display: block;
                     }
                 }
 
-                #schülerlabore-description-right {
+                #übersicht-intro {
                     width: 50%;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
 
-                    #schülerlabore-description-quote {
+                    #übersicht-workshop-name {
+                        display: block;
+                        word-break: break-word;
+                        font-size: 2.75rem;
+                        font-weight: 700;
+                        line-height: 1.15;
+                        margin-bottom: 1rem;
+                    }
+
+                    #übersicht-workshop-slogan {
+                        display: block;
+                        word-break: break-word;
+                        font-size: 1rem;
+                        color: var(--color-text-muted);
+                        margin-bottom: 1.5rem;
+                    }
+
+                    #übersicht-url-input {
+                        font-family: var(--font-serif);
+                        padding: 0.4rem;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    a {
+                        color: var(--color-red);
+                        font-weight: 700;
+                        font-size: 0.9rem;
+                        text-decoration: none;
+                    }
+
+                    a::after {
+                        content: " →";
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            #übersicht-description {
+                display: flex;
+                gap: 5%;
+                margin: 0 5% 3rem;
+
+                #übersicht-vision {
+                    width: 50%;
+                    overflow: hidden;
+
+                    #übersicht-vision-text {
+                        display: block;
+                        word-break: break-word;
+                        font-size: 1.75rem;
+                        font-style: italic;
+                        font-weight: 700;
+                        line-height: 1.35;
+                        quotes: "„" "“";
+                    }
+
+                    #übersicht-vision-text::before {
+                        content: open-quote;
+                        color: var(--color-text);
+                    }
+
+                    #übersicht-vision-text::after {
+                        content: close-quote;
+                        color: var(--color-text);
+                    }
+                }
+
+                #übersicht-summary {
+                    width: 50%;
+                    overflow: hidden;
+
+                    #übersicht-summary-text {
+                        display: block;
+                        word-break: break-word;
+                        font-size: 0.95rem;
+                        line-height: 1.6;
+                        color: var(--color-text-muted);
+                    }
+                }
+            }
+
+            #übersicht-quick-facts {
+                display: flex;
+                margin: 0 5% 3rem;
+                padding-top: 1.5rem;
+                border-top: var(--border-width) var(--border-style) var(--border-color);
+
+                .übersicht-quick-fact-title {
+                    display: block;
+                    word-break: break-word;
+                    font-weight: 700;
+                    font-size: 1.05rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                .übersicht-quick-fact-text {
+                    display: block;
+                    word-break: break-word;
+                    font-size: 0.9rem;
+                    color: var(--color-text-muted);
+                    line-height: 1.5;
+                }
+
+                #übersicht-facts-left,
+                #übersicht-facts-right {
+                    width: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+
+                    > div {
+                        margin-bottom: 1.75rem;
+                    }
+
+                    > div:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                #übersicht-facts-left {
+                    padding-right: 5%;
+                }
+
+                #übersicht-facts-right {
+                    padding-left: 5%;
+                    border-left: var(--border-width) var(--border-style) var(--border-color);
+                }
+            }
+        }
+
+        #anleitung {
+            #anleitung-introduction {
+                display: flex;
+                gap: 4%;
+                margin: 0 5% 3rem;
+                align-items: center;
+
+                #anleitung-intro-text {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+
+                    #anleitung-intro-title {
+                        font-size: 2.25rem;
+                        font-weight: 700;
+                        margin-bottom: 1rem;
+                    }
+
+                    #anleitung-intro-description {
                         display: block;
                         word-break: break-word;
                         overflow-wrap: break-word;
+                        font-size: 0.95rem;
+                        color: var(--color-text-muted);
+                        line-height: 1.6;
+                    }
+                }
+
+                #anleitung-intro-image {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+
+                    #anleitung-intro-img {
+                        width: 100%;
+                        height: 20rem;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    #anleitung-intro-image-input {}
+                }
+            }
+
+            #anleitung-banner {
+                width: 90%;
+                margin: 0 5% 3rem;
+                display: flex;
+                flex-direction: column;
+
+                #anleitung-banner-img {
+                    width: 100%;
+                    height: 24rem;
+                    object-fit: cover;
+                }
+            }
+
+            #anleitung-tables-wrapper {
+                display: flex;
+                flex-direction: column;
+                margin: 0 5% 3rem;
+
+                .anleitung-tables {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .anleitung-table {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 1.25rem 0;
+                    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+
+                    .anleitung-table-upper {
+                        word-break: break-word;
+                        overflow-wrap: break-word;
+                        padding-bottom: 0.75rem;
+
+                        .anleitung-table-phase {
+                            font-weight: 700;
+                            font-size: 1.05rem;
+                        }
+                    }
+
+                    .anleitung-table-lower {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 2%;
+                        font-size: 0.9rem;
+
+                        .anleitung-table-col-left {
+                            width: 25%;
+                            display: block;
+                            word-break: break-word;
+                            overflow-wrap: break-word;
+                            white-space: pre-wrap;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            color: var(--color-text);
+                        }
+
+                        .anleitung-table-col-middle {
+                            width: 50%;
+                            display: block;
+                            word-break: break-word;
+                            overflow-wrap: break-word;
+                            font-size: 0.9rem;
+                            color: var(--color-text);
+                        }
+
+                        .anleitung-table-col-right {
+                            width: 25%;
+                            display: block;
+                            word-break: break-word;
+                            overflow-wrap: break-word;
+                            white-space: pre-wrap;
+                            text-align: left;
+                            font-size: 0.9rem;
+                            color: var(--color-text);
+                        }
                     }
                 }
             }
         }
 
-        #schülerlabore-kursangebot {
+        #materialien {
             display: flex;
-            flex-direction: row;
-            padding: 5%;
+            flex-direction: column;
+            margin-bottom: 2rem;
 
-            #schülerlabore-kursangebot-left {
+            .add-material-content-buttons-container {
                 display: flex;
                 flex-direction: column;
-                width: 25%;
+                justify-content: center;
+                width: 22%;
+                margin: 1%;
+                gap: 0.5rem;
+            }
 
-                #schülerlabore-kursangebot-title {
-                    display: block;
-                }
+            .material-link-container,
+            .material-file-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                width: 22%;
+                min-height: 6rem;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                margin: 1%;
+                padding: 1rem;
+                border: var(--border-width) var(--border-style) var(--color-red) !important;
 
-                #schülerlabore-kursangebot-description {
-                    display: block;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
+                a {
+                    color: var(--color-red);
+                    font-weight: 700;
                 }
             }
 
-            #schülerlabore-kursangebot-right {
+            #materialien-list,
+            #ressourcen-list {
                 display: flex;
                 flex-direction: column;
-                width: 75%;
+                margin: 0 5%;
 
-                #schülerlabore-kursangebot-filter {}
-
-                #schülerlabore-kursangebot-content {
+                #materialien-list-content,
+                #ressourcen-list-content {
                     display: flex;
                     flex-wrap: wrap;
+                    justify-content: flex-start;
+                    margin: 0 -1%;
+                }
+            }
+        }
 
-                    .workshop-card {
+        #für-lehrende {
+            display: flex;
+            flex-direction: column;
+
+            #lehrende-overview {
+                display: flex;
+                gap: 5%;
+                margin: 0 5% 3rem;
+
+                #lehrende-intro {
+                    width: 66%;
+
+                    #lehrende-intro-title {
+                        display: flex;
+                        flex-wrap: wrap;
+                        word-break: break-word;
+                        font-size: 2.5rem;
+                        font-weight: 700;
+                        margin-bottom: 1.5rem;
+                    }
+
+                    #lehrende-intro-quote {
+                        display: flex;
+                        flex-wrap: wrap;
+                        word-break: break-word;
+                        font-size: 1.35rem;
+                        font-style: italic;
+                        line-height: 1.5;
+                    }
+                }
+
+                #lehrende-quick-facts {
+                    display: flex;
+                    flex-direction: column;
+                    width: 26%;
+                    padding: 1rem;
+                    border: var(--border-width) var(--border-style) var(--border-color);
+                    border-radius: 1rem;
+                    height: fit-content;
+
+                    #lehrende-quick-facts-title {
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 0.05em;
+                        font-size: 0.75rem;
+                        color: var(--color-red);
+                        margin-bottom: 0.75rem;
+                    }
+
+                    .lehrende-quick-facts-item {
                         display: flex;
                         flex-direction: column;
-                        width: 30%;
-                        margin: 1%;
-                        overflow: hidden;
+                        padding: 0.5rem 0;
 
-                        .workshop-thumbnail {
-                            width: 100%;
-                            height: 10rem;
-                            object-fit: cover;
-                            display: block;
+                        .lehrende-quick-facts-label {
+                            font-size: 0.7rem;
+                            color: var(--color-text-muted);
+                            text-transform: uppercase;
+                            letter-spacing: 0.03em;
                         }
 
-                        .workshop-text {
-                            display: block;
+                        .lehrende-quick-facts-value {
+                            display: flex;
+                            flex-wrap: wrap;
                             word-break: break-word;
-                            overflow-wrap: break-word;
+                            font-size: 0.9rem;
+                            font-weight: 700;
                         }
                     }
+
+                }
+            }
+
+            #lehrende-lerninhalt {
+                display: flex;
+                flex-direction: column;
+                margin: 0 5% 3rem;
+
+                #lerninhalt-title {}
+
+                #lerninhalt-text {
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                    color: var(--color-text-muted);
+                }
+            }
+
+            #lehrende-kompetenzen {
+                display: flex;
+                flex-direction: column;
+                margin: 0 5% 3rem;
+
+                #lehrende-kompetenzen-title {}
+
+                #lehrende-kompetenzen-text {
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                    color: var(--color-text-muted);
+                }
+            }
+
+            #lehrende-lehrplanbezug {
+                display: flex;
+                flex-direction: column;
+                margin: 0 5% 3rem;
+
+                #lehrplanbezug-title {}
+
+                #lehrplanbezug-text {
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                    color: var(--color-text-muted);
+                }
+            }
+        }
+
+        #impressionen {
+
+            #eindrücke-container,
+            #bildergalerie-container {
+                display: flex;
+                flex-direction: column;
+                margin: 0 5% 2rem;
+            }
+
+            #eindrücke-content,
+            #bildergalerie-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin: 0 -2%;
+            }
+
+            #eindrücke-buttons,
+            #bildergalerie-buttons {
+                display: flex;
+                flex-direction: row;
+                gap: 0.5rem;
+                margin: 1rem 0;
+            }
+
+            .eindrück-item,
+            .galerie-item {
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                margin: 2%;
+
+                .eindrück-img,
+                .galerie-img {
+                    width: 100%;
+                    object-fit: cover;
+                    height: 20rem;
+                }
+
+                .eindrück-text {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                    white-space: pre-wrap;
+                    font-size: 0.85rem;
+                    color: var(--color-text-muted);
+                    margin-top: 0.5rem;
+                }
+            }
+
+            .eindrück-col-1,
+            .galerie-col-1 {
+                width: 28%;
+            }
+
+            .eindrück-col-2,
+            .galerie-col-2 {
+                width: 55%;
+            }
+
+            .eindrück-col-3,
+            .galerie-col-3 {
+                width: 90%;
+            }
+        }
+
+        #beteiligte {
+            #beteiligte-container {
+                display: flex;
+                flex-direction: column;
+                margin: 0 5% 3rem;
+            }
+
+            #beteiligte-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin: 0 -1%;
+            }
+
+            .beteiligte-card {
+                display: flex;
+                flex-direction: column;
+                width: 22%;
+                margin: 1%;
+                overflow: hidden;
+
+                .beteiligte-img {
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    object-fit: cover;
+                }
+
+                .beteiligte-name {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    margin-top: 0.75rem;
+                }
+
+                .beteiligte-description {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                    white-space: pre-wrap;
+                    font-size: 0.85rem;
+                    color: var(--color-text-muted);
                 }
             }
         }
