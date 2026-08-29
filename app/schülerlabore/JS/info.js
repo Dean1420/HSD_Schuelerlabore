@@ -10,7 +10,7 @@ navLinks.forEach(link => {
         link.href = "./home.html";
     } 
     else if (link.textContent.includes("Infos")) {
-        link.href = "./info.html"; // This links to itself, acting as a refresh!
+        link.href = "./info.html";
     } 
     else if (link.textContent.includes("Kontakt")) {
         link.href = "./kontakt.html"; 
