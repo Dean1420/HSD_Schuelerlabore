@@ -27,8 +27,8 @@ function createHeaderLogo() {
 
     const LOGO_IMG = document.createElement("img");
     LOGO_IMG.id = "header-logo";
-    LOGO_IMG.src = "IMAGES/placeholder.jpg";
-    LOGO_IMG.alt = "Logo";
+    LOGO_IMG.src = "IMAGES/HSD_Logo.svg";
+    LOGO_IMG.alt = "HSD Logo";
 
     LOGO_LINK.appendChild(LOGO_IMG);
     HEADER_LOGO_CONTAINER.appendChild(LOGO_LINK);
@@ -52,7 +52,7 @@ function createPageNavigation() {
 function insertNavigationLinks(pageNavigation) {
     // pages and their corresponding links
     const PAGES = [
-        { value: './home.html', text: 'Schülerlabore' },
+        { value: './home.html', text: 'Home' },
         { value: './infos.html', text: 'Infos' },
         { value: './kontakt.html', text: 'Kontakt' }
     ];

@@ -30,25 +30,17 @@ body {
     color: var(--color-text);
 }
 
-
-
 header {
     font-size: 1rem;
 }
-
-
 
 main {
     font-size: 1rem;
 }
 
-
-
 footer {
     font-size: 1rem;
 }
-
-
 
 div,
 p,
@@ -148,8 +140,6 @@ header {
         }
     }
 }
-
-
 
 main {
     display: flex;
@@ -413,8 +403,6 @@ main {
                         object-fit: cover;
                         display: block;
                     }
-
-                    #anleitung-intro-image-input {}
                 }
             }
 
@@ -628,8 +616,6 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lerninhalt-title {}
-
                 #lerninhalt-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
@@ -642,8 +628,6 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lehrende-kompetenzen-title {}
-
                 #lehrende-kompetenzen-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
@@ -655,8 +639,6 @@ main {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
-
-                #lehrplanbezug-title {}
 
                 #lehrplanbezug-text {
                     font-size: 0.95rem;
@@ -731,52 +713,149 @@ main {
                 width: 90%;
             }
         }
+    }
+}
 
-        #beteiligte {
-            #beteiligte-container {
-                display: flex;
-                flex-direction: column;
-                margin: 0 5% 3rem;
-            }
 
-            #beteiligte-content {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                margin: 0 -1%;
-            }
+/* ========================================
+   INFO & KONTAKT PAGES STYLES
+   ======================================== */
+.hero-image {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
 
-            .beteiligte-card {
-                display: flex;
-                flex-direction: column;
-                width: 22%;
-                margin: 1%;
-                overflow: hidden;
+.page-container {
+    display: block !important;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+}
 
-                .beteiligte-img {
-                    width: 100%;
-                    aspect-ratio: 1 / 1;
-                    object-fit: cover;
-                }
+.page-title {
+    font-family: serif;
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 50px;
+}
 
-                .beteiligte-name {
-                    display: block;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
-                    font-weight: 700;
-                    font-size: 1rem;
-                    margin-top: 0.75rem;
-                }
+.info-section {
+    margin-bottom: 50px;
+    display: block;
+}
 
-                .beteiligte-description {
-                    display: block;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
-                    white-space: pre-wrap;
-                    font-size: 0.85rem;
-                    color: var(--color-text-muted);
-                }
-            }
-        }
+.section-heading {
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section-heading span {
+    color: #333;
+    font-family: serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.content-text, .content-list {
+    color: #555;
+    line-height: 1.8;
+}
+
+.content-list {
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+}
+
+.form-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-family: sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea.form-input {
+    resize: vertical;
+}
+
+.form-button {
+    padding: 12px 24px;
+    background-color: #E3001B;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.2s ease;
+}
+
+.form-button:hover {
+    opacity: 0.8;
+}
+
+/* ========================================
+   TEAM LIST STYLES (INFO PAGE)
+   ======================================== */
+.team-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates exactly 2 equal columns */
+    gap: 40px 5%; /* 40px vertical gap between rows, 5% horizontal gap between columns */
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; 
+}
+
+.team-member-text {
+    font-family: sans-serif;
+    font-size: 0.75rem; 
+    line-height: 1.4;
+    color: #333;
+    margin: 0;
+}
+
+.team-member-text strong {
+    font-weight: bold;
+    color: #000;
+}
+
+.team-email-link {
+    color: #E3001B;
+    text-decoration: none;
+}
+
+.team-email-link:hover {
+    text-decoration: underline;
+}
+
+.team-member-img {
+    width: 140px; 
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Stacks them back to 1 per row on very small mobile screens */
+@media (max-width: 600px) {
+    .team-list {
+        grid-template-columns: 1fr;
     }
 }
