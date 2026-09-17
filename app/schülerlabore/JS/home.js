@@ -9,7 +9,8 @@ const BODY = document.body;
 const HEADER = createHeader();
 BODY.appendChild(HEADER);
 
-createMain().then(MAIN => BODY.appendChild(MAIN));
+const MAIN = createMain();
+BODY.appendChild(MAIN);
 
 //TODO generate footer
 
@@ -27,22 +28,40 @@ function createElement(tag, id) {
 
 
 
-async function createMain() {
+function createMain() {
     const MAIN = document.createElement("main");
-    const CONTENT = await createSchülerlaboreContent();
-    MAIN.appendChild(CONTENT);
+    MAIN.appendChild(createSchülerlaboreContent());
     return MAIN;
 }
 
-async function createSchülerlaboreContent() {
+/**
+ * Builds the static parts of the page synchronously so they paint immediately,
+ * then fills the Kursangebot once the workshop data has been fetched.
+ */
+function createSchülerlaboreContent() {
     const CONTENT = createElement("div", "schülerlabore-content");
     insertBanner(CONTENT);
     insertDescription(CONTENT);
     const KURSANGEBOT_CONTENT = insertKursangebot(CONTENT);
-    const workshops = await loadWorkshops();
-    console.log(workshops);
-    fillKursangebot(workshops, KURSANGEBOT_CONTENT);
+    loadKursangebot(KURSANGEBOT_CONTENT);
     return CONTENT;
+}
+
+async function loadKursangebot(content) {
+    try {
+        const workshops = await loadWorkshops();
+        fillKursangebot(workshops, content);
+    } catch (error) {
+        console.error("Kursangebot konnte nicht geladen werden:", error);
+        showKursangebotMessage(content, "Das Kursangebot konnte nicht geladen werden.");
+    }
+}
+
+function showKursangebotMessage(content, text) {
+    const MESSAGE = createElement("p");
+    MESSAGE.classList.add("workshop-message");
+    MESSAGE.textContent = text;
+    content.appendChild(MESSAGE);
 }
 
 function insertBanner(parent) {
@@ -110,7 +129,7 @@ function insertKursangebot(parent) {
 
 
 function getWorkshopPaths(name) {
-    const BASE = `./WORKSHOPS/${name}`;
+    const BASE = `./WORKSHOPS/${encodeURIComponent(name)}`;
     return {
         name,
         workshopPath: `${BASE}/Workshop.html`,
@@ -120,30 +139,52 @@ function getWorkshopPaths(name) {
     };
 }
 
+/**
+ * fetch() only rejects on network failure, so a 404 has to be turned into an error here;
+ * otherwise response.json() throws on the HTML error page and hides the real cause.
+ */
+async function fetchJson(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+    return response.json();
+}
+
 async function loadWorkshops() {
     //
     // load the list of workshop names from the index
-    const names = await fetch("./workshops.json").then(response => response.json());
+    const names = await fetchJson("./workshops.json");
 
     //
-    // for each name, build the paths and fetch the tags and text in parallel
-    return Promise.all(names.map(async (name) => {
-        const WORKSHOP = getWorkshopPaths(name);
+    // load every workshop independently: a broken or missing folder costs one card, not the page
+    const results = await Promise.allSettled(names.map(loadWorkshop));
+    results
+        .filter(result => result.status === "rejected")
+        .forEach(result => console.warn("Workshop übersprungen:", result.reason.message));
+    return results
+        .filter(result => result.status === "fulfilled")
+        .map(result => result.value);
+}
 
-        //
-        // fetch tags and text simultaneously
-        const [searchTags, thumbnailText] = await Promise.all([
-            fetch(WORKSHOP.searchTags).then(response => response.json()),
-            fetch(WORKSHOP.thumbnailText).then(response => response.json())
-        ]);
+async function loadWorkshop(name) {
+    const WORKSHOP = getWorkshopPaths(name);
 
-        //
-        // return the workshop object with all data merged in
-        return { ...WORKSHOP, searchTags, thumbnailText };
-    }));
+    //
+    // fetch tags and text simultaneously
+    const [searchTags, thumbnailText] = await Promise.all([
+        fetchJson(WORKSHOP.searchTags),
+        fetchJson(WORKSHOP.thumbnailText)
+    ]);
+
+    //
+    // return the workshop object with all data merged in
+    return { ...WORKSHOP, searchTags, thumbnailText };
 }
 
 function fillKursangebot(workshops, content) {
+    if (workshops.length === 0) {
+        showKursangebotMessage(content, "Zurzeit sind keine Workshops eingetragen.");
+        return;
+    }
     workshops.forEach(workshop => {
         const CARD = createElement("div");
         CARD.classList.add("workshop-card");

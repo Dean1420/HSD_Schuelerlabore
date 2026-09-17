@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("#page-navigation a").forEach((link, i) => {
-        link.href = ["../../home.html", "../../infos.html", "../../kontakt.html"][i];
+        link.href = ["../../home.html", "../../info.html", "../../kontakt.html"][i];
     });
 });
 
