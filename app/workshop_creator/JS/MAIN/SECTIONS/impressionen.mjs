@@ -1,5 +1,6 @@
-import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
-import { createSubsectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
+import { PLACEHOLDER_URL } from "../../../../assets/js/assets.mjs";
+import { createSectionTitle } from "../../../../assets/js/dom.mjs";
+import { createSubsectionTitle } from "../../../../assets/js/dom.mjs";
 
 export function createImpressionen(id, title) {
     const IMPRESSIONEN = document.createElement("section");
@@ -69,7 +70,7 @@ function insertEindruckItem(eindrückeContent, colClass) {
     // image
     const IMAGE = document.createElement("img");
     IMAGE.classList.add("eindrück-img");
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     WRAPPER.appendChild(IMAGE);
 
     //
@@ -145,7 +146,7 @@ function insertGalerieItem(content, colClass) {
     // image
     const IMAGE = document.createElement("img");
     IMAGE.classList.add("galerie-img");
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     WRAPPER.appendChild(IMAGE);
     //
     // image upload input

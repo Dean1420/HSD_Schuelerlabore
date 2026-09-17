@@ -14,6 +14,7 @@ import { createBeteiligte } from "./SECTIONS/beteiligte.mjs";
  */
 export function createMain() {
     const MAIN = document.createElement("main");
+    MAIN.classList.add("workshop-page");
 
     const WORKSHOP_NAVIGATION_AREA = createWorkshopNavigationContainer();
     MAIN.appendChild(WORKSHOP_NAVIGATION_AREA);

@@ -1,81 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-/*
-
-===================== Variables =====================
-
-*/
-:root {
-    --border-color: #1a1a1a;
-    --border-style: solid;
-    --border-width: 0.0625rem;
-
-    --color-red: #e20031;
-    --color-text: #1a1a1a;
-    --color-text-muted: #5c5c5c;
-
-    --font-serif: "Inria Serif", "Times New Roman", serif;
-}
-
-/*
-
-===================== Fontdesign =====================
-
-*/
-
-html,
-body {
-    font-size: 16px;
-    font-family: var(--font-serif);
-    color: var(--color-text);
-}
-
-header {
-    font-size: 1rem;
-}
-
-main {
-    font-size: 1rem;
-}
-
-footer {
-    font-size: 1rem;
-}
-
-div,
-p,
-section,
-nav,
-#page-navigation,
-header,
-aside,
-a,
-span {
-    border-color: var(--border-color);
-    border-style: var(--border-style);
-    border-width: 0;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-img {
-    max-width: 100%;
-}
-
-* {
-    box-sizing: border-box;
-}
-
 /*
 
 ===================== Section / Subsection Titles =====================
 
 */
 
-.section-title {
+.workshop-page .section-title {
     display: block;
     white-space: pre;
     color: var(--color-red);
@@ -89,7 +18,7 @@ img {
     border-bottom: var(--border-width) var(--border-style) var(--border-color);
 }
 
-.subsection-title {
+.workshop-page .subsection-title {
     display: block;
     font-family: var(--font-serif);
     font-size: 1.15rem;
@@ -97,51 +26,7 @@ img {
     margin: 1.5rem 5% 1rem;
 }
 
-/*
-
-===================== Header =====================
-
-*/
-
-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 4rem;
-    padding: 0 5% 0 1rem;
-    border-bottom: var(--border-width) var(--border-style) var(--border-color);
-
-    #header-logo-container {
-        width: auto;
-        height: 100%;
-
-        #header-logo {
-            height: 100%;
-            width: auto;
-        }
-    }
-
-    #page-navigation {
-        width: auto;
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        font-size: 0.85rem;
-        letter-spacing: 0.04em;
-
-        a {
-            text-decoration: none;
-            color: var(--color-text);
-        }
-
-        a:hover {
-            color: var(--color-red);
-        }
-    }
-}
-
-main {
+main.workshop-page {
     display: flex;
 
     #workshop-navigation-area {
@@ -246,12 +131,6 @@ main {
                         font-size: 1rem;
                         color: var(--color-text-muted);
                         margin-bottom: 1.5rem;
-                    }
-
-                    #übersicht-url-input {
-                        font-family: var(--font-serif);
-                        padding: 0.4rem;
-                        margin-bottom: 0.5rem;
                     }
 
                     a {
@@ -403,9 +282,6 @@ main {
                         object-fit: cover;
                         display: block;
                     }
-
-                    #anleitung-intro-image-input {
-                    }
                 }
             }
 
@@ -494,15 +370,6 @@ main {
             display: flex;
             flex-direction: column;
             margin-bottom: 2rem;
-
-            .add-material-content-buttons-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 22%;
-                margin: 1%;
-                gap: 0.5rem;
-            }
 
             .material-link-container,
             .material-file-container {
@@ -675,14 +542,6 @@ main {
                 margin: 0 -2%;
             }
 
-            #eindrücke-buttons,
-            #bildergalerie-buttons {
-                display: flex;
-                flex-direction: row;
-                gap: 0.5rem;
-                margin: 1rem 0;
-            }
-
             .eindrück-item,
             .galerie-item {
                 display: flex;
@@ -767,6 +626,219 @@ main {
                     white-space: pre-wrap;
                     font-size: 0.85rem;
                     color: var(--color-text-muted);
+                }
+            }
+        }
+    }
+}
+
+/* Workshop content on narrow screens. */
+@media (max-width: 768px) {
+    main.workshop-page {
+        flex-direction: column;
+
+        #workshop-navigation-area {
+            width: 100%;
+            flex-shrink: 1;
+            margin: 0;
+            padding: 1rem 5% 1rem 9%;
+            border-right: none;
+            border-bottom: var(--border-width) var(--border-style) var(--border-color);
+            position: relative;
+
+            #workshop-navigation-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                position: absolute;
+                top: 1rem;
+                left: 4%;
+                padding: 0;
+                background: none;
+                border: none;
+                color: var(--color-text);
+                font-family: var(--font-serif);
+                font-size: 0.85rem;
+                cursor: pointer;
+
+                svg {
+                    flex-shrink: 0;
+                    transition: transform 0.2s ease;
+                }
+
+                .workshop-navigation-toggle-label {
+                    display: none;
+                }
+            }
+
+            #workshop-navigation-link-container {
+                flex-direction: column;
+                position: static;
+                gap: 0.75rem;
+                overflow: hidden;
+                max-height: 40rem;
+                transition: max-height 0.3s ease;
+
+                a {
+                    flex-direction: row;
+                    align-items: baseline;
+                    gap: 0.5rem;
+                    width: 100%;
+                    border-left: none;
+
+                    .workshop-navigation-number {
+                        flex-shrink: 0;
+                    }
+
+                    .navigation-text {
+                        flex-shrink: 0;
+                    }
+                }
+
+                a::after {
+                    content: "";
+                    flex: 1;
+                    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+                    margin-bottom: 0.35rem;
+                }
+
+                a.active {
+                    border-left: none;
+                }
+            }
+
+            &.collapsed {
+                padding-bottom: 1.5rem;
+
+                #workshop-navigation-toggle {
+                    svg {
+                        transform: rotate(180deg);
+                    }
+
+                    .workshop-navigation-toggle-label {
+                        display: inline;
+                    }
+                }
+
+                #workshop-navigation-link-container {
+                    max-height: 0;
+                }
+            }
+        }
+
+        #workshop-content {
+            #übersicht {
+                #übersicht-impression {
+                    flex-direction: column;
+
+                    #übersicht-image {
+                        width: 100%;
+                    }
+
+                    #übersicht-intro {
+                        width: 100%;
+                    }
+                }
+
+                #übersicht-description {
+                    flex-direction: column;
+
+                    #übersicht-vision {
+                        width: 100%;
+                    }
+
+                    #übersicht-summary {
+                        width: 100%;
+                        margin-top: 1.5rem;
+                    }
+                }
+
+                #übersicht-quick-facts {
+                    flex-direction: column;
+
+                    #übersicht-facts-left,
+                    #übersicht-facts-right {
+                        width: 100%;
+                    }
+
+                    #übersicht-facts-left {
+                        padding-right: 0;
+                        margin-bottom: 1.75rem;
+                    }
+
+                    #übersicht-facts-right {
+                        padding-left: 0;
+                        border-left: none;
+                    }
+                }
+            }
+
+            #anleitung {
+                #anleitung-introduction {
+                    flex-direction: column;
+
+                    #anleitung-intro-text {
+                        width: 100%;
+                    }
+
+                    #anleitung-intro-image {
+                        width: 100%;
+                    }
+                }
+
+                #anleitung-tables-wrapper {
+                    .anleitung-table {
+                        .anleitung-table-lower {
+                            flex-direction: column;
+                            gap: 0.75rem;
+
+                            .anleitung-table-col-left,
+                            .anleitung-table-col-middle,
+                            .anleitung-table-col-right {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #materialien {
+                .material-link-container,
+                .material-file-container {
+                    width: 100%;
+                }
+            }
+
+            #für-lehrende {
+                #lehrende-overview {
+                    flex-direction: column;
+
+                    #lehrende-intro {
+                        width: 100%;
+                    }
+
+                    #lehrende-quick-facts {
+                        width: 100%;
+                        margin-top: 1.5rem;
+                    }
+                }
+            }
+
+            #impressionen {
+                .eindrück-col-1,
+                .galerie-col-1,
+                .eindrück-col-2,
+                .galerie-col-2,
+                .eindrück-col-3,
+                .galerie-col-3 {
+                    width: 100%;
+                }
+            }
+
+            #beteiligte {
+                .beteiligte-card {
+                    width: 100%;
                 }
             }
         }

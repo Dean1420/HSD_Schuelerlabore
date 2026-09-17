@@ -1,0 +1,36 @@
+/* Editing controls only. Workshop content is styled by assets/css/workshop.css. */
+body.workshop-editor {
+    #übersicht-url-input {
+        font-family: var(--font-serif);
+        padding: 0.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .add-material-content-buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 22%;
+        margin: 1%;
+        gap: 0.5rem;
+    }
+
+    #eindrücke-buttons,
+    #bildergalerie-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    /* Add debug-outline to the body in developer tools to inspect layout boxes. */
+    &.debug-outline :where(div, p, section, nav, aside, a, span) {
+        outline: 1px dashed var(--color-red);
+    }
+}
+
+@media (max-width: 768px) {
+    body.workshop-editor .add-material-content-buttons-container {
+        width: 100%;
+    }
+}

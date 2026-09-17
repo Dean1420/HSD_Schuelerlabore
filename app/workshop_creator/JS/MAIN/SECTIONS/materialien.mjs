@@ -1,5 +1,5 @@
-import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
-import { createSubsectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
+import { createSectionTitle } from "../../../../assets/js/dom.mjs";
+import { createSubsectionTitle } from "../../../../assets/js/dom.mjs";
 
 export function createMaterialien(id, title) {
     //

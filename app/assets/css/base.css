@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/*
+
+===================== Variables =====================
+
+*/
+:root {
+    --border-color: #1a1a1a;
+    --border-style: solid;
+    --border-width: 0.0625rem;
+
+    --color-red: #e20031;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5c5c5c;
+
+    --font-serif: "Inria Serif", "Times New Roman", serif;
+}
+
+/*
+
+===================== Fontdesign =====================
+
+*/
+
+html,
+body {
+    font-size: 16px;
+    font-family: var(--font-serif);
+    color: var(--color-text);
+}
+
+header {
+    font-size: 1rem;
+}
+
+main {
+    font-size: 1rem;
+}
+
+footer {
+    font-size: 1rem;
+}
+
+div,
+p,
+section,
+nav,
+#page-navigation,
+header,
+aside,
+a,
+span {
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+    border-width: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*
+
+===================== Header =====================
+
+*/
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    padding: 0 5% 0 1rem;
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+
+    #header-logo-container {
+        width: auto;
+        height: 100%;
+
+        #header-logo {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    #page-navigation {
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+
+        a {
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        a:hover {
+            color: var(--color-red);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        gap: 1rem;
+
+        #header-logo-container {
+            flex-shrink: 0;
+            height: 3rem;
+        }
+
+        #page-navigation {
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            letter-spacing: normal;
+        }
+    }
+}

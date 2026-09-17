@@ -1,4 +1,6 @@
-import { createHeader } from "./header.mjs";
+import { createHeader } from "../../assets/js/header.mjs";
+import { createElement } from "../../assets/js/dom.mjs";
+import { PLACEHOLDER_URL } from "../../assets/js/assets.mjs";
 
 //
 // =================================================
@@ -17,12 +19,6 @@ BODY.appendChild(MAIN);
 //
 // =================================================
 //
-
-function createElement(tag, id) {
-    const ELEMENT = document.createElement(tag);
-    if (id) ELEMENT.id = id;
-    return ELEMENT;
-}
 
 function createMain() {
     const MAIN = document.createElement("main");
@@ -63,7 +59,7 @@ function showKursangebotMessage(content, text) {
 function insertBanner(parent) {
     const SECTION = createElement("section", "schülerlabore-banner");
     const IMAGE = createElement("img", "schülerlabore-banner-img");
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     SECTION.appendChild(IMAGE);
     parent.appendChild(SECTION);
 }
@@ -84,7 +80,7 @@ function insertDescription(parent) {
     const LEFT = createElement("div", "schülerlabore-description-left");
     const LINK = createElement("a", "schülerlabore-description-link");
     const LINK_IMAGE = createElement("img", "schülerlabore-description-link-img");
-    LINK_IMAGE.src = "IMAGES/placeholder.jpg";
+    LINK_IMAGE.src = PLACEHOLDER_URL;
     LINK.appendChild(LINK_IMAGE);
     LEFT.appendChild(LINK);
     BOTTOM.appendChild(LEFT);

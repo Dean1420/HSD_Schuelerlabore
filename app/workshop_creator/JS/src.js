@@ -3,7 +3,7 @@
  *
  */
 
-import { createHeader } from "./HEADER/header.mjs";
+import { createHeader } from "../../assets/js/header.mjs";
 import { createMain } from "./MAIN/main.mjs";
 
 const BODY = document.body;

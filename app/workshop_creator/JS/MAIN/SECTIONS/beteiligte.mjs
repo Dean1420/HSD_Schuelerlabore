@@ -1,5 +1,6 @@
-import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
-import { createSubsectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
+import { PLACEHOLDER_URL } from "../../../../assets/js/assets.mjs";
+import { createSectionTitle } from "../../../../assets/js/dom.mjs";
+import { createSubsectionTitle } from "../../../../assets/js/dom.mjs";
 
 export function createBeteiligte(id, title) {
     //
@@ -53,7 +54,7 @@ function insertPersonCard(content) {
     // image
     const IMAGE = document.createElement("img");
     IMAGE.classList.add("beteiligte-img");
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     WRAPPER.appendChild(IMAGE);
 
     //

@@ -1,4 +1,6 @@
 main {
+    display: flex;
+
     #schülerlabore-content {
         display: flex;
         flex-direction: column;
@@ -125,5 +127,11 @@ main {
                 }
             }
         }
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
     }
 }

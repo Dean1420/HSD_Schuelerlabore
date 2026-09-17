@@ -1,5 +1,6 @@
-import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
-import { createSubsectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
+import { PLACEHOLDER_URL } from "../../../../assets/js/assets.mjs";
+import { createSectionTitle } from "../../../../assets/js/dom.mjs";
+import { createSubsectionTitle } from "../../../../assets/js/dom.mjs";
 
 export function createÜbersicht(id, title) {
     //
@@ -176,7 +177,7 @@ function insertImpressionImage(übersichtContent) {
 
     const IMAGE = document.createElement("img");
     IMAGE.id = "übersicht-img";
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     IMG_CONTAINER.appendChild(IMAGE);
 
     übersichtContent.appendChild(IMG_CONTAINER);

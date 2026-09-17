@@ -1,4 +1,5 @@
-import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
+import { PLACEHOLDER_URL } from "../../../../assets/js/assets.mjs";
+import { createSectionTitle } from "../../../../assets/js/dom.mjs";
 
 export function createAnleitung(id, title) {
     //
@@ -70,7 +71,7 @@ function insertIntroductionImage(introduction) {
     // image
     const IMAGE = document.createElement("img");
     IMAGE.id = "anleitung-intro-img";
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     CONTAINER.appendChild(IMAGE);
 
     //
@@ -96,7 +97,7 @@ function insertBigBanner(anleitung) {
     // banner image
     const IMAGE = document.createElement("img");
     IMAGE.id = "anleitung-banner-img";
-    IMAGE.src = "IMAGES/placeholder.jpg";
+    IMAGE.src = PLACEHOLDER_URL;
     CONTAINER.appendChild(IMAGE);
     //
     // image can be changed by the user
