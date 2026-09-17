@@ -5,17 +5,31 @@
 */
 
 .workshop-page .section-title {
-    display: block;
-    white-space: pre;
-    color: var(--color-red);
-    font-family: var(--font-serif);
-    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
     margin: 3rem 5% 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+
+    .workshop-navigation-number {
+        flex-shrink: 0;
+        color: var(--color-red);
+    }
+
+    .section-title-text {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    &::after {
+        content: "";
+        flex: 1 0 1.5rem;
+        margin-left: 0.25rem;
+        border-top: var(--border-width) var(--border-style) var(--border-color);
+    }
 }
 
 .workshop-page .subsection-title {
@@ -24,6 +38,22 @@
     font-size: 1.15rem;
     font-weight: 700;
     margin: 1.5rem 5% 1rem;
+}
+
+.workshop-page .workshop-section:not([data-kind="teachers"]) {
+    .subsection-title {
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        text-decoration: underline;
+        text-decoration-thickness: var(--border-width);
+        text-underline-offset: 0.15em;
+    }
+
+    > :is(#overview-impression, .workshop-subsection) + .workshop-subsection::before {
+        content: "";
+        margin: 0 5%;
+        border-top: var(--border-width) var(--border-style) var(--border-color);
+    }
 }
 
 main.workshop-page {
@@ -841,6 +871,367 @@ main.workshop-page {
                     width: 100%;
                 }
             }
+        }
+    }
+}
+
+/*
+
+===================== Rendered content (renderer output) =====================
+
+Class-based rules for content the renderer produces from workshop.json. Fixed layouts
+above keep their ids; anything that can repeat (blocks, items) is styled by class.
+
+*/
+
+.workshop-page {
+    .workshop-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .workshop-subsection {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .workshop-subsection > .blocks {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 1rem 2%;
+        margin: 0 5% 2rem;
+    }
+
+    .block {
+        margin: 0;
+        flex-basis: 100%;
+        min-width: 0;
+    }
+
+    .block-text {
+        white-space: pre-line;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--color-text-muted);
+    }
+
+    .block-quote {
+        font-size: 1.35rem;
+        font-style: italic;
+        line-height: 1.5;
+        quotes: "„" "“";
+
+        p {
+            margin: 0;
+        }
+
+        p::before {
+            content: open-quote;
+        }
+
+        p::after {
+            content: close-quote;
+        }
+
+        footer {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            font-style: normal;
+            color: var(--color-text-muted);
+        }
+    }
+
+    .block-list {
+        padding-left: 1.25rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    figcaption {
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin-top: 0.5rem;
+        white-space: pre-wrap;
+    }
+
+    .block-image {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        &.width-third {
+            flex-basis: 30%;
+        }
+
+        &.width-two-thirds {
+            flex-basis: 64%;
+        }
+    }
+
+    .block-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -2%;
+
+        figure {
+            display: flex;
+            flex-direction: column;
+            margin: 2%;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 20rem;
+            object-fit: cover;
+        }
+
+        .width-third {
+            width: 28%;
+        }
+
+        .width-two-thirds {
+            width: 55%;
+        }
+
+        .width-full {
+            width: 90%;
+        }
+    }
+
+    .block-link,
+    .block-file {
+        flex-basis: 22%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 6rem;
+        padding: 1rem;
+        border: var(--border-width) var(--border-style) var(--color-red);
+        word-break: break-word;
+
+        a {
+            color: var(--color-red);
+            font-weight: 700;
+        }
+    }
+
+    .block-phases {
+        list-style: none;
+        padding: 0;
+
+        .phase {
+            padding: 1.25rem 0;
+            border-bottom: var(--border-width) var(--border-style) var(--border-color);
+        }
+
+        .phase-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+        }
+
+        .steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 2%;
+            font-size: 0.9rem;
+        }
+
+        .step-head {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-duration {
+            color: var(--color-text-muted);
+        }
+
+        .step-description,
+        .step-method {
+            margin: 0;
+            white-space: pre-line;
+        }
+
+        .step-method-label {
+            color: var(--color-text-muted);
+        }
+    }
+
+    .block-people {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -1%;
+
+        .person {
+            display: flex;
+            flex-direction: column;
+            width: 22%;
+            margin: 1%;
+            overflow: hidden;
+        }
+
+        .person-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .person-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 0.75rem;
+        }
+
+        .person-description {
+            margin: 0;
+            white-space: pre-line;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+    }
+
+    /* Übersicht: quote and text of the description side by side, like the prototype. */
+    .workshop-subsection[data-kind="description"] > .blocks {
+        flex-wrap: nowrap;
+        gap: 5%;
+
+        .block-quote {
+            flex: 1 1 50%;
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .block-text {
+            flex: 1 1 50%;
+        }
+    }
+
+    #overview-workshop-name {
+        margin-top: 0;
+    }
+
+    #overview-workshop-slogan {
+        margin-top: 0;
+    }
+
+    .facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem 10%;
+        margin: 0 5% 3rem;
+
+        .fact,
+        dd {
+            margin: 0;
+        }
+
+        dt {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+
+        dd {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--color-text-muted);
+            white-space: pre-line;
+        }
+    }
+
+    #teachers-intro-quote {
+        margin: 0;
+        quotes: "„" "“";
+
+        p {
+            margin: 0;
+        }
+
+        p::before {
+            content: open-quote;
+        }
+
+        p::after {
+            content: close-quote;
+        }
+
+        footer {
+            width: 100%;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            font-style: normal;
+            color: var(--color-text-muted);
+        }
+    }
+
+    .teachers-quick-facts-list {
+        margin: 0;
+
+        dd {
+            margin: 0;
+        }
+    }
+}
+
+.workshop-message {
+    margin: 2rem 5%;
+}
+
+@media (max-width: 768px) {
+    .workshop-page {
+        .block-image.width-third,
+        .block-image.width-two-thirds {
+            flex-basis: 100%;
+        }
+
+        .block-gallery {
+            .width-third,
+            .width-two-thirds,
+            .width-full {
+                width: 100%;
+            }
+        }
+
+        .block-link,
+        .block-file {
+            flex-basis: 100%;
+        }
+
+        .block-people .person {
+            width: 100%;
+        }
+
+        .block-phases .step {
+            grid-template-columns: 1fr;
+            gap: 0.35rem;
+        }
+
+        .workshop-subsection[data-kind="description"] > .blocks {
+            flex-wrap: wrap;
+        }
+
+        .facts {
+            grid-template-columns: 1fr;
         }
     }
 }

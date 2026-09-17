@@ -13,15 +13,17 @@
     ],
     "type": "module",
     "engines": {
-        "node": ">=20"
+        "node": ">=20.19.0"
     },
     "scripts": {
-        "dev": "serve app -l 5500",
+        "dev": "serve app -l 5500 -c ../serve.json",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "test": "node --test"
+        "test": "node --test",
+        "fixtures": "node tools/copy-fixtures.mjs"
     },
     "devDependencies": {
+        "jsdom": "^29.1.1",
         "prettier": "^3.3.0",
         "serve": "^14.2.4"
     }

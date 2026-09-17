@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:wght@700&family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 /*
 
@@ -15,6 +15,7 @@
     --color-text-muted: #5c5c5c;
 
     --font-serif: "Inria Serif", "Times New Roman", serif;
+    --font-sans: "Inria Sans", Arial, sans-serif;
 }
 
 /*
@@ -28,6 +29,11 @@ body {
     font-size: 16px;
     font-family: var(--font-serif);
     color: var(--color-text);
+}
+
+/* Explicit canvas colour: embedded and dark-themed browsers otherwise show their own background. */
+body {
+    background: #fff;
 }
 
 header {

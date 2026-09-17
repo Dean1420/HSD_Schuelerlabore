@@ -9,6 +9,7 @@ import {
     createSection,
     createSubsection,
     createBlock,
+    createItem,
     validateWorkshop,
     isBlockFilled,
     isSectionEmpty,
@@ -134,8 +135,8 @@ function completeWorkshop() {
     });
 
     subsection(ws, "contributors", "people").blocks[0].people.push({
-        image: { src: "images/laura.jpg", alt: "Porträt Laura Sistig" },
-        name: "M.A. Laura Sistig",
+        image: { src: "images/portrait.jpg", alt: "Porträt Erika Mustermann" },
+        name: "Dr. Erika Mustermann",
         description: "Tel. 0211 …",
     });
 
@@ -647,4 +648,35 @@ test("hand-written minimal draft fixture is a valid draft but not publishable", 
         "title",
     ]);
     assert.ok(ws.sections.every(isSectionEmpty));
+});
+
+test("createItem returns fresh, draft-valid entries for every array inside a block", () => {
+    const cases = [
+        ["list", "items", (block, item) => block.items.push(item)],
+        ["gallery", "images", (block, item) => block.images.push(item)],
+        ["phases", "phases", (block, item) => block.phases.push(item)],
+        [
+            "phases",
+            "steps",
+            (block, item) =>
+                block.phases.push({ ...createItem("phases", "phases"), steps: [item] }),
+        ],
+        ["people", "people", (block, item) => block.people.push(item)],
+    ];
+    for (const [type, collection, insert] of cases) {
+        const ws = createEmptyWorkshop();
+        const block = createBlock(type);
+        insert(block, createItem(type, collection));
+        ws.sections[0].subsections[0].blocks.push(block);
+        assert.deepEqual(validateWorkshop(ws), [], `${type}.${collection}`);
+        assert.equal(isBlockFilled(block), false, `${type}.${collection} starts empty`);
+        if (collection !== "items") {
+            assert.notEqual(createItem(type, collection), createItem(type, collection));
+        }
+    }
+    assert.equal(createItem("phases", "phases").steps.length, 1, "a new phase has one step");
+    assert.equal(createItem("gallery", "images").width, "full");
+    assert.throws(() => createItem("text", "items"), RangeError);
+    assert.throws(() => createItem("list", "constructor"), RangeError);
+    assert.throws(() => createItem("constructor", "items"), RangeError);
 });

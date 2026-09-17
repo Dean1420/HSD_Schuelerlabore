@@ -188,7 +188,10 @@ const SECTION_FIELDS = {
     },
 };
 
-/** Block defaults, validation and content detection. */
+/**
+ * Block defaults, validation and content detection. `collections` creates an empty entry for
+ * each array inside a block; a new phase starts with one empty step.
+ */
 export const BLOCK_TYPES = Object.freeze({
     text: {
         keys: ["text"],
@@ -212,6 +215,7 @@ export const BLOCK_TYPES = Object.freeze({
     gallery: {
         keys: ["images"],
         create: () => ({ images: [] }),
+        collections: { images: () => createImage({ caption: true, width: true }) },
         validate(block, path, ctx) {
             if (!checkMembers(block, path, ["images"], ctx, ["id", "type"])) return;
             if (!checkArray(block.images, `${path}.images`, ctx)) return;
@@ -236,6 +240,7 @@ export const BLOCK_TYPES = Object.freeze({
     list: {
         keys: ["items"],
         create: () => ({ items: [] }),
+        collections: { items: () => "" },
         validate(block, path, ctx) {
             if (!checkMembers(block, path, ["items"], ctx, ["id", "type"])) return;
             checkStringArray(block.items, `${path}.items`, ctx);
@@ -267,6 +272,10 @@ export const BLOCK_TYPES = Object.freeze({
     phases: {
         keys: ["phases"],
         create: () => ({ phases: [] }),
+        collections: {
+            phases: () => ({ title: "", steps: [createStep()] }),
+            steps: () => createStep(),
+        },
         validate(block, path, ctx) {
             if (!checkMembers(block, path, ["phases"], ctx, ["id", "type"])) return;
             if (!checkArray(block.phases, `${path}.phases`, ctx)) return;
@@ -296,6 +305,9 @@ export const BLOCK_TYPES = Object.freeze({
     people: {
         keys: ["people"],
         create: () => ({ people: [] }),
+        collections: {
+            people: () => ({ image: createImage(), name: "", description: "" }),
+        },
         validate(block, path, ctx) {
             if (!checkMembers(block, path, ["people"], ctx, ["id", "type"])) return;
             if (!checkArray(block.people, `${path}.people`, ctx)) return;
@@ -374,6 +386,17 @@ export function createBlock(type) {
     const definition = lookup(BLOCK_TYPES, type);
     if (!definition) throw new RangeError(`Unknown block type '${type}'`);
     return { id: newId(), type, ...definition.create() };
+}
+
+/** An empty, draft-valid entry for an array inside a block, e.g. createItem("phases", "steps"). */
+export function createItem(blockType, collection) {
+    const factory = lookup(lookup(BLOCK_TYPES, blockType)?.collections ?? {}, collection);
+    if (!factory) throw new RangeError(`Block type '${blockType}' has no array '${collection}'`);
+    return factory();
+}
+
+function createStep() {
+    return { title: "", duration: "", description: "", method: "" };
 }
 
 function createImage({ caption = false, width = false } = {}) {

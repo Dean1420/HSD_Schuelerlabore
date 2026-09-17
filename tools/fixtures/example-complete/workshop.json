@@ -316,11 +316,11 @@
                             "people": [
                                 {
                                     "image": {
-                                        "src": "images/laura-sistig.jpg",
-                                        "alt": "Porträt von Laura Sistig"
+                                        "src": "images/portrait.jpg",
+                                        "alt": "Porträt von Erika Mustermann"
                                     },
-                                    "name": "M.A. Laura Sistig",
-                                    "description": "Tel. 0211 4351-0\nlaura.sistig@hs-duesseldorf.de"
+                                    "name": "Dr. Erika Mustermann",
+                                    "description": "Tel. 0211 000000\nerika.mustermann@example.org"
                                 },
                                 {
                                     "image": { "src": "", "alt": "" },
