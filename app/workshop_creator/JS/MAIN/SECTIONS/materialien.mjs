@@ -27,7 +27,7 @@ function insertMaterialSubsection(materialien, title, id) {
     const CONTAINER = document.createElement("div");
     CONTAINER.id = id;
     materialien.appendChild(CONTAINER);
-    
+
     //
     // content container
     const CONTENT = document.createElement("div");
@@ -36,8 +36,6 @@ function insertMaterialSubsection(materialien, title, id) {
 
     insertAddMaterialContentButton(CONTENT);
 }
-
-
 
 function insertAddMaterialContentButton(contentContainer) {
     //
@@ -48,7 +46,6 @@ function insertAddMaterialContentButton(contentContainer) {
 
     contentContainer.appendChild(BUTTONS_CONTAINER);
 
-
     //
     // button for adding link elements
     const ADD_LINK_BUTTON = document.createElement("button");
@@ -56,11 +53,11 @@ function insertAddMaterialContentButton(contentContainer) {
     ADD_LINK_BUTTON.classList.add("remove-on-export");
     ADD_LINK_BUTTON.classList.add("add-material-link-button");
 
-    ADD_LINK_BUTTON.addEventListener("click", () => insertLinkItem(contentContainer, BUTTONS_CONTAINER));
+    ADD_LINK_BUTTON.addEventListener("click", () =>
+        insertLinkItem(contentContainer, BUTTONS_CONTAINER),
+    );
 
     BUTTONS_CONTAINER.appendChild(ADD_LINK_BUTTON);
-
-
 
     //
     // button for adding file elements
@@ -69,15 +66,14 @@ function insertAddMaterialContentButton(contentContainer) {
     ADD_FILE_BUTTON.classList.add("remove-on-export");
     ADD_LINK_BUTTON.classList.add("add-material-file-button");
 
-    ADD_FILE_BUTTON.addEventListener("click", () => insertFileItem(contentContainer, BUTTONS_CONTAINER));
+    ADD_FILE_BUTTON.addEventListener("click", () =>
+        insertFileItem(contentContainer, BUTTONS_CONTAINER),
+    );
 
     BUTTONS_CONTAINER.appendChild(ADD_FILE_BUTTON);
 }
 
-
-
 function insertLinkItem(contentContainer, buttonsContainer) {
-
     //
     // link container
     const CONTAINER = document.createElement("div");
@@ -86,7 +82,7 @@ function insertLinkItem(contentContainer, buttonsContainer) {
     contentContainer.insertBefore(CONTAINER, buttonsContainer);
 
     //
-    // setting up link 
+    // setting up link
     const LINK = document.createElement("a");
     LINK.textContent = "Link";
     LINK.target = "_blank";
@@ -99,21 +95,17 @@ function insertLinkItem(contentContainer, buttonsContainer) {
     INPUT.type = "text";
     INPUT.placeholder = "URL eingeben";
     INPUT.classList.add("remove-on-export");
-    INPUT.addEventListener("input", () => LINK.href = INPUT.value);
+    INPUT.addEventListener("input", () => (LINK.href = INPUT.value));
     CONTAINER.appendChild(INPUT);
 
     const DELETE_BUTTON = document.createElement("button");
     DELETE_BUTTON.textContent = "X";
     DELETE_BUTTON.classList.add("remove-on-export");
-    DELETE_BUTTON.classList.add("delete-material-content")
+    DELETE_BUTTON.classList.add("delete-material-content");
     CONTAINER.appendChild(DELETE_BUTTON);
 
     DELETE_BUTTON.addEventListener("click", () => CONTAINER.remove());
-
-
 }
-
-
 
 function insertFileItem(contentContainer, buttonsContainer) {
     //

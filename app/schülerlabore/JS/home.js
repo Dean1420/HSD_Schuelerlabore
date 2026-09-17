@@ -18,15 +18,11 @@ BODY.appendChild(MAIN);
 // =================================================
 //
 
-
-
 function createElement(tag, id) {
     const ELEMENT = document.createElement(tag);
     if (id) ELEMENT.id = id;
     return ELEMENT;
 }
-
-
 
 function createMain() {
     const MAIN = document.createElement("main");
@@ -96,12 +92,12 @@ function insertDescription(parent) {
     const RIGHT = createElement("div", "schülerlabore-description-right");
     const PREV = createElement("button", "schülerlabore-description-prev");
     PREV.textContent = "▲";
-    PREV.addEventListener("click", () => { });
+    PREV.addEventListener("click", () => {});
     const QUOTE = createElement("span", "schülerlabore-description-quote");
     QUOTE.textContent = "Zitat...";
     const NEXT = createElement("button", "schülerlabore-description-next");
     NEXT.textContent = "▼";
-    NEXT.addEventListener("click", () => { });
+    NEXT.addEventListener("click", () => {});
     RIGHT.append(PREV, QUOTE, NEXT);
     BOTTOM.appendChild(RIGHT);
 }
@@ -118,15 +114,10 @@ function insertKursangebot(parent) {
     SECTION.appendChild(LEFT);
     const RIGHT = createElement("div", "schülerlabore-kursangebot-right");
     const KURSANGEBOT_CONTENT = createElement("div", "schülerlabore-kursangebot-content"); // CHANGED: stored in variable
-    RIGHT.append(
-        createElement("div", "schülerlabore-kursangebot-filter"),
-        KURSANGEBOT_CONTENT
-    );
+    RIGHT.append(createElement("div", "schülerlabore-kursangebot-filter"), KURSANGEBOT_CONTENT);
     SECTION.appendChild(RIGHT);
     return KURSANGEBOT_CONTENT;
 }
-
-
 
 function getWorkshopPaths(name) {
     const BASE = `./WORKSHOPS/${encodeURIComponent(name)}`;
@@ -135,7 +126,7 @@ function getWorkshopPaths(name) {
         workshopPath: `${BASE}/Workshop.html`,
         thumbnail: `${BASE}/thumbnail.jpg`,
         searchTags: `${BASE}/seachTags.json`,
-        thumbnailText: `${BASE}/thumbnailText.json`
+        thumbnailText: `${BASE}/thumbnailText.json`,
     };
 }
 
@@ -158,11 +149,9 @@ async function loadWorkshops() {
     // load every workshop independently: a broken or missing folder costs one card, not the page
     const results = await Promise.allSettled(names.map(loadWorkshop));
     results
-        .filter(result => result.status === "rejected")
-        .forEach(result => console.warn("Workshop übersprungen:", result.reason.message));
-    return results
-        .filter(result => result.status === "fulfilled")
-        .map(result => result.value);
+        .filter((result) => result.status === "rejected")
+        .forEach((result) => console.warn("Workshop übersprungen:", result.reason.message));
+    return results.filter((result) => result.status === "fulfilled").map((result) => result.value);
 }
 
 async function loadWorkshop(name) {
@@ -172,7 +161,7 @@ async function loadWorkshop(name) {
     // fetch tags and text simultaneously
     const [searchTags, thumbnailText] = await Promise.all([
         fetchJson(WORKSHOP.searchTags),
-        fetchJson(WORKSHOP.thumbnailText)
+        fetchJson(WORKSHOP.thumbnailText),
     ]);
 
     //
@@ -185,7 +174,7 @@ function fillKursangebot(workshops, content) {
         showKursangebotMessage(content, "Zurzeit sind keine Workshops eingetragen.");
         return;
     }
-    workshops.forEach(workshop => {
+    workshops.forEach((workshop) => {
         const CARD = createElement("div");
         CARD.classList.add("workshop-card");
         const LINK = createElement("a");

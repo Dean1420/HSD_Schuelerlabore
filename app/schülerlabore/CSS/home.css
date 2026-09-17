@@ -95,7 +95,8 @@ main {
                 flex-direction: column;
                 width: 75%;
 
-                #schülerlabore-kursangebot-filter {}
+                #schülerlabore-kursangebot-filter {
+                }
 
                 #schülerlabore-kursangebot-content {
                     display: flex;

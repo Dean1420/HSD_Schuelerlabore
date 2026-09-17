@@ -21,25 +21,17 @@ body {
     font-family: Verdana, Tahoma, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
-
-
 header {
     font-size: 1rem;
 }
-
-
 
 main {
     font-size: 1rem;
 }
 
-
-
 footer {
     font-size: 1rem;
 }
-
-
 
 div,
 p,
@@ -83,8 +75,6 @@ header {
         width: 50%;
     }
 }
-
-
 
 main {
     display: flex;
@@ -189,10 +179,11 @@ main {
                     display: flex;
                     flex-direction: column;
 
+                    #übersicht-durchführungsort {
+                    }
 
-                    #übersicht-durchführungsort {}
-
-                    #übersicht-gruppengrösse {}
+                    #übersicht-gruppengrösse {
+                    }
                 }
 
                 #übersicht-facts-right {
@@ -201,11 +192,14 @@ main {
                     display: flex;
                     flex-direction: column;
 
-                    #übersicht-themen {}
+                    #übersicht-themen {
+                    }
 
-                    #übersicht-fachliche-voraussetzungen {}
+                    #übersicht-fachliche-voraussetzungen {
+                    }
 
-                    #übersicht-dauer {}
+                    #übersicht-dauer {
+                    }
                 }
             }
         }
@@ -219,7 +213,8 @@ main {
                     flex-direction: column;
                     width: 50%;
 
-                    #anleitung-intro-title {}
+                    #anleitung-intro-title {
+                    }
 
                     #anleitung-intro-description {
                         display: block;
@@ -242,7 +237,8 @@ main {
                         display: block;
                     }
 
-                    #anleitung-intro-image-input {}
+                    #anleitung-intro-image-input {
+                    }
                 }
             }
 
@@ -328,7 +324,6 @@ main {
                 word-break: break-word;
                 overflow-wrap: break-word;
                 margin: 1%;
-
             }
 
             .material-file-container {
@@ -394,13 +389,15 @@ main {
                     flex-direction: column;
                     width: 34%;
 
-                    #lehrende-quick-facts-title {}
+                    #lehrende-quick-facts-title {
+                    }
 
                     .lehrende-quick-facts-item {
                         display: flex;
                         flex-direction: column;
 
-                        .lehrende-quick-facts-label {}
+                        .lehrende-quick-facts-label {
+                        }
 
                         .lehrende-quick-facts-value {
                             display: flex;
@@ -408,7 +405,6 @@ main {
                             word-break: break-word;
                         }
                     }
-
                 }
             }
 
@@ -417,9 +413,11 @@ main {
                 flex-direction: column;
                 margin: 5%;
 
-                #lerninhalt-title {}
+                #lerninhalt-title {
+                }
 
-                #lerninhalt-text {}
+                #lerninhalt-text {
+                }
             }
 
             #lehrende-kompetenzen {
@@ -427,9 +425,11 @@ main {
                 flex-direction: column;
                 margin: 5%;
 
-                #lehrende-kompetenzen-title {}
+                #lehrende-kompetenzen-title {
+                }
 
-                #lehrende-kompetenzen-text {}
+                #lehrende-kompetenzen-text {
+                }
             }
 
             #lehrende-lehrplanbezug {
@@ -437,14 +437,15 @@ main {
                 flex-direction: column;
                 margin: 5%;
 
-                #lehrplanbezug-title {}
+                #lehrplanbezug-title {
+                }
 
-                #lehrplanbezug-text {}
+                #lehrplanbezug-text {
+                }
             }
         }
 
         #impressionen {
-
             #eindrücke-container,
             #bildergalerie-container {
                 display: flex;
@@ -505,44 +506,44 @@ main {
         }
 
         #beteiligte {
-    #beteiligte-container {
-        display: flex;
-        flex-direction: column;
-    }
+            #beteiligte-container {
+                display: flex;
+                flex-direction: column;
+            }
 
-    #beteiligte-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
+            #beteiligte-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+            }
 
-    .beteiligte-card {
-        display: flex;
-        flex-direction: column;
-        width: 22%;
-        margin: 1%;
-        overflow: hidden;
+            .beteiligte-card {
+                display: flex;
+                flex-direction: column;
+                width: 22%;
+                margin: 1%;
+                overflow: hidden;
 
-        .beteiligte-img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
+                .beteiligte-img {
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    object-fit: cover;
+                }
+
+                .beteiligte-name {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                    font-weight: bold;
+                }
+
+                .beteiligte-description {
+                    display: block;
+                    word-break: break-word;
+                    overflow-wrap: break-word;
+                    white-space: pre-wrap;
+                }
+            }
         }
-
-        .beteiligte-name {
-            display: block;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            font-weight: bold;
-        }
-
-        .beteiligte-description {
-            display: block;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-        }
-    }
-}
     }
 }

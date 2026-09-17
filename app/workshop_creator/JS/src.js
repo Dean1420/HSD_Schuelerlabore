@@ -1,6 +1,6 @@
 /**
  * This script calls the functions that generate the content of the workshop-creator page.
- * 
+ *
  */
 
 import { createHeader } from "./HEADER/header.mjs";

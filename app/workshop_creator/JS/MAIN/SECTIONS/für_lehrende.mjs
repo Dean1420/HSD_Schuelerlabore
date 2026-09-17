@@ -2,11 +2,11 @@ import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
 import { createSubsectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
 
 /**
- * 
- * Assigned IDs: [id] 
- * 
- * @param {sting} id 
- * @param {string} title 
+ *
+ * Assigned IDs: [id]
+ *
+ * @param {sting} id
+ * @param {string} title
  * @returns {DOM}
  */
 export function createFürLehrende(id, title) {
@@ -18,8 +18,6 @@ export function createFürLehrende(id, title) {
 
     const TITLE = createSectionTitle(title);
     FÜR_LEHRENDE.appendChild(TITLE);
-
-
 
     //
     // Titel, Zitat und Quick Facts
@@ -41,11 +39,8 @@ export function createFürLehrende(id, title) {
     FÜR_LEHRENDE.appendChild(createSubsectionTitle("Lehrplanbezug"));
     insertLehrplanbezug(FÜR_LEHRENDE);
 
-
     return FÜR_LEHRENDE;
 }
-
-
 
 function insertOverview(fürLehrende) {
     //
@@ -67,10 +62,6 @@ function insertOverview(fürLehrende) {
     insertQuickFacts(QUICK_FACTS_CONTAINER);
 }
 
-
-
-
-
 function insertTitleAndQuote(overviewContainer) {
     //
     // oerview tile
@@ -84,19 +75,19 @@ function insertTitleAndQuote(overviewContainer) {
     const QUOTE = document.createElement("span");
     QUOTE.id = "lehrende-intro-quote";
     QUOTE.contentEditable = true;
-    QUOTE.textContent = '"A computer is like air conditioning – it becomes useless when you open Windows" ~Linus Torvalds';
+    QUOTE.textContent =
+        '"A computer is like air conditioning – it becomes useless when you open Windows" ~Linus Torvalds';
     overviewContainer.appendChild(QUOTE);
 }
 
-
 /**
- * 
+ *
  * Assigned IDs: lehrende-quick-facts-title
- * 
+ *
  * Assigned Classes: lehrende-quick-facts-item, lehrende-quick-facts-label,
  *                   lehrende-quick-facts-value
- * 
- * @param {DOM} quickFactsContainer 
+ *
+ * @param {DOM} quickFactsContainer
  */
 function insertQuickFacts(quickFactsContainer) {
     //
@@ -117,14 +108,14 @@ function insertQuickFacts(quickFactsContainer) {
         // fact item wrapper
         const FACT_ITEM = document.createElement("div");
         FACT_ITEM.classList.add("lehrende-quick-facts-item");
-       
+
         //
         // fact label
         const FACT_LABEL = document.createElement("span");
         FACT_LABEL.classList.add("lehrende-quick-facts-label");
         FACT_LABEL.textContent = label;
         FACT_ITEM.appendChild(FACT_LABEL);
-        
+
         //
         // fact value
         const FACT_VALUE = document.createElement("span");
@@ -137,13 +128,12 @@ function insertQuickFacts(quickFactsContainer) {
     });
 }
 
-
 /**
- * 
+ *
  * Assigned IDs: lehrende-lerninhalt, lerninhalt-title,
  *               lerninhalt-text
- * 
- * @param {DOM} fürLehrende 
+ *
+ * @param {DOM} fürLehrende
  */
 function insertLerninhalt(fürLehrende) {
     //
@@ -161,14 +151,12 @@ function insertLerninhalt(fürLehrende) {
     CONTAINER.appendChild(TEXT);
 }
 
-
-
 /**
- * 
+ *
  * Assigned IDs: lehrende-kompetenzen, lehrende-kompetenzen-title,
  *               lehrende-kompetenzen-text
- * 
- * @param {DOM} fürLehrende 
+ *
+ * @param {DOM} fürLehrende
  */
 function insertWeiterführendeKompetenzen(fürLehrende) {
     //
@@ -186,14 +174,12 @@ function insertWeiterführendeKompetenzen(fürLehrende) {
     CONTAINER.appendChild(TEXT);
 }
 
-
-
 /**
- * 
+ *
  * Assigned IDs: lehrende-lehrplanbezug, lehrplanbezug-title",
  *               lehrplanbezug-text
- * 
- * @param {DOM} fürLehrende 
+ *
+ * @param {DOM} fürLehrende
  */
 function insertLehrplanbezug(fürLehrende) {
     //

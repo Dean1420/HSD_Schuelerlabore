@@ -8,22 +8,17 @@ export function createImpressionen(id, title) {
     const TITLE = createSectionTitle(title);
     IMPRESSIONEN.appendChild(TITLE);
 
-
-
     //
     // Eindrücke zum Workshop
     //
     IMPRESSIONEN.appendChild(createSubsectionTitle("Eindrücke zum Workshop"));
     insertEindrücke(IMPRESSIONEN);
 
-
     //
     // Bildergallerie
     //
     IMPRESSIONEN.appendChild(createSubsectionTitle("Bildergallerie"));
     insertBildergalerie(IMPRESSIONEN);
-
-
 
     return IMPRESSIONEN;
 }

@@ -1,7 +1,6 @@
 import { createSectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
 import { createSubsectionTitle } from "./HELPER_FUNCTIONS/shared_dom_elements.mjs";
 
-
 export function createÜbersicht(id, title) {
     //
     // Setting up Übersicht section
@@ -28,8 +27,6 @@ export function createÜbersicht(id, title) {
     return ÜBERSICHT;
 }
 
-
-
 function insertImpression(parentContainer) {
     //
     // impression container
@@ -39,8 +36,6 @@ function insertImpression(parentContainer) {
     insertImpressionImage(CONTAINER);
     insertImpressionText(CONTAINER);
 }
-
-
 
 function insertDescription(parentContainer) {
     //
@@ -52,8 +47,6 @@ function insertDescription(parentContainer) {
     insertDescriptionSummary(CONTAINER);
 }
 
-
-
 function insertQuickFacts(parentContainer) {
     //
     // quick facts container
@@ -64,30 +57,38 @@ function insertQuickFacts(parentContainer) {
     insertQuickFactsRight(CONTAINER);
 }
 
-
-
 function insertQuickFactsLeft(übersichtQuickFacts) {
     const CONTAINER = document.createElement("div");
     CONTAINER.id = "übersicht-facts-left";
     übersichtQuickFacts.appendChild(CONTAINER);
 
-    CONTAINER.appendChild(createFactItem("übersicht-durchführungsort", "Durchführungsort", "....................."));
-    CONTAINER.appendChild(createFactItem("übersicht-gruppengrösse", "Gruppengröße", "....................."));
+    CONTAINER.appendChild(
+        createFactItem("übersicht-durchführungsort", "Durchführungsort", "....................."),
+    );
+    CONTAINER.appendChild(
+        createFactItem("übersicht-gruppengrösse", "Gruppengröße", "....................."),
+    );
 }
-
-
 
 function insertQuickFactsRight(übersichtQuickFacts) {
     const CONTAINER = document.createElement("div");
     CONTAINER.id = "übersicht-facts-right";
     übersichtQuickFacts.appendChild(CONTAINER);
 
-    CONTAINER.appendChild(createFactItem("übersicht-themen", "Themen des Workshops", "....................."));
-    CONTAINER.appendChild(createFactItem("übersicht-fachliche-voraussetzungen", "Fachliche Voraussetzungen", "....................."));
-    CONTAINER.appendChild(createFactItem("übersicht-dauer", "Workshop - Dauer", "....................."));
+    CONTAINER.appendChild(
+        createFactItem("übersicht-themen", "Themen des Workshops", "....................."),
+    );
+    CONTAINER.appendChild(
+        createFactItem(
+            "übersicht-fachliche-voraussetzungen",
+            "Fachliche Voraussetzungen",
+            ".....................",
+        ),
+    );
+    CONTAINER.appendChild(
+        createFactItem("übersicht-dauer", "Workshop - Dauer", "....................."),
+    );
 }
-
-
 
 function insertDescriptionVision(übersichtDescription) {
     //
@@ -107,11 +108,9 @@ function insertDescriptionVision(übersichtDescription) {
     VISION_CONTAINER.appendChild(VISION_TEXT);
 }
 
-
-
 function insertDescriptionSummary(übersichtDescription) {
     //
-    // setting up the description container 
+    // setting up the description container
     const DESCRIPTION_CONTAINER = document.createElement("div");
     DESCRIPTION_CONTAINER.id = "übersicht-summary";
     übersichtDescription.appendChild(DESCRIPTION_CONTAINER);
@@ -122,19 +121,18 @@ function insertDescriptionSummary(übersichtDescription) {
     const DESCRIPTION_TEXT = document.createElement("span");
     DESCRIPTION_TEXT.contentEditable = true;
     DESCRIPTION_TEXT.id = "übersicht-summary-text";
-    DESCRIPTION_TEXT.textContent = "Freiheit ist nicht alles, aber ohne Freiheit ist man nicht. Ohne Freiheit kann man nicht träumen. Freiheit fängt aber schon bei der eigenen Einstellung und Perspektive auf die Welt an.";
+    DESCRIPTION_TEXT.textContent =
+        "Freiheit ist nicht alles, aber ohne Freiheit ist man nicht. Ohne Freiheit kann man nicht träumen. Freiheit fängt aber schon bei der eigenen Einstellung und Perspektive auf die Welt an.";
 
     DESCRIPTION_CONTAINER.appendChild(DESCRIPTION_TEXT);
 }
-
-
 
 function insertImpressionText(übersichtImpression) {
     //
     // seetting up the impression text container
     const TEXT_CONTAINER = document.createElement("div");
     TEXT_CONTAINER.id = "übersicht-intro";
-    übersichtImpression.appendChild(TEXT_CONTAINER)
+    übersichtImpression.appendChild(TEXT_CONTAINER);
 
     //
     // name of the workshop
@@ -158,8 +156,8 @@ function insertImpressionText(übersichtImpression) {
     // the linked address can be edited by the user
     const LINK_INPUT = document.createElement("input");
     LINK_INPUT.placeholder = "Link-URL";
-    LINK_INPUT.id = "übersicht-url-input"
-    LINK_INPUT.classList.add("remove-on-export")
+    LINK_INPUT.id = "übersicht-url-input";
+    LINK_INPUT.classList.add("remove-on-export");
     TEXT_CONTAINER.appendChild(LINK_INPUT);
 
     const LINK = document.createElement("a");
@@ -171,15 +169,12 @@ function insertImpressionText(übersichtImpression) {
     });
 }
 
-
-
 function insertImpressionImage(übersichtContent) {
-
     // image banner for the first visual impression of the student workshop
     const IMG_CONTAINER = document.createElement("div");
     IMG_CONTAINER.id = "übersicht-image";
 
-    const IMAGE = document.createElement("img")
+    const IMAGE = document.createElement("img");
     IMAGE.id = "übersicht-img";
     IMAGE.src = "IMAGES/placeholder.jpg";
     IMG_CONTAINER.appendChild(IMAGE);
@@ -191,7 +186,7 @@ function insertImpressionImage(übersichtContent) {
     const INPUT = document.createElement("input");
     INPUT.type = "file";
     INPUT.accept = "image/*";
-    INPUT.id = "übersicht-image-input"
+    INPUT.id = "übersicht-image-input";
     INPUT.classList.add("remove-on-export");
     IMG_CONTAINER.appendChild(INPUT);
 
@@ -199,8 +194,6 @@ function insertImpressionImage(übersichtContent) {
         IMAGE.src = URL.createObjectURL(INPUT.files[0]);
     });
 }
-
-
 
 function createFactItem(id, title, defaultText) {
     //

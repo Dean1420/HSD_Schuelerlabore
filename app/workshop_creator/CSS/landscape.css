@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 /*
 
@@ -10,7 +10,7 @@
     --border-style: solid;
     --border-width: 0.0625rem;
 
-    --color-red: #E20031;
+    --color-red: #e20031;
     --color-text: #1a1a1a;
     --color-text-muted: #5c5c5c;
 
@@ -30,25 +30,17 @@ body {
     color: var(--color-text);
 }
 
-
-
 header {
     font-size: 1rem;
 }
-
-
 
 main {
     font-size: 1rem;
 }
 
-
-
 footer {
     font-size: 1rem;
 }
-
-
 
 div,
 p,
@@ -148,8 +140,6 @@ header {
         }
     }
 }
-
-
 
 main {
     display: flex;
@@ -414,7 +404,8 @@ main {
                         display: block;
                     }
 
-                    #anleitung-intro-image-input {}
+                    #anleitung-intro-image-input {
+                    }
                 }
             }
 
@@ -619,7 +610,6 @@ main {
                             font-weight: 700;
                         }
                     }
-
                 }
             }
 
@@ -628,7 +618,8 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lerninhalt-title {}
+                #lerninhalt-title {
+                }
 
                 #lerninhalt-text {
                     font-size: 0.95rem;
@@ -642,7 +633,8 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lehrende-kompetenzen-title {}
+                #lehrende-kompetenzen-title {
+                }
 
                 #lehrende-kompetenzen-text {
                     font-size: 0.95rem;
@@ -656,7 +648,8 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lehrplanbezug-title {}
+                #lehrplanbezug-title {
+                }
 
                 #lehrplanbezug-text {
                     font-size: 0.95rem;
@@ -667,7 +660,6 @@ main {
         }
 
         #impressionen {
-
             #eindrücke-container,
             #bildergalerie-container {
                 display: flex;

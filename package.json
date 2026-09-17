@@ -17,8 +17,8 @@
     },
     "scripts": {
         "dev": "serve app -l 5500",
-        "format": "prettier --write \"app/**/*.{html,css,js,mjs,json}\"",
-        "format:check": "prettier --check \"app/**/*.{html,css,js,mjs,json}\""
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
     },
     "devDependencies": {
         "prettier": "^3.3.0",

@@ -26,8 +26,6 @@ export function createAnleitung(id, title) {
     return ANLEITUNG;
 }
 
-
-
 function insertIntroduction(anleitung) {
     //
     // introduction container
@@ -38,8 +36,6 @@ function insertIntroduction(anleitung) {
     insertIntroductionText(CONTAINER);
     insertIntroductionImage(CONTAINER);
 }
-
-
 
 function insertIntroductionText(introduction) {
     //
@@ -62,8 +58,6 @@ function insertIntroductionText(introduction) {
     TEXT.textContent = "Hier erfährst du die wichtigsten Informationen zu dem Workshop";
     CONTAINER.appendChild(TEXT);
 }
-
-
 
 function insertIntroductionImage(introduction) {
     //
@@ -115,8 +109,6 @@ function insertBigBanner(anleitung) {
     });
     CONTAINER.appendChild(INPUT);
 }
-
-
 
 function insertTables(anleitung) {
     //
