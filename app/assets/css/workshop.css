@@ -87,20 +87,20 @@ main.workshop-page {
     #workshop-content {
         flex: 1;
 
-        #übersicht {
+        #overview {
             display: flex;
             flex-direction: column;
 
-            #übersicht-impression {
+            #overview-impression {
                 display: flex;
                 gap: 4%;
                 margin: 0 5% 3rem;
                 align-items: stretch;
 
-                #übersicht-image {
+                #overview-image {
                     width: 50%;
 
-                    #übersicht-img {
+                    #overview-img {
                         width: 100%;
                         height: 100%;
                         aspect-ratio: 1 / 1;
@@ -109,14 +109,14 @@ main.workshop-page {
                     }
                 }
 
-                #übersicht-intro {
+                #overview-intro {
                     width: 50%;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     overflow: hidden;
 
-                    #übersicht-workshop-name {
+                    #overview-workshop-name {
                         display: block;
                         word-break: break-word;
                         font-size: 2.75rem;
@@ -125,7 +125,7 @@ main.workshop-page {
                         margin-bottom: 1rem;
                     }
 
-                    #übersicht-workshop-slogan {
+                    #overview-workshop-slogan {
                         display: block;
                         word-break: break-word;
                         font-size: 1rem;
@@ -150,16 +150,16 @@ main.workshop-page {
                 }
             }
 
-            #übersicht-description {
+            #overview-description {
                 display: flex;
                 gap: 5%;
                 margin: 0 5% 3rem;
 
-                #übersicht-vision {
+                #overview-vision {
                     width: 50%;
                     overflow: hidden;
 
-                    #übersicht-vision-text {
+                    #overview-vision-text {
                         display: block;
                         word-break: break-word;
                         font-size: 1.75rem;
@@ -169,22 +169,22 @@ main.workshop-page {
                         quotes: "„" "“";
                     }
 
-                    #übersicht-vision-text::before {
+                    #overview-vision-text::before {
                         content: open-quote;
                         color: var(--color-text);
                     }
 
-                    #übersicht-vision-text::after {
+                    #overview-vision-text::after {
                         content: close-quote;
                         color: var(--color-text);
                     }
                 }
 
-                #übersicht-summary {
+                #overview-summary {
                     width: 50%;
                     overflow: hidden;
 
-                    #übersicht-summary-text {
+                    #overview-summary-text {
                         display: block;
                         word-break: break-word;
                         font-size: 0.95rem;
@@ -194,13 +194,13 @@ main.workshop-page {
                 }
             }
 
-            #übersicht-quick-facts {
+            #overview-quick-facts {
                 display: flex;
                 margin: 0 5% 3rem;
                 padding-top: 1.5rem;
                 border-top: var(--border-width) var(--border-style) var(--border-color);
 
-                .übersicht-quick-fact-title {
+                .overview-quick-fact-title {
                     display: block;
                     word-break: break-word;
                     font-weight: 700;
@@ -208,7 +208,7 @@ main.workshop-page {
                     margin-bottom: 0.5rem;
                 }
 
-                .übersicht-quick-fact-text {
+                .overview-quick-fact-text {
                     display: block;
                     word-break: break-word;
                     font-size: 0.9rem;
@@ -216,8 +216,8 @@ main.workshop-page {
                     line-height: 1.5;
                 }
 
-                #übersicht-facts-left,
-                #übersicht-facts-right {
+                #overview-facts-left,
+                #overview-facts-right {
                     width: 50%;
                     overflow: hidden;
                     display: flex;
@@ -232,36 +232,36 @@ main.workshop-page {
                     }
                 }
 
-                #übersicht-facts-left {
+                #overview-facts-left {
                     padding-right: 5%;
                 }
 
-                #übersicht-facts-right {
+                #overview-facts-right {
                     padding-left: 5%;
                     border-left: var(--border-width) var(--border-style) var(--border-color);
                 }
             }
         }
 
-        #anleitung {
-            #anleitung-introduction {
+        #instructions {
+            #instructions-introduction {
                 display: flex;
                 gap: 4%;
                 margin: 0 5% 3rem;
                 align-items: center;
 
-                #anleitung-intro-text {
+                #instructions-intro-text {
                     display: flex;
                     flex-direction: column;
                     width: 50%;
 
-                    #anleitung-intro-title {
+                    #instructions-intro-title {
                         font-size: 2.25rem;
                         font-weight: 700;
                         margin-bottom: 1rem;
                     }
 
-                    #anleitung-intro-description {
+                    #instructions-intro-description {
                         display: block;
                         word-break: break-word;
                         overflow-wrap: break-word;
@@ -271,12 +271,12 @@ main.workshop-page {
                     }
                 }
 
-                #anleitung-intro-image {
+                #instructions-intro-image {
                     display: flex;
                     flex-direction: column;
                     width: 50%;
 
-                    #anleitung-intro-img {
+                    #instructions-intro-img {
                         width: 100%;
                         height: 20rem;
                         object-fit: cover;
@@ -285,53 +285,53 @@ main.workshop-page {
                 }
             }
 
-            #anleitung-banner {
+            #instructions-banner {
                 width: 90%;
                 margin: 0 5% 3rem;
                 display: flex;
                 flex-direction: column;
 
-                #anleitung-banner-img {
+                #instructions-banner-img {
                     width: 100%;
                     height: 24rem;
                     object-fit: cover;
                 }
             }
 
-            #anleitung-tables-wrapper {
+            #instructions-tables-wrapper {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                .anleitung-tables {
+                .instructions-tables {
                     display: flex;
                     flex-direction: column;
                 }
 
-                .anleitung-table {
+                .instructions-table {
                     display: flex;
                     flex-direction: column;
                     padding: 1.25rem 0;
                     border-bottom: var(--border-width) var(--border-style) var(--border-color);
 
-                    .anleitung-table-upper {
+                    .instructions-table-upper {
                         word-break: break-word;
                         overflow-wrap: break-word;
                         padding-bottom: 0.75rem;
 
-                        .anleitung-table-phase {
+                        .instructions-table-phase {
                             font-weight: 700;
                             font-size: 1.05rem;
                         }
                     }
 
-                    .anleitung-table-lower {
+                    .instructions-table-lower {
                         display: flex;
                         flex-direction: row;
                         gap: 2%;
                         font-size: 0.9rem;
 
-                        .anleitung-table-col-left {
+                        .instructions-table-col-left {
                             width: 25%;
                             display: block;
                             word-break: break-word;
@@ -342,7 +342,7 @@ main.workshop-page {
                             color: var(--color-text);
                         }
 
-                        .anleitung-table-col-middle {
+                        .instructions-table-col-middle {
                             width: 50%;
                             display: block;
                             word-break: break-word;
@@ -351,7 +351,7 @@ main.workshop-page {
                             color: var(--color-text);
                         }
 
-                        .anleitung-table-col-right {
+                        .instructions-table-col-right {
                             width: 25%;
                             display: block;
                             word-break: break-word;
@@ -366,7 +366,7 @@ main.workshop-page {
             }
         }
 
-        #materialien {
+        #materials {
             display: flex;
             flex-direction: column;
             margin-bottom: 2rem;
@@ -392,14 +392,14 @@ main.workshop-page {
                 }
             }
 
-            #materialien-list,
-            #ressourcen-list {
+            #materials-list,
+            #resources-list {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5%;
 
-                #materialien-list-content,
-                #ressourcen-list-content {
+                #materials-list-content,
+                #resources-list-content {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: flex-start;
@@ -408,19 +408,19 @@ main.workshop-page {
             }
         }
 
-        #für-lehrende {
+        #teachers {
             display: flex;
             flex-direction: column;
 
-            #lehrende-overview {
+            #teachers-overview {
                 display: flex;
                 gap: 5%;
                 margin: 0 5% 3rem;
 
-                #lehrende-intro {
+                #teachers-intro {
                     width: 66%;
 
-                    #lehrende-intro-title {
+                    #teachers-intro-title {
                         display: flex;
                         flex-wrap: wrap;
                         word-break: break-word;
@@ -429,7 +429,7 @@ main.workshop-page {
                         margin-bottom: 1.5rem;
                     }
 
-                    #lehrende-intro-quote {
+                    #teachers-intro-quote {
                         display: flex;
                         flex-wrap: wrap;
                         word-break: break-word;
@@ -439,7 +439,7 @@ main.workshop-page {
                     }
                 }
 
-                #lehrende-quick-facts {
+                #teachers-quick-facts {
                     display: flex;
                     flex-direction: column;
                     width: 26%;
@@ -448,7 +448,7 @@ main.workshop-page {
                     border-radius: 1rem;
                     height: fit-content;
 
-                    #lehrende-quick-facts-title {
+                    #teachers-quick-facts-title {
                         font-weight: 700;
                         text-transform: uppercase;
                         letter-spacing: 0.05em;
@@ -457,19 +457,19 @@ main.workshop-page {
                         margin-bottom: 0.75rem;
                     }
 
-                    .lehrende-quick-facts-item {
+                    .teachers-quick-facts-item {
                         display: flex;
                         flex-direction: column;
                         padding: 0.5rem 0;
 
-                        .lehrende-quick-facts-label {
+                        .teachers-quick-facts-label {
                             font-size: 0.7rem;
                             color: var(--color-text-muted);
                             text-transform: uppercase;
                             letter-spacing: 0.03em;
                         }
 
-                        .lehrende-quick-facts-value {
+                        .teachers-quick-facts-value {
                             display: flex;
                             flex-wrap: wrap;
                             word-break: break-word;
@@ -480,45 +480,45 @@ main.workshop-page {
                 }
             }
 
-            #lehrende-lerninhalt {
+            #teachers-learning-content {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lerninhalt-title {
+                #learning-content-title {
                 }
 
-                #lerninhalt-text {
+                #learning-content-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
                     color: var(--color-text-muted);
                 }
             }
 
-            #lehrende-kompetenzen {
+            #teachers-additional-skills {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lehrende-kompetenzen-title {
+                #teachers-additional-skills-title {
                 }
 
-                #lehrende-kompetenzen-text {
+                #teachers-additional-skills-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
                     color: var(--color-text-muted);
                 }
             }
 
-            #lehrende-lehrplanbezug {
+            #teachers-curriculum-alignment {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lehrplanbezug-title {
+                #curriculum-alignment-title {
                 }
 
-                #lehrplanbezug-text {
+                #curriculum-alignment-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
                     color: var(--color-text-muted);
@@ -526,37 +526,37 @@ main.workshop-page {
             }
         }
 
-        #impressionen {
-            #eindrücke-container,
-            #bildergalerie-container {
+        #impressions {
+            #highlights-container,
+            #image-gallery-container {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 2rem;
             }
 
-            #eindrücke-content,
-            #bildergalerie-content {
+            #highlights-content,
+            #image-gallery-content {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
                 margin: 0 -2%;
             }
 
-            .eindrück-item,
-            .galerie-item {
+            .highlight-item,
+            .gallery-item {
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
                 margin: 2%;
 
-                .eindrück-img,
-                .galerie-img {
+                .highlight-img,
+                .gallery-img {
                     width: 100%;
                     object-fit: cover;
                     height: 20rem;
                 }
 
-                .eindrück-text {
+                .highlight-text {
                     display: block;
                     word-break: break-word;
                     overflow-wrap: break-word;
@@ -567,50 +567,50 @@ main.workshop-page {
                 }
             }
 
-            .eindrück-col-1,
-            .galerie-col-1 {
+            .highlight-col-1,
+            .gallery-col-1 {
                 width: 28%;
             }
 
-            .eindrück-col-2,
-            .galerie-col-2 {
+            .highlight-col-2,
+            .gallery-col-2 {
                 width: 55%;
             }
 
-            .eindrück-col-3,
-            .galerie-col-3 {
+            .highlight-col-3,
+            .gallery-col-3 {
                 width: 90%;
             }
         }
 
-        #beteiligte {
-            #beteiligte-container {
+        #contributors {
+            #contributors-container {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
             }
 
-            #beteiligte-content {
+            #contributors-content {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
                 margin: 0 -1%;
             }
 
-            .beteiligte-card {
+            .contributors-card {
                 display: flex;
                 flex-direction: column;
                 width: 22%;
                 margin: 1%;
                 overflow: hidden;
 
-                .beteiligte-img {
+                .contributors-img {
                     width: 100%;
                     aspect-ratio: 1 / 1;
                     object-fit: cover;
                 }
 
-                .beteiligte-name {
+                .contributors-name {
                     display: block;
                     word-break: break-word;
                     overflow-wrap: break-word;
@@ -619,7 +619,7 @@ main.workshop-page {
                     margin-top: 0.75rem;
                 }
 
-                .beteiligte-description {
+                .contributors-description {
                     display: block;
                     word-break: break-word;
                     overflow-wrap: break-word;
@@ -728,74 +728,74 @@ main.workshop-page {
         }
 
         #workshop-content {
-            #übersicht {
-                #übersicht-impression {
+            #overview {
+                #overview-impression {
                     flex-direction: column;
 
-                    #übersicht-image {
+                    #overview-image {
                         width: 100%;
                     }
 
-                    #übersicht-intro {
+                    #overview-intro {
                         width: 100%;
                     }
                 }
 
-                #übersicht-description {
+                #overview-description {
                     flex-direction: column;
 
-                    #übersicht-vision {
+                    #overview-vision {
                         width: 100%;
                     }
 
-                    #übersicht-summary {
+                    #overview-summary {
                         width: 100%;
                         margin-top: 1.5rem;
                     }
                 }
 
-                #übersicht-quick-facts {
+                #overview-quick-facts {
                     flex-direction: column;
 
-                    #übersicht-facts-left,
-                    #übersicht-facts-right {
+                    #overview-facts-left,
+                    #overview-facts-right {
                         width: 100%;
                     }
 
-                    #übersicht-facts-left {
+                    #overview-facts-left {
                         padding-right: 0;
                         margin-bottom: 1.75rem;
                     }
 
-                    #übersicht-facts-right {
+                    #overview-facts-right {
                         padding-left: 0;
                         border-left: none;
                     }
                 }
             }
 
-            #anleitung {
-                #anleitung-introduction {
+            #instructions {
+                #instructions-introduction {
                     flex-direction: column;
 
-                    #anleitung-intro-text {
+                    #instructions-intro-text {
                         width: 100%;
                     }
 
-                    #anleitung-intro-image {
+                    #instructions-intro-image {
                         width: 100%;
                     }
                 }
 
-                #anleitung-tables-wrapper {
-                    .anleitung-table {
-                        .anleitung-table-lower {
+                #instructions-tables-wrapper {
+                    .instructions-table {
+                        .instructions-table-lower {
                             flex-direction: column;
                             gap: 0.75rem;
 
-                            .anleitung-table-col-left,
-                            .anleitung-table-col-middle,
-                            .anleitung-table-col-right {
+                            .instructions-table-col-left,
+                            .instructions-table-col-middle,
+                            .instructions-table-col-right {
                                 width: 100%;
                             }
                         }
@@ -803,41 +803,41 @@ main.workshop-page {
                 }
             }
 
-            #materialien {
+            #materials {
                 .material-link-container,
                 .material-file-container {
                     width: 100%;
                 }
             }
 
-            #für-lehrende {
-                #lehrende-overview {
+            #teachers {
+                #teachers-overview {
                     flex-direction: column;
 
-                    #lehrende-intro {
+                    #teachers-intro {
                         width: 100%;
                     }
 
-                    #lehrende-quick-facts {
+                    #teachers-quick-facts {
                         width: 100%;
                         margin-top: 1.5rem;
                     }
                 }
             }
 
-            #impressionen {
-                .eindrück-col-1,
-                .galerie-col-1,
-                .eindrück-col-2,
-                .galerie-col-2,
-                .eindrück-col-3,
-                .galerie-col-3 {
+            #impressions {
+                .highlight-col-1,
+                .gallery-col-1,
+                .highlight-col-2,
+                .gallery-col-2,
+                .highlight-col-3,
+                .gallery-col-3 {
                     width: 100%;
                 }
             }
 
-            #beteiligte {
-                .beteiligte-card {
+            #contributors {
+                .contributors-card {
                     width: 100%;
                 }
             }

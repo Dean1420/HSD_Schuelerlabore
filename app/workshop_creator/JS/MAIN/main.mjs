@@ -1,9 +1,9 @@
-import { createÜbersicht } from "./SECTIONS/übersicht.mjs";
-import { createAnleitung } from "./SECTIONS/anleitung.mjs";
-import { createMaterialien } from "./SECTIONS/materialien.mjs";
-import { createFürLehrende } from "./SECTIONS/für_lehrende.mjs";
-import { createImpressionen } from "./SECTIONS/impressionen.mjs";
-import { createBeteiligte } from "./SECTIONS/beteiligte.mjs";
+import { createOverview } from "./SECTIONS/overview.mjs";
+import { createInstructions } from "./SECTIONS/instructions.mjs";
+import { createMaterials } from "./SECTIONS/materials.mjs";
+import { createTeachers } from "./SECTIONS/teachers.mjs";
+import { createImpressions } from "./SECTIONS/impressions.mjs";
+import { createContributors } from "./SECTIONS/contributors.mjs";
 
 /**
  *  Creates and returns the main section of the page
@@ -84,50 +84,50 @@ function createWorkshopContent(workshopNavigationArea) {
     addSection(
         WORKSHOP_CONTENT,
         NAVIGATION_LINK_CONTAINER,
-        "übersicht",
+        "overview",
         "01",
         "Übersicht",
-        createÜbersicht,
+        createOverview,
     );
     addSection(
         WORKSHOP_CONTENT,
         NAVIGATION_LINK_CONTAINER,
-        "anleitung",
+        "instructions",
         "02",
         "Anleitung",
-        createAnleitung,
+        createInstructions,
     );
     addSection(
         WORKSHOP_CONTENT,
         NAVIGATION_LINK_CONTAINER,
-        "materialien",
+        "materials",
         "03",
         "Materialien",
-        createMaterialien,
+        createMaterials,
     );
     addSection(
         WORKSHOP_CONTENT,
         NAVIGATION_LINK_CONTAINER,
-        "für-lehrende",
+        "teachers",
         "04",
         "Für Lehrende",
-        createFürLehrende,
+        createTeachers,
     );
     addSection(
         WORKSHOP_CONTENT,
         NAVIGATION_LINK_CONTAINER,
-        "impressionen",
+        "impressions",
         "05",
         "Impressionen",
-        createImpressionen,
+        createImpressions,
     );
     addSection(
         WORKSHOP_CONTENT,
         NAVIGATION_LINK_CONTAINER,
-        "beteiligte",
+        "contributors",
         "06",
         "Beteiligte",
-        createBeteiligte,
+        createContributors,
     );
 
     setupScrollSpy(WORKSHOP_CONTENT, NAVIGATION_LINK_CONTAINER);

@@ -1,6 +1,6 @@
 /* Editing controls only. Workshop content is styled by assets/css/workshop.css. */
 body.workshop-editor {
-    #übersicht-url-input {
+    #overview-url-input {
         font-family: var(--font-serif);
         padding: 0.4rem;
         margin-bottom: 0.5rem;
@@ -15,8 +15,8 @@ body.workshop-editor {
         gap: 0.5rem;
     }
 
-    #eindrücke-buttons,
-    #bildergalerie-buttons {
+    #highlights-buttons,
+    #image-gallery-buttons {
         display: flex;
         flex-direction: row;
         gap: 0.5rem;

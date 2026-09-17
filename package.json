@@ -18,7 +18,8 @@
     "scripts": {
         "dev": "serve app -l 5500",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "test": "node --test"
     },
     "devDependencies": {
         "prettier": "^3.3.0",

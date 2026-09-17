@@ -9,8 +9,43 @@ npm ci
 npm run dev
 ```
 
-Die Startseite liegt unter <http://localhost:5500/sch%C3%BClerlabore/home.html>,
-der Editor unter <http://localhost:5500/workshop_creator/workshop_creator.html>.
+Die Startseite liegt unter <http://localhost:5500/>,
+der Editor unter <http://localhost:5500/creator.html>.
+
+## Webroot und Seiten
+
+`app/` ist der vollständige Webroot. Zum Veröffentlichen wird dessen Inhalt
+einschließlich der versteckten Datei `.nojekyll` bereitgestellt:
+
+```text
+app/
+├── index.html          Startseite
+├── info.html
+├── contact.html
+├── creator.html        Workshop-Editor
+├── workshops.json     Liste der Workshop-Ordner
+├── assets/            Gemeinsame Styles, Skripte und Bilder
+├── pages/             Skripte der öffentlichen Seiten und Startseiten-CSS
+├── workshop_creator/  Editor-Code und Editor-CSS
+├── workshops/         Bestehende Workshop-Exporte mit ihren Dateien
+└── .nojekyll           Deaktiviert Jekyll bei GitHub-Pages-Branch-Publishing
+```
+
+Die Pfade funktionieren auch, wenn der Webroot unter einem Unterpfad wie
+`/schuelerlabore/` veröffentlicht wird. `.nojekyll` hat auf einem normalen
+statischen Webserver keine Funktion; sie konfiguriert auch keine Veröffentlichung.
+
+Die früheren Adressen unter `schülerlabore/` und
+`workshop_creator/workshop_creator.html` wurden ersetzt. Es gibt keine
+Weiterleitungen; vorhandene Lesezeichen und externe Links müssen auf die neuen
+Adressen zeigen. Workshops sind jetzt unter `workshops/<Ordner>/Workshop.html`
+erreichbar. Dateinamen sind englisch und Ordnerpfade enthalten keine Umlaute;
+Eigennamen wie `erbeskopf.jpg` und sichtbare deutsche Texte bleiben erhalten.
+JavaScript-Bezeichner sowie IDs und Klassen der aktiven Seiten sind englisch.
+Die Kontaktseite heißt `contact.html`.
+
+Das Reparaturskript für alte Exporte liegt mit einer Anleitung in
+[`tools/legacy/`](tools/legacy/README.md), außerhalb des Webroots.
 
 ## Gemeinsame Dateien und Editor-UI
 
@@ -22,7 +57,7 @@ Styles bleiben bei der jeweiligen Seite:
 | `app/assets/css/base.css`             | Farben, Schrift, Grundregeln und Seitenkopf                        | Startseite, Info, Kontakt, Editor                                          |
 | `app/assets/css/workshop.css`         | Workshop-Inhalt und Navigation, einschließlich mobiler Darstellung | Workshop-Vorschau im Editor; wiederverwendbar für künftige Workshop-Seiten |
 | `app/workshop_creator/CSS/editor.css` | Eingabefelder und Schaltflächen zum Bearbeiten                     | Nur Editor                                                                 |
-| `app/schülerlabore/CSS/home.css`      | Banner, Beschreibung und Kurskarten                                | Nur Startseite                                                             |
+| `app/pages/home.css`                  | Banner, Beschreibung und Kurskarten                                | Nur Startseite                                                             |
 | `app/assets/js/header.mjs`            | Gemeinsamer Seitenkopf und Navigationsziele                        | Startseite, Info, Kontakt, Editor                                          |
 | `app/assets/js/dom.mjs`               | Wiederverwendbare DOM-Helfer                                       | Startseite und Editor                                                      |
 | `app/assets/js/assets.mjs`            | URLs für das gemeinsame Logo und Platzhalterbild                   | Gemeinsamer Seitenkopf, Startseite und Editor                              |
@@ -36,7 +71,7 @@ Für optionale Layout-Hilfslinien kann der Editor-Body zusätzlich die Klasse
 zusammen mit den Bearbeitungssteuerelementen entfernt.
 
 Info und Kontakt behalten ihre bisherigen seitenspezifischen Inline-Styles.
-Die bestehenden Exporte unter `app/schülerlabore/WORKSHOPS/` behalten ihre eigenen
+Die bestehenden Exporte unter `app/workshops/` behalten ihre eigenen
 Dateien bis zur späteren Umstellung des Exportverfahrens.
 
 ## Formatierung
