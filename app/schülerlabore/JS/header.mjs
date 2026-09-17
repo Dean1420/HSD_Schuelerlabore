@@ -52,7 +52,7 @@ function createPageNavigation() {
 function insertNavigationLinks(pageNavigation) {
     // pages and their corresponding links
     const PAGES = [
-        { value: './home.html', text: 'Schülerlabore' },
+        { value: './home.html', text: 'Home' },
         { value: './infos.html', text: 'Infos' },
         { value: './kontakt.html', text: 'Kontakt' }
     ];

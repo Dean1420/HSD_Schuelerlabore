@@ -403,8 +403,6 @@ main {
                         object-fit: cover;
                         display: block;
                     }
-
-                    #anleitung-intro-image-input {}
                 }
             }
 
@@ -618,8 +616,6 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lerninhalt-title {}
-
                 #lerninhalt-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
@@ -632,8 +628,6 @@ main {
                 flex-direction: column;
                 margin: 0 5% 3rem;
 
-                #lehrende-kompetenzen-title {}
-
                 #lehrende-kompetenzen-text {
                     font-size: 0.95rem;
                     line-height: 1.6;
@@ -645,8 +639,6 @@ main {
                 display: flex;
                 flex-direction: column;
                 margin: 0 5% 3rem;
-
-                #lehrplanbezug-title {}
 
                 #lehrplanbezug-text {
                     font-size: 0.95rem;
@@ -721,55 +713,9 @@ main {
                 width: 90%;
             }
         }
-
-        #beteiligte {
-            #beteiligte-container {
-                display: flex;
-                flex-direction: column;
-                margin: 0 5% 3rem;
-            }
-
-            #beteiligte-content {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                margin: 0 -1%;
-            }
-
-            .beteiligte-card {
-                display: flex;
-                flex-direction: column;
-                width: 22%;
-                margin: 1%;
-                overflow: hidden;
-
-                .beteiligte-img {
-                    width: 100%;
-                    aspect-ratio: 1 / 1;
-                    object-fit: cover;
-                }
-
-                .beteiligte-name {
-                    display: block;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
-                    font-weight: 700;
-                    font-size: 1rem;
-                    margin-top: 0.75rem;
-                }
-
-                .beteiligte-description {
-                    display: block;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
-                    white-space: pre-wrap;
-                    font-size: 0.85rem;
-                    color: var(--color-text-muted);
-                }
-            }
-        }
     }
 }
+
 
 /* ========================================
    INFO & KONTAKT PAGES STYLES
@@ -861,4 +807,55 @@ textarea.form-input {
 
 .form-button:hover {
     opacity: 0.8;
+}
+
+/* ========================================
+   TEAM LIST STYLES (INFO PAGE)
+   ======================================== */
+.team-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates exactly 2 equal columns */
+    gap: 40px 5%; /* 40px vertical gap between rows, 5% horizontal gap between columns */
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; 
+}
+
+.team-member-text {
+    font-family: sans-serif;
+    font-size: 0.75rem; 
+    line-height: 1.4;
+    color: #333;
+    margin: 0;
+}
+
+.team-member-text strong {
+    font-weight: bold;
+    color: #000;
+}
+
+.team-email-link {
+    color: #E3001B;
+    text-decoration: none;
+}
+
+.team-email-link:hover {
+    text-decoration: underline;
+}
+
+.team-member-img {
+    width: 140px; 
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Stacks them back to 1 per row on very small mobile screens */
+@media (max-width: 600px) {
+    .team-list {
+        grid-template-columns: 1fr;
+    }
 }
