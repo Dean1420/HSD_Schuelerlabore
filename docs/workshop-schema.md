@@ -295,6 +295,10 @@ names the folder.
   editor shows every section regardless.
 - A section or subsection of a defined kind whose `title` is blank is rendered with the
   kind's default title (section 11).
+- A `phases` block groups one or more activities (`steps`) under each phase title.
+  Rendered phases are numbered contiguously within the block, independently of their
+  titles. The editor keeps the number outside the editable title. Existing titles with
+  a prefix such as `Phase 1 –` display without that prefix; stored data is not changed.
 - A link renders `label`, or the URL without its scheme when `label` is empty. A file
   renders `label`, or the file's base name when `label` is empty. A rendered link is never
   empty.

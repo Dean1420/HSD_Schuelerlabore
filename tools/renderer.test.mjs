@@ -107,6 +107,40 @@ test("empty sections are omitted in read-only mode and numbering re-flows", () =
     assert.equal(main.querySelectorAll("#workshop-navigation-link-container a").length, 6);
 });
 
+test("phase numbers follow visible groups and stay outside editable titles", () => {
+    const step = { title: "Tätigkeit", duration: "", description: "", method: "" };
+    const block = {
+        ...createBlock("phases"),
+        phases: [
+            { title: "", steps: [] },
+            { title: "Phase 8 – Einführung", steps: [step] },
+            { title: "", steps: [step] },
+            { title: "Vertiefung", steps: [step, step] },
+        ],
+    };
+    const original = structuredClone(block);
+    const readOnly = renderBlock(block, contextFor(dom()));
+    assert.deepEqual(texts(readOnly, ".phase-title"), [
+        "Phase 1 – Einführung",
+        "Phase 2",
+        "Phase 3 – Vertiefung",
+    ]);
+    assert.equal(readOnly.querySelectorAll(".phase:last-child .step").length, 2);
+
+    const editable = renderBlock(block, contextFor(dom(), true));
+    assert.deepEqual(texts(editable, ".phase-number"), [
+        "Phase 1",
+        "Phase 2",
+        "Phase 3",
+        "Phase 4",
+    ]);
+    const title = editable.querySelector('[data-field="phases[1].title"]');
+    assert.equal(title.textContent, "Einführung");
+    assert.equal(title.getAttribute("contenteditable"), "plaintext-only");
+    assert.equal(editable.querySelector(".phase-number").closest("[contenteditable]"), null);
+    assert.deepEqual(block, original);
+});
+
 test("the minimal draft renders nothing read-only and everything in editable mode", () => {
     const ws = fixture("draft-minimal");
     const readOnly = render(ws);

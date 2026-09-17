@@ -82,10 +82,10 @@
                             "type": "phases",
                             "phases": [
                                 {
-                                    "title": "Phase 1 – Ankommen & Sensibilisierung",
+                                    "title": "Ankommen & Sensibilisierung",
                                     "steps": [
                                         {
-                                            "title": "01 / Intro",
+                                            "title": "Einstieg ins Thema",
                                             "duration": "45 Min",
                                             "description": "Gemeinsames Ankommen und spielerischer Einstieg in Begrifflichkeiten.",
                                             "method": "Online-Glossar"
@@ -93,16 +93,16 @@
                                     ]
                                 },
                                 {
-                                    "title": "Phase 2 – Die interaktive Reise",
+                                    "title": "Die interaktive Reise",
                                     "steps": [
                                         {
-                                            "title": "02 / Hauptphase",
+                                            "title": "Stationenarbeit mit der AR-App",
                                             "duration": "120 Min",
                                             "description": "Stationenarbeit in Kleingruppen mit der AR-App.",
                                             "method": "AR-App & Rollenspiel"
                                         },
                                         {
-                                            "title": "03 / Wrap-up",
+                                            "title": "Gemeinsame Auswertung",
                                             "duration": "45 Min",
                                             "description": "Gemeinsamer Diskurs und Auswertung.",
                                             "method": "Diskussionsrunde"

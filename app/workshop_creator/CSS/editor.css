@@ -380,7 +380,7 @@ body.workshop-editor {
     }
 
     .workshop-subsection[data-kind="description"] > .blocks > .editor-block {
-        flex: 1 1 50%;
+        flex: 1 1 45%;
     }
 
     .editor-add {
@@ -540,6 +540,10 @@ body.workshop-editor {
 
 @media (max-width: 768px) {
     body.workshop-editor {
+        .workshop-subsection[data-kind="description"] > .blocks > .editor-block {
+            flex-basis: 100%;
+        }
+
         .editor-block,
         .editor-block:has(> .block-image.width-third),
         .editor-block:has(> .block-image.width-two-thirds),

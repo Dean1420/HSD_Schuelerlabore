@@ -233,7 +233,11 @@ const RENDERERS = {
 
     phases(block, context) {
         const phases = Array.isArray(block.phases) ? block.phases : [];
-        const items = phases.map((phase, i) => renderPhase(phase, i, context)).filter(Boolean);
+        const items = [];
+        phases.forEach((phase, index) => {
+            const item = renderPhase(phase, index, items.length + 1, context);
+            if (item) items.push(item);
+        });
         if (!items.length && !context.editable) return null;
         return markItems(
             context,
@@ -258,24 +262,31 @@ const RENDERERS = {
     },
 };
 
-function renderPhase(phase, index, context) {
+function renderPhase(phase, index, number, context) {
     const steps = Array.isArray(phase?.steps) ? phase.steps : [];
     const visibleSteps = steps
         .map((step, j) => ({ step, j }))
         .filter(({ step }) => context.editable || isNonBlank(step?.title));
     if (!visibleSteps.length && !isNonBlank(phase?.title) && !context.editable) return null;
     const field = `phases[${index}]`;
-    const title =
-        isNonBlank(phase.title) || context.editable
+    // Older documents stored the phase number as part of the title.
+    const titleText = (phase.title ?? "").replace(/^\s*Phase\s+\d+\s*(?:[–—:-]\s*|$)/iu, "");
+    const titleField =
+        isNonBlank(titleText) || context.editable
             ? markEditable(
                   context,
-                  createElement(context, "h4", { class: "phase-title" }, [phase.title ?? ""]),
+                  createElement(context, "span", { class: "phase-title-text" }, [titleText]),
                   {
                       field: `${field}.title`,
-                      placeholder: "Phase",
+                      placeholder: "Titel der Phase",
                   },
               )
             : null;
+    const title = createElement(context, "h4", { class: "phase-title" }, [
+        createElement(context, "span", { class: "phase-number" }, [`Phase ${number}`]),
+        titleField ? " – " : null,
+        titleField,
+    ]);
     const stepList = markItems(
         context,
         createElement(
@@ -307,9 +318,16 @@ function renderStep(step, field, context) {
         const node = createElement(context, tag, { class: className }, [value]);
         return markEditable(context, node, { field: `${field}.${member}`, placeholder, multiline });
     };
-    const head = createElement(context, "div", { class: "step-head" }, [
-        text("title", "span", "step-title", "Schritt"),
-        text("duration", "span", "step-duration", "Dauer"),
+    const timing =
+        isNonBlank(step.duration) || editable
+            ? createElement(context, "div", { class: "step-timing" }, [
+                  createElement(context, "span", { class: "step-duration-label" }, ["Dauer"]),
+                  text("duration", "span", "step-duration", "Dauer"),
+              ])
+            : null;
+    const content = createElement(context, "div", { class: "step-content" }, [
+        text("title", "span", "step-title", "Tätigkeit"),
+        text("description", "p", "step-description", "Beschreibung", true),
     ]);
     const method =
         isNonBlank(step.method) || editable
@@ -318,11 +336,7 @@ function renderStep(step, field, context) {
                   text("method", "span", "step-method-text", "Methode"),
               ])
             : null;
-    return createElement(context, "li", { class: "step" }, [
-        head,
-        text("description", "p", "step-description", "Beschreibung", true),
-        method,
-    ]);
+    return createElement(context, "li", { class: "step" }, [timing, content, method]);
 }
 
 function renderPerson(person, index, context) {

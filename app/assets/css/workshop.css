@@ -60,11 +60,16 @@ main.workshop-page {
     display: flex;
 
     #workshop-navigation-area {
-        width: 8%;
+        display: flex;
+        align-items: center;
+        align-self: flex-start;
+        position: sticky;
+        top: 0;
+        width: 11rem;
+        height: 100dvh;
         flex-shrink: 0;
         margin: 0;
-        padding: 2rem 0;
-        border-right: var(--border-width) var(--border-style) var(--border-color);
+        padding: 0;
 
         #workshop-navigation-toggle {
             display: none;
@@ -72,44 +77,40 @@ main.workshop-page {
 
         #workshop-navigation-link-container {
             display: flex;
+            flex: 1;
+            min-width: 0;
             flex-direction: column;
-            gap: 1.5rem;
-            position: sticky;
-            top: 2rem;
+            gap: 0.75rem;
+            margin: 0 0.5rem;
+            padding: 0.375rem;
+            max-height: calc(100dvh - 2rem);
+            overflow-y: auto;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            line-height: 1.25rem;
 
             a {
                 display: flex;
                 flex-direction: column;
-                word-break: break-word;
+                position: relative;
+                overflow-wrap: anywhere;
+                hyphens: auto;
                 text-decoration: none;
-                color: var(--color-text-muted);
-                padding: 0 0.75rem;
-                gap: 0.15rem;
-                border-left: 0.15rem var(--border-style) transparent;
-
-                .workshop-navigation-number {
-                    color: var(--color-red);
-                    font-weight: 700;
-                    font-size: 0.8rem;
-                }
-
-                .navigation-text {
-                    font-size: 0.65rem;
-                    letter-spacing: 0.03em;
-                }
+                color: var(--color-text);
+                padding-left: 1rem;
             }
 
-            a:hover {
-                color: var(--color-text);
+            a:hover .navigation-text {
+                text-decoration: underline;
             }
 
-            a.active {
-                color: var(--color-text);
-                border-left-color: var(--color-red);
+            a:focus-visible {
+                outline: 2px solid var(--color-red);
+                outline-offset: 3px;
+            }
 
-                .navigation-text {
-                    font-weight: 700;
-                }
+            a.active .workshop-navigation-number {
+                color: var(--color-red);
             }
         }
     }
@@ -662,13 +663,43 @@ main.workshop-page {
     }
 }
 
+@media (min-width: 769px) {
+    #workshop-navigation-link-container {
+        a::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            top: 1rem;
+            left: 0;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: url("../images/workshop-nav-dot.svg") no-repeat left top / 100% auto;
+        }
+
+        a.active::before {
+            background-image: url("../images/workshop-nav-active.svg");
+        }
+
+        a:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 1.25rem;
+            bottom: -2rem;
+            left: 0.21875rem;
+            border-left: var(--border-width) var(--border-style) var(--border-color);
+        }
+    }
+}
+
 /* Workshop content on narrow screens. */
 @media (max-width: 768px) {
     main.workshop-page {
         flex-direction: column;
 
         #workshop-navigation-area {
+            display: block;
             width: 100%;
+            height: auto;
             flex-shrink: 1;
             margin: 0;
             padding: 1rem 5% 1rem 9%;
@@ -704,8 +735,9 @@ main.workshop-page {
 
             #workshop-navigation-link-container {
                 flex-direction: column;
-                position: static;
                 gap: 0.75rem;
+                margin: 0;
+                padding: 0;
                 overflow: hidden;
                 max-height: 40rem;
                 transition: max-height 0.3s ease;
@@ -715,26 +747,24 @@ main.workshop-page {
                     align-items: baseline;
                     gap: 0.5rem;
                     width: 100%;
-                    border-left: none;
+                    min-height: 1.5rem;
+                    padding: 0;
+                    line-height: 1.4;
 
                     .workshop-navigation-number {
                         flex-shrink: 0;
                     }
 
                     .navigation-text {
-                        flex-shrink: 0;
+                        min-width: 0;
                     }
                 }
 
                 a::after {
                     content: "";
-                    flex: 1;
+                    flex: 1 0 1.5rem;
                     border-bottom: var(--border-width) var(--border-style) var(--border-color);
                     margin-bottom: 0.35rem;
-                }
-
-                a.active {
-                    border-left: none;
                 }
             }
 
@@ -1026,16 +1056,33 @@ above keep their ids; anything that can repeat (blocks, items) is styled by clas
     .block-phases {
         list-style: none;
         padding: 0;
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
 
-        .phase {
-            padding: 1.25rem 0;
-            border-bottom: var(--border-width) var(--border-style) var(--border-color);
+        .phase + .phase {
+            margin-top: 2rem;
         }
 
         .phase-title {
-            font-size: 1.05rem;
-            font-weight: 700;
+            display: flex;
+            align-items: baseline;
+            gap: 0.375rem;
+            font: inherit;
+            font-size: 1.125rem;
+            font-style: italic;
             margin: 0 0 0.75rem;
+        }
+
+        .phase-number {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .phase-title-text {
+            min-width: 0;
+            overflow-wrap: anywhere;
         }
 
         .steps {
@@ -1044,23 +1091,38 @@ above keep their ids; anything that can repeat (blocks, items) is styled by clas
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            border-top: var(--border-width) var(--border-style) var(--border-color);
         }
 
         .step {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 2%;
-            font-size: 0.9rem;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1.5fr);
+            gap: 0.75rem 2%;
+            padding-top: 0.75rem;
+            overflow-wrap: anywhere;
         }
 
-        .step-head {
+        .step + .step {
+            margin-top: 1.5rem;
+            border-top: var(--border-width) var(--border-style) var(--border-color);
+        }
+
+        .step-timing {
             display: flex;
             flex-direction: column;
+            grid-column: 1;
+            gap: 0.375rem;
         }
 
-        .step-duration {
-            color: var(--color-text-muted);
+        .step-title {
+            font-style: italic;
+        }
+
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            grid-column: 2;
+            gap: 0.375rem;
         }
 
         .step-description,
@@ -1069,8 +1131,11 @@ above keep their ids; anything that can repeat (blocks, items) is styled by clas
             white-space: pre-line;
         }
 
-        .step-method-label {
-            color: var(--color-text-muted);
+        .step-method {
+            display: flex;
+            flex-direction: column;
+            grid-column: 3;
+            gap: 0.375rem;
         }
     }
 
@@ -1109,20 +1174,38 @@ above keep their ids; anything that can repeat (blocks, items) is styled by clas
         }
     }
 
-    /* Übersicht: quote and text of the description side by side, like the prototype. */
-    .workshop-subsection[data-kind="description"] > .blocks {
-        flex-wrap: nowrap;
-        gap: 5%;
-
-        .block-quote {
-            flex: 1 1 50%;
-            font-size: 1.75rem;
-            font-weight: 700;
-            line-height: 1.35;
+    .workshop-subsection[data-kind="description"] {
+        > .subsection-title {
+            margin-bottom: 2.5rem;
         }
 
-        .block-text {
-            flex: 1 1 50%;
+        > .blocks {
+            align-items: center;
+            gap: 2.5rem 10%;
+            margin-bottom: 4rem;
+
+            > :is(.block-quote, .block-text) {
+                flex: 1 1 45%;
+            }
+
+            .block-quote {
+                font-size: clamp(2rem, 3.90625vw, 3.125rem);
+                font-weight: 400;
+                line-height: 1.05;
+
+                /* This statement keeps the author's punctuation; it has no outer quotes. */
+                p:not(:empty)::before,
+                p::after {
+                    content: none;
+                }
+            }
+
+            .block-text {
+                font-family: var(--font-sans);
+                font-size: 1rem;
+                line-height: 1.7;
+                color: var(--color-text);
+            }
         }
     }
 
@@ -1221,13 +1304,25 @@ above keep their ids; anything that can repeat (blocks, items) is styled by clas
             width: 100%;
         }
 
-        .block-phases .step {
-            grid-template-columns: 1fr;
-            gap: 0.35rem;
+        .block-phases {
+            .step {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .step-timing,
+            .step-content,
+            .step-method {
+                grid-column: 1;
+            }
         }
 
         .workshop-subsection[data-kind="description"] > .blocks {
-            flex-wrap: wrap;
+            gap: 1.5rem;
+
+            > :is(.block-quote, .block-text) {
+                flex-basis: 100%;
+            }
         }
 
         .facts {

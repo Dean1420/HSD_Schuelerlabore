@@ -348,7 +348,12 @@ test("phases and steps are added, reordered and removed with bindings regenerate
         dom.activeElement,
         query(`[data-block-id="${phases.id}"] [data-field="phases[0].title"]`),
     );
-    type(dom.activeElement, "Phase A");
+    type(dom.activeElement, "Ankommen");
+    assert.equal(query(".phase-title").textContent, "Phase 1 – Ankommen");
+    assert.equal(
+        addItemButton(query, phases.id, "phases[0].steps").textContent,
+        "Tätigkeit hinzufügen",
+    );
 
     addItemButton(query, phases.id, "phases[0].steps").click();
     assert.equal(
@@ -379,13 +384,18 @@ test("phases and steps are added, reordered and removed with bindings regenerate
     });
 
     addItemButton(query, phases.id, "phases").click();
-    type(dom.activeElement, "Phase B");
+    type(dom.activeElement, "Erkundung");
     itemControls(query, phases.id, "phases[1]")
         .querySelector('[data-action="move-item-up"]')
         .click();
     assert.deepEqual(
         phases.phases.map((phase) => phase.title),
-        ["Phase B", "Phase A"],
+        ["Erkundung", "Ankommen"],
+    );
+    assert.equal(query(".phase-title").textContent, "Phase 1 – Erkundung");
+    assert.equal(
+        query('[data-field="phases[1].title"]').closest(".phase-title").textContent,
+        "Phase 2 – Ankommen",
     );
     type(
         query(`[data-block-id="${phases.id}"] [data-field="phases[1].steps[0].method"]`),
@@ -399,6 +409,11 @@ test("phases and steps are added, reordered and removed with bindings regenerate
         .click();
     assert.equal(phases.phases[0].steps.length, 0);
     assert.equal(dom.activeElement, addItemButton(query, phases.id, "phases[0].steps"));
+    itemControls(query, phases.id, "phases[0]")
+        .querySelector('[data-action="remove-item"]')
+        .click();
+    assert.equal(query(".phase-title").textContent, "Phase 1 – Ankommen");
+    assert.equal(phases.phases[0].steps.length, 2);
     assert.deepEqual(validateWorkshop(state.document), []);
 });
 

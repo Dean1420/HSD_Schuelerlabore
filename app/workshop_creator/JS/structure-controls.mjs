@@ -43,7 +43,7 @@ const ITEM_LABELS = {
     items: "Listenpunkt",
     images: "Galeriebild",
     phases: "Phase",
-    steps: "Schritt",
+    steps: "Tätigkeit",
     people: "Person",
 };
 
@@ -235,6 +235,9 @@ export function decorateStructure(main, state, { run, confirmRemoval = () => tru
                 const item = findOwned(root, block.id, "data-item", path);
                 if (lastKey(collection) === "images") {
                     return assetButton(root, block.id, `${path}.src`);
+                }
+                if (lastKey(collection) === "steps") {
+                    return findOwned(root, block.id, "data-field", `${path}.title`);
                 }
                 return item?.querySelector("[contenteditable]") ?? firstFocusable(item);
             };
