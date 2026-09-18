@@ -1,3 +1,5 @@
+// @ts-check
+
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -28,12 +30,49 @@ const draft = (document) => validateWorkshop(document, { mode: "draft" });
 const publish = (document) => validateWorkshop(document, { mode: "publish" });
 const paths = (errors) => errors.map((error) => error.path);
 
-function section(document, kind) {
-    return document.sections.find((s) => s.kind === kind);
+/**
+ * Bypasses static types only for deliberately malformed inputs in runtime validation tests.
+ * @param {unknown} value
+ * @returns {any}
+ */
+function invalidInput(value) {
+    return value;
 }
 
+/**
+ * @import { Workshop, SectionKind, SectionMap, SubsectionKinds, Subsection } from "../app/assets/js/workshop-schema.mjs"
+ */
+
+/**
+ * Finds an existing section in a test fixture, preserving its specific kind.
+ * @template {SectionKind} K
+ * @param {Workshop} document
+ * @param {K} kind
+ * @returns {SectionMap[K]}
+ */
+function section(document, kind) {
+    const found = document.sections.find((s) => s.kind === kind);
+    if (!found) throw new Error(`Test fixture is missing section '${kind}'`);
+    return /** @type {SectionMap[typeof kind]} */ (found);
+}
+
+/**
+ * Finds an existing subsection of the selected section in a test fixture.
+ * @template {SectionKind} S
+ * @template {SubsectionKinds[S]} K
+ * @param {Workshop} document
+ * @param {S} sectionKind
+ * @param {K} kind
+ * @returns {Subsection<K>}
+ */
 function subsection(document, sectionKind, kind) {
-    return section(document, sectionKind).subsections.find((s) => s.kind === kind);
+    const found = section(document, sectionKind).subsections.find((s) => s.kind === kind);
+    if (!found) {
+        throw new Error(
+            `Test fixture is missing subsection '${String(kind)}' in section '${sectionKind}'`,
+        );
+    }
+    return /** @type {Subsection<typeof kind>} */ (found);
 }
 
 /** Covers all block types, custom content and empty optional content. */
@@ -210,9 +249,9 @@ test("all identifiers of a new workshop are unique", () => {
 });
 
 test("factories reject unknown kinds and types", () => {
-    assert.throws(() => createSection("banner"), RangeError);
-    assert.throws(() => createSubsection("teachers", "schedule"), RangeError);
-    assert.throws(() => createBlock("video"), RangeError);
+    assert.throws(() => createSection(invalidInput("banner")), RangeError);
+    assert.throws(() => createSubsection("teachers", invalidInput("schedule")), RangeError);
+    assert.throws(() => createBlock(invalidInput("video")), RangeError);
 });
 
 // Complete example
@@ -236,14 +275,14 @@ test("non-objects and unknown or missing members are reported", () => {
     assert.deepEqual(paths(draft(null)), ["document"]);
     assert.deepEqual(paths(draft([])), ["document"]);
     const ws = createEmptyWorkshop();
-    ws.extra = 1;
-    delete ws.teaser;
+    invalidInput(ws).extra = 1;
+    delete invalidInput(ws).teaser;
     assert.deepEqual(paths(draft(ws)).sort(), ["extra", "teaser"]);
 });
 
 test("wrong schema version is reported and migrate rejects it", () => {
     const ws = createEmptyWorkshop();
-    ws.schemaVersion = 2;
+    ws.schemaVersion = invalidInput(2);
     assert.deepEqual(paths(draft(ws)), ["schemaVersion"]);
     assert.throws(() => migrate(ws), /Unsupported schemaVersion 2/);
 });
@@ -260,7 +299,7 @@ test("duplicate identifiers are reported at the second occurrence", () => {
     ws.sections[1].id = ws.sections[0].id;
     const errors = draft(ws);
     assert.deepEqual(paths(errors), ["sections[1].id"]);
-    assert.match(errors[0].message, /first used at sections\[0\]\.id/);
+    assert.match(errors[0].message, /first used at sections\[0]\.id/);
 });
 
 test("empty identifiers are rejected", () => {
@@ -282,16 +321,13 @@ test("each non-custom section kind must occur exactly once", () => {
 
 test("unknown section kinds and subsection kinds outside their section are rejected", () => {
     const ws = createEmptyWorkshop();
-    ws.sections[0].kind = "banner";
+    ws.sections[0].kind = invalidInput("banner");
     assert.deepEqual(paths(draft(ws)).sort(), ["sections", "sections[0].kind"]);
 
     const ws2 = createEmptyWorkshop();
-    section(ws2, "teachers").subsections.push({
-        id: "x1",
-        kind: "schedule",
-        title: "Ablauf",
-        blocks: [],
-    });
+    section(ws2, "teachers").subsections.push(
+        invalidInput({ id: "x1", kind: "schedule", title: "Ablauf", blocks: [] }),
+    );
     assert.deepEqual(paths(draft(ws2)), ["sections[3].subsections[3].kind"]);
 });
 
@@ -303,9 +339,9 @@ test("a permitted subsection kind occurs at most once per section", () => {
 
 test("section fields must have exactly the declared shape", () => {
     const ws = createEmptyWorkshop();
-    section(ws, "materials").fields = { note: "x" };
-    delete section(ws, "overview").fields.facts.duration;
-    section(ws, "teachers").fields.quote.text = 42;
+    section(ws, "materials").fields = invalidInput({ note: "x" });
+    delete invalidInput(section(ws, "overview").fields.facts).duration;
+    section(ws, "teachers").fields.quote.text = invalidInput(42);
     assert.deepEqual(paths(draft(ws)).sort(), [
         "sections[0].fields.facts.duration",
         "sections[2].fields.note",
@@ -316,8 +352,8 @@ test("section fields must have exactly the declared shape", () => {
 test("unknown block types and blocks with foreign members are rejected", () => {
     const ws = createEmptyWorkshop();
     const description = subsection(ws, "overview", "description");
-    description.blocks.push({ id: "v1", type: "video", url: "x" });
-    description.blocks[0].html = "<b>";
+    description.blocks.push(invalidInput({ id: "v1", type: "video", url: "x" }));
+    invalidInput(description.blocks[0]).html = "<b>";
     assert.deepEqual(paths(draft(ws)).sort(), [
         "sections[0].subsections[0].blocks[0].html",
         "sections[0].subsections[0].blocks[2].type",
@@ -330,9 +366,9 @@ test("draft mode accepts empty values and rejects wrong types", () => {
     const image = createBlock("image");
     description.blocks.push(image);
     assert.deepEqual(draft(ws), []);
-    image.width = "half";
-    ws.tags = ["ok", 3];
-    ws.published = "yes";
+    image.width = invalidInput("half");
+    ws.tags = ["ok", invalidInput(3)];
+    ws.published = invalidInput("yes");
     assert.deepEqual(paths(draft(ws)).sort(), [
         "published",
         "sections[0].subsections[0].blocks[2].width",
@@ -344,7 +380,7 @@ test("grade range must be null or an integer range with min ≤ max", () => {
     const ws = createEmptyWorkshop();
     ws.gradeRange = { min: 8, max: 5 };
     assert.deepEqual(paths(draft(ws)), ["gradeRange"]);
-    ws.gradeRange = { min: 5.5, max: 10, note: "" };
+    ws.gradeRange = invalidInput({ min: 5.5, max: 10, note: "" });
     assert.deepEqual(paths(draft(ws)).sort(), ["gradeRange.min", "gradeRange.note"]);
     ws.gradeRange = { min: 1, max: 13 };
     assert.deepEqual(draft(ws), []);
@@ -352,7 +388,7 @@ test("grade range must be null or an integer range with min ≤ max", () => {
 
 test("subject must come from the vocabulary or be empty", () => {
     const ws = createEmptyWorkshop();
-    ws.subject = "XY";
+    ws.subject = invalidInput("XY");
     assert.deepEqual(paths(draft(ws)), ["subject"]);
 });
 
@@ -373,13 +409,15 @@ test("asset path grammar rejects traversal, encoding, backslashes and nesting", 
         "images/.hidden.jpg",
         "images/noextension",
         "files/aufbau.jpg",
-        "http://example.org/aufbau.jpg",
         "",
     ]) {
         assert.equal(isAssetPath(bad, "image"), false, bad);
     }
     assert.equal(isAssetPath("images/aufbau.jpg", "file"), false);
     assert.equal(isAssetPath("images/aufbau.jpg", "thumbnail"), false);
+    // An external HTTP URL is intentionally invalid here; no request is made.
+    // noinspection HttpUrlsUsage
+    assert.equal(isAssetPath("http://example.org/aufbau.jpg", "image"), false);
 });
 
 test("set asset paths and URLs are validated in drafts, empty ones are accepted", () => {
@@ -400,6 +438,8 @@ test("set asset paths and URLs are validated in drafts, empty ones are accepted"
 
 test("external URLs need an http(s) scheme and a host", () => {
     assert.equal(isExternalUrl("https://example.org/x?y=1"), true);
+    // HTTP is an allowed scheme; no request is made.
+    // noinspection HttpUrlsUsage
     assert.equal(isExternalUrl("http://example.org"), true);
     assert.equal(isExternalUrl("HTTPS://example.org"), true);
     assert.equal(isExternalUrl("example.org"), false);
@@ -570,7 +610,10 @@ test("publishing requires a valid slug and a thumbnail", () => {
 });
 
 test("unknown validation modes are rejected", () => {
-    assert.throws(() => validateWorkshop(createEmptyWorkshop(), { mode: "strict" }), RangeError);
+    assert.throws(
+        () => validateWorkshop(createEmptyWorkshop(), { mode: invalidInput("strict") }),
+        RangeError,
+    );
 });
 
 // ---------------------------------------------------------------------------------------
@@ -579,20 +622,18 @@ test("unknown validation modes are rejected", () => {
 
 test("prototype property names are rejected as kinds and types without throwing", () => {
     const ws = createEmptyWorkshop();
-    subsection(ws, "overview", "description").blocks.push({ id: "p1", type: "constructor" });
-    section(ws, "teachers").subsections.push({
-        id: "p2",
-        kind: "constructor",
-        title: "",
-        blocks: [],
-    });
-    section(ws, "materials").subsections.push({
-        id: "p3",
-        kind: "toString",
-        title: "",
-        blocks: [],
-    });
-    ws.sections.push({ id: "p4", kind: "hasOwnProperty", title: "", fields: {}, subsections: [] });
+    subsection(ws, "overview", "description").blocks.push(
+        invalidInput({ id: "p1", type: "constructor" }),
+    );
+    section(ws, "teachers").subsections.push(
+        invalidInput({ id: "p2", kind: "constructor", title: "", blocks: [] }),
+    );
+    section(ws, "materials").subsections.push(
+        invalidInput({ id: "p3", kind: "toString", title: "", blocks: [] }),
+    );
+    ws.sections.push(
+        invalidInput({ id: "p4", kind: "hasOwnProperty", title: "", fields: {}, subsections: [] }),
+    );
     assert.deepEqual(paths(draft(ws)).sort(), [
         "sections[0].subsections[0].blocks[2].type",
         "sections[2].subsections[2].kind",
@@ -603,9 +644,9 @@ test("prototype property names are rejected as kinds and types without throwing"
     assert.equal(isBlockFilled({ id: "x", type: ["text"] }), false);
     assert.equal(isSectionEmpty({ kind: "constructor", fields: {}, subsections: [] }), true);
     assert.equal(defaultTitle("constructor"), "");
-    assert.throws(() => createBlock("constructor"), RangeError);
-    assert.throws(() => createSection("__proto__"), RangeError);
-    assert.throws(() => createSubsection("overview", "constructor"), RangeError);
+    assert.throws(() => createBlock(invalidInput("constructor")), RangeError);
+    assert.throws(() => createSection(invalidInput("__proto__")), RangeError);
+    assert.throws(() => createSubsection("overview", invalidInput("constructor")), RangeError);
 });
 
 test("slugify treats precomposed and decomposed umlauts alike", () => {
@@ -676,7 +717,7 @@ test("createItem returns fresh, draft-valid entries for every array inside a blo
     }
     assert.equal(createItem("phases", "phases").steps.length, 1, "a new phase has one step");
     assert.equal(createItem("gallery", "images").width, "full");
-    assert.throws(() => createItem("text", "items"), RangeError);
-    assert.throws(() => createItem("list", "constructor"), RangeError);
-    assert.throws(() => createItem("constructor", "items"), RangeError);
+    assert.throws(() => createItem(invalidInput("text"), "items"), RangeError);
+    assert.throws(() => createItem("list", invalidInput("constructor")), RangeError);
+    assert.throws(() => createItem(invalidInput("constructor"), "items"), RangeError);
 });

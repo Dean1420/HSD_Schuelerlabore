@@ -1,15 +1,20 @@
 /**
- * Shared browser/Node schema. See docs/workshop-schema.md.
- * File existence checks belong to the build tools.
+ * Shared browser/Node schema.
  */
 
+/** @type {1} */
 export const SCHEMA_VERSION = 1;
 
+/** @type {readonly ValidationMode[]} */
 export const MODES = Object.freeze(["draft", "publish"]);
 
+/** @type {readonly ImageWidth[]} */
 export const WIDTHS = Object.freeze(["third", "twoThirds", "full"]);
 
-/** Badge values; additions need no schema version change. */
+/**
+ * Badge values. Additions need no schema version change.
+ * @type {readonly Subject[]}
+ */
 export const SUBJECTS = Object.freeze(["D", "SK", "M"]);
 
 export const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -33,7 +38,10 @@ const ROOT_KEYS = [
 
 // Schema tables
 
-/** Default section order. */
+/**
+ * Default section order.
+ * @type {readonly Exclude<SectionKind, "custom">[]}
+ */
 export const SECTION_ORDER = Object.freeze([
     "overview",
     "instructions",
@@ -330,6 +338,10 @@ export const BLOCK_TYPES = Object.freeze({
 
 // Factories
 
+/**
+ * Creates a draft with all standard sections and their default blocks.
+ * @returns {Workshop}
+ */
 export function createEmptyWorkshop() {
     return {
         schemaVersion: SCHEMA_VERSION,
@@ -347,7 +359,13 @@ export function createEmptyWorkshop() {
     };
 }
 
-/** Includes default subsections; custom sections start empty. */
+/**
+ * Includes default subsections; custom sections start empty.
+ * @template {SectionKind} K
+ * @param {K} kind
+ * @param {{ title?: string }} [options]
+ * @returns {SectionMap[K]}
+ */
 export function createSection(kind, { title } = {}) {
     const definition = lookup(SECTION_KINDS, kind);
     if (!definition) throw new RangeError(`Unknown section kind '${kind}'`);
@@ -363,7 +381,15 @@ export function createSection(kind, { title } = {}) {
     };
 }
 
-/** Creates a permitted subsection with its defaults. */
+/**
+ * Creates a permitted subsection with its defaults.
+ * @template {SectionKind} S
+ * @template {SubsectionKinds[S]} K
+ * @param {S} sectionKind
+ * @param {K} kind
+ * @param {{ title?: string }} [options]
+ * @returns {Subsection<K>}
+ */
 export function createSubsection(sectionKind, kind, { title } = {}) {
     if (kind === "custom") {
         return { id: newId(), kind, title: title ?? "", blocks: [] };
@@ -382,13 +408,26 @@ export function createSubsection(sectionKind, kind, { title } = {}) {
     };
 }
 
+/**
+ * Creates an empty block with the fields belonging to its type.
+ * @template {BlockType} T
+ * @param {T} type
+ * @returns {BlockMap[T]}
+ */
 export function createBlock(type) {
     const definition = lookup(BLOCK_TYPES, type);
     if (!definition) throw new RangeError(`Unknown block type '${type}'`);
     return { id: newId(), type, ...definition.create() };
 }
 
-/** An empty, draft-valid entry for an array inside a block, e.g. createItem("phases", "steps"). */
+/**
+ * An empty, draft-valid entry for an array inside a block, e.g. createItem("phases", "steps").
+ * @template {keyof CollectionItems} T
+ * @template {keyof CollectionItems[T]} K
+ * @param {T} blockType
+ * @param {K} collection
+ * @returns {CollectionItems[T][K]}
+ */
 export function createItem(blockType, collection) {
     const factory = lookup(lookup(BLOCK_TYPES, blockType)?.collections ?? {}, collection);
     if (!factory) throw new RangeError(`Block type '${blockType}' has no array '${collection}'`);
@@ -414,7 +453,10 @@ export function newId() {
     return id;
 }
 
-/** Title fallback; empty for custom or unknown kinds. */
+/**
+ * Title fallback; empty for custom or unknown kinds.
+ * @param {string} kind
+ */
 export function defaultTitle(kind) {
     const section = lookup(SECTION_KINDS, kind);
     if (section) return section.title;
@@ -427,15 +469,27 @@ export function defaultTitle(kind) {
 
 // Content detection
 
+/**
+ * @param {unknown} block
+ * @returns {boolean}
+ */
 export function isBlockFilled(block) {
     const definition = isPlainObject(block) ? lookup(BLOCK_TYPES, block.type) : undefined;
     return definition ? definition.isFilled(block) : false;
 }
 
+/**
+ * @param {unknown} subsection
+ * @returns {boolean}
+ */
 export function isSubsectionEmpty(subsection) {
     return !(Array.isArray(subsection?.blocks) && subsection.blocks.some(isBlockFilled));
 }
 
+/**
+ * @param {unknown} section
+ * @returns {boolean}
+ */
 export function isSectionEmpty(section) {
     if (
         Array.isArray(section?.subsections) &&
@@ -449,7 +503,12 @@ export function isSectionEmpty(section) {
 
 // Value types
 
-/** Local paths: images/<name>, files/<name>, or <name> for thumbnails. */
+/**
+ * Local paths: images/<name>, files/<name>, or <name> for thumbnails.
+ * @param {unknown} value
+ * @param {AssetLocation} location
+ * @returns {boolean}
+ */
 export function isAssetPath(value, location) {
     if (typeof value !== "string") return false;
     const parts = value.split("/");
@@ -458,6 +517,10 @@ export function isAssetPath(value, location) {
     return parts.length === 2 && parts[0] === directory && ASSET_NAME_PATTERN.test(parts[1]);
 }
 
+/**
+ * @param {unknown} value
+ * @returns {boolean}
+ */
 export function isExternalUrl(value) {
     if (typeof value !== "string" || !/^https?:\/\//i.test(value)) return false;
     try {
@@ -468,7 +531,10 @@ export function isExternalUrl(value) {
     }
 }
 
-/** ASCII kebab-case with ä→ae, ö→oe, ü→ue and ß→ss. */
+/**
+ * ASCII kebab-case with ä→ae, ö→oe, ü→ue and ß→ss.
+ * @param {string} text
+ */
 export function slugify(text) {
     const umlauts = { ä: "ae", ö: "oe", ü: "ue", ß: "ss" };
     return String(text)
@@ -483,7 +549,12 @@ export function slugify(text) {
 
 // Versioning
 
-/** Keeps current documents; rejects unsupported versions. */
+/**
+ * Keeps current documents; rejects unsupported versions. Validation is a separate step.
+ * @template T
+ * @param {T} document
+ * @returns {T}
+ */
 export function migrate(document) {
     if (!isPlainObject(document)) throw new TypeError("Expected a workshop document object");
     if (document.schemaVersion === SCHEMA_VERSION) return document;
@@ -494,7 +565,12 @@ export function migrate(document) {
 
 // Validation
 
-/** Returns { path, message } errors, or [] when valid. Call migrate() first. */
+/**
+ * Returns { path, message } errors, or [] when valid. Call migrate() first.
+ * @param {unknown} document
+ * @param {{ mode?: ValidationMode }} [options]
+ * @returns {ValidationError[]}
+ */
 export function validateWorkshop(document, { mode = "draft" } = {}) {
     if (!MODES.includes(mode)) throw new RangeError(`Unknown validation mode '${mode}'`);
     const errors = [];
@@ -754,3 +830,145 @@ function checkId(value, path, ctx) {
     if (firstPath) ctx.error(path, `duplicate identifier; first used at ${firstPath}`);
     else ctx.ids.set(value, path);
 }
+
+/** @typedef {"draft" | "publish"} ValidationMode */
+
+/** @typedef {"third" | "twoThirds" | "full"} ImageWidth */
+
+/** @typedef {"D" | "SK" | "M"} Subject */
+
+/** @typedef {"image" | "thumbnail" | "file"} AssetLocation */
+
+/** @typedef {{ path: string, message: string }} ValidationError */
+
+/** @typedef {{ min: number, max: number }} GradeRange */
+
+/**
+ * An image reference. Paths are relative to the workshop folder.
+ * @typedef {object} WorkshopImage
+ * @property {string} src A root filename for the thumbnail, otherwise images/<name>; empty in drafts.
+ * @property {string} alt Accessible description; required for publishing except on the thumbnail and hero.
+ */
+
+/** @typedef {WorkshopImage & { caption: string, width: ImageWidth }} FigureImage */
+
+/** @typedef {{ title: string, duration: string, description: string, method: string }} Step */
+
+/** @typedef {{ title: string, steps: Step[] }} Phase */
+
+/** @typedef {{ image: WorkshopImage, name: string, description: string }} Person */
+
+/**
+ * Payloads for the closed set of block types. Factories add the id and type.
+ * @typedef {object} BlockFields
+ * @property {{ text: string }} text
+ * @property {FigureImage} image
+ * @property {{ images: FigureImage[] }} gallery
+ * @property {{ text: string, author: string }} quote
+ * @property {{ items: string[] }} list
+ * @property {{ label: string, url: string }} link
+ * @property {{ label: string, file: string }} file
+ * @property {{ phases: Phase[] }} phases
+ * @property {{ people: Person[] }} people
+ */
+
+/**
+ * @typedef {"text" | "image" | "gallery" | "quote" | "list" | "link" | "file" | "phases" | "people"} BlockType
+ */
+
+/**
+ * @typedef {{ [T in BlockType]: { id: string, type: T } & BlockFields[T] }} BlockMap
+ */
+
+/**
+ * Narrow a Block by its type, e.g. `if (block.type === "image") block.src`.
+ * @typedef {BlockMap[BlockType]} Block
+ */
+
+/**
+ * The entry returned by createItem depends on both the block type and collection.
+ * @typedef {object} CollectionItems
+ * @property {{ images: FigureImage }} gallery
+ * @property {{ items: string }} list
+ * @property {{ phases: Phase, steps: Step }} phases
+ * @property {{ people: Person }} people
+ */
+
+/**
+ * Section kinds are explicit so editors can resolve them without evaluating Object.freeze.
+ * @typedef {"overview" | "instructions" | "materials" | "teachers" | "impressions" | "contributors" | "custom"} SectionKind
+ */
+
+/**
+ * @typedef {object} SubsectionKinds
+ * @property {"description" | "custom"} overview
+ * @property {"intro" | "schedule" | "custom"} instructions
+ * @property {"documents" | "resources" | "custom"} materials
+ * @property {"learningContent" | "competencies" | "curriculum" | "custom"} teachers
+ * @property {"highlights" | "gallery" | "custom"} impressions
+ * @property {"people" | "custom"} contributors
+ * @property {"custom"} custom
+ */
+
+/**
+ * @typedef {SubsectionKinds[SectionKind]} SubsectionKind
+ */
+
+/**
+ * An ordered group of blocks. Any block type can appear in any subsection.
+ * @template {SubsectionKind} [K=SubsectionKind]
+ * @typedef {object} Subsection
+ * @property {string} id Stable, unique identifier generated by the factory.
+ * @property {K} kind
+ * @property {string} title Blank built-in titles fall back to their defaults.
+ * @property {Block[]} blocks
+ */
+
+/**
+ * @typedef {object} OverviewFields
+ * @property {WorkshopImage} heroImage
+ * @property {{ location: string, groupSize: string, topics: string, prerequisites: string, duration: string }} facts
+ */
+
+/**
+ * @typedef {object} TeacherFields
+ * @property {{ text: string, author: string }} quote
+ * @property {{ schoolTypes: string, requirements: string }} facts
+ */
+
+/**
+ * Only overview and teachers carry structured fields; other sections use blocks.
+ * @typedef {{ overview: OverviewFields, teachers: TeacherFields }} SectionFields
+ */
+
+/**
+ * @typedef {{ [K in SectionKind]: {
+ *   id: string,
+ *   kind: K,
+ *   title: string,
+ *   fields: K extends keyof SectionFields ? SectionFields[K] : Record<string, never>,
+ *   subsections: Subsection<SubsectionKinds[K]>[]
+ * } }} SectionMap
+ */
+
+/**
+ * @typedef {SectionMap[SectionKind]} Section
+ */
+
+/**
+ * A workshop document. Start with createEmptyWorkshop(), then fill the returned data.
+ * Types describe the shape; validateWorkshop checks content and publication requirements.
+ * @typedef {object} Workshop
+ * @property {1} schemaVersion
+ * @property {string} slug Folder name in lowercase kebab-case; use slugify(title).
+ * @property {boolean} published
+ * @property {string} title Required for publishing.
+ * @property {string} teaser Short course-card description; required for publishing.
+ * @property {WorkshopImage} thumbnail Required for publishing; src is a root filename.
+ * @property {string} slogan
+ * @property {Subject | ""} subject Empty means unspecified.
+ * @property {GradeRange | null} gradeRange Null means unspecified.
+ * @property {string[]} tags
+ * @property {string} moreInfoUrl Absolute http(s) URL, or empty.
+ * @property {Section[]} sections Ordered sections; each built-in kind occurs exactly once.
+ */

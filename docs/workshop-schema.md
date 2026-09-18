@@ -356,3 +356,70 @@ validator and the renderer.
   fills defaults.
 - Renaming or removing a field is a new version with a migration case that rewrites older
   documents.
+
+## 13. Authoring in JavaScript
+
+The shared module includes JSDoc types for editor autocomplete in JavaScript and TypeScript.
+No build step is needed. Start with the factories: editors can suggest their arguments and
+the fields on their results, including entries in initially empty arrays.
+
+For example, in an `.mjs` file at the project root:
+
+```js
+// @ts-check
+import {
+  createEmptyWorkshop,
+  createBlock,
+  createItem,
+  createSection,
+  createSubsection,
+  validateWorkshop,
+} from "./app/assets/js/workshop-schema.mjs";
+
+const workshop = createEmptyWorkshop();
+workshop.title = "Roboter bauen";
+workshop.tags.push("robotik");
+workshop.gradeRange = { min: 5, max: 8 };
+
+const image = createBlock("image"); // Suggests the known block types inside the quotes.
+image.src = "images/robot.jpg"; // image. suggests src, alt, caption, width, id and type.
+image.alt = "Ein selbst gebauter Roboter";
+image.width = "third";
+
+const gallery = createBlock("gallery");
+gallery.images.push(createItem("gallery", "images"));
+gallery.images[0].src = "images/group.jpg";
+
+const extra = createSection("custom", { title: "Weitere Eindrücke" });
+const subsection = createSubsection("custom", "custom", { title: "Unsere Roboter" });
+subsection.blocks.push(image, gallery);
+extra.subsections.push(subsection);
+workshop.sections.push(extra);
+
+// Checking kind/type also narrows existing sections and blocks to their specific fields.
+const overview = workshop.sections.find((section) => section.kind === "overview");
+if (overview) overview.fields.facts.duration = "3 Stunden";
+
+const errors = validateWorkshop(workshop, { mode: "draft" });
+```
+
+`createSubsection("teachers", …)` suggests only the teacher subsection kinds and `custom`.
+`createItem("phases", …)` suggests `phases` and `steps` and returns the corresponding entry
+type. The `// @ts-check` comment enables type diagnostics in the calling JavaScript file;
+autocomplete also works without it in editors with JavaScript/TypeScript language support.
+
+The example is a draft. Types describe the data's shape; use publish validation to check
+required content, URL/path grammar and the other rules in section 9. Asset files must still
+be provided separately.
+
+For objects created outside the factories, the module also exports JSDoc types such as
+`Workshop`, `Section`, `Subsection` and `Block`:
+
+```js
+/** @type {import("./app/assets/js/workshop-schema.mjs").Workshop} */
+const workshop = createEmptyWorkshop();
+```
+
+`tools/workshop-schema-types.test.mjs` checks editor completions and type diagnostics using
+the TypeScript language service as part of `npm test`. TypeScript is a development dependency
+only; the browser continues to load the `.mjs` module directly.
