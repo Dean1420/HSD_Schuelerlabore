@@ -1,41 +1,5 @@
 /* Editing controls only. Workshop content is styled by assets/css/workshop.css. */
-body.workshop-editor {
-    #overview-url-input {
-        font-family: var(--font-serif);
-        padding: 0.4rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .add-material-content-buttons-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 22%;
-        margin: 1%;
-        gap: 0.5rem;
-    }
-
-    #highlights-buttons,
-    #image-gallery-buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        margin: 1rem 0;
-    }
-
-    /* Add debug-outline to the body in developer tools to inspect layout boxes. */
-    &.debug-outline :where(div, p, section, nav, aside, a, span) {
-        outline: 1px dashed var(--color-red);
-    }
-}
-
-@media (max-width: 768px) {
-    body.workshop-editor .add-material-content-buttons-container {
-        width: 100%;
-    }
-}
-
-/* New editor (creator-next.html): toolbar, settings, editable fields, status panel. */
+/* Toolbar, settings, editable fields, status panel. */
 body.workshop-editor {
     .editor-toolbar {
         display: flex;
@@ -60,11 +24,6 @@ body.workshop-editor {
     .editor-toolbar button[aria-pressed="true"] {
         background: var(--color-red);
         color: #fff;
-    }
-
-    .editor-dev {
-        font-size: 0.85rem;
-        color: var(--color-text-muted);
     }
 
     .editor-error {
@@ -271,7 +230,7 @@ body.workshop-editor {
         }
     }
 
-    &.editor-preview :is(.editor-settings, .editor-status, .editor-dev) {
+    &.editor-preview :is(.editor-settings, .editor-status) {
         display: none;
     }
 }
@@ -557,5 +516,113 @@ body.workshop-editor {
         .editor-block > .editor-controls {
             justify-content: flex-start;
         }
+    }
+}
+
+/* Crop dialog */
+.editor-image-dialog {
+    max-width: 94vw;
+    padding: 1.5rem;
+    border: var(--border-width) var(--border-style) var(--border-color);
+    font-family: var(--font-serif);
+    color: var(--color-text);
+
+    &::backdrop {
+        background: rgb(0 0 0 / 0.6);
+    }
+
+    .editor-image-stage {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto 0.75rem;
+        overflow: hidden;
+        line-height: 0;
+        touch-action: none;
+    }
+
+    .editor-image-crop {
+        position: absolute;
+        box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.55);
+        outline: 2px solid #fff;
+        cursor: move;
+
+        &:focus-visible {
+            outline-color: var(--color-red);
+        }
+    }
+
+    .editor-image-handle {
+        position: absolute;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: #fff;
+        border: 2px solid var(--color-red);
+    }
+
+    .editor-image-handle-nw {
+        top: 0;
+        left: 0;
+        cursor: nwse-resize;
+    }
+
+    .editor-image-handle-ne {
+        top: 0;
+        right: 0;
+        cursor: nesw-resize;
+    }
+
+    .editor-image-handle-sw {
+        bottom: 0;
+        left: 0;
+        cursor: nesw-resize;
+    }
+
+    .editor-image-handle-se {
+        right: 0;
+        bottom: 0;
+        cursor: nwse-resize;
+    }
+
+    .editor-hint {
+        margin: 0.75rem 0;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+    }
+
+    .editor-image-tools,
+    .editor-image-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .editor-image-tools {
+        margin-top: 0.75rem;
+    }
+
+    .editor-image-actions {
+        justify-content: flex-end;
+        margin-top: 1rem;
+    }
+
+    button {
+        min-height: 2.25rem;
+        padding: 0.4rem 0.9rem;
+        font: inherit;
+        color: var(--color-text);
+        background: #fff;
+        border: var(--border-width) var(--border-style) var(--border-color);
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid var(--color-red);
+            outline-offset: 2px;
+        }
+    }
+
+    .editor-image-apply {
+        color: #fff;
+        background: var(--color-red);
+        border-color: var(--color-red);
     }
 }

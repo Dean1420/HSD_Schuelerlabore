@@ -73,6 +73,21 @@ export function uniqueAssetPath(location, name, taken) {
     return path;
 }
 
+const IMAGE_BLOCK_ASPECTS = { third: 1, twoThirds: 2, full: 3 };
+
+/**
+ * Aspect ratio (width / height) of the slot a target fills, or null for a free crop. Image
+ * blocks and gallery images follow the page's grid: one module tall, one to three wide.
+ */
+export function aspectFor({ location, field }, owner = null) {
+    if (location === "thumbnail") return 4 / 3;
+    if (/(^|\.)heroImage\.src$/.test(field) || /^people\[\d+\]\.image\.src$/.test(field)) return 1;
+    if (owner?.type === "image" && field === "src") return IMAGE_BLOCK_ASPECTS[owner.width] ?? 3;
+    const galleryImage = owner?.type === "gallery" && /^images\[(\d+)\]\.src$/.exec(field);
+    if (galleryImage) return IMAGE_BLOCK_ASPECTS[owner.images[Number(galleryImage[1])]?.width] ?? 3;
+    return null;
+}
+
 /** Fields that hold an asset path: every image `src` and the `file` of file blocks. */
 export function isAssetField(field) {
     return typeof field === "string" && /(^|\.)(src|file)$/.test(field);
@@ -133,6 +148,7 @@ export function createAssetManager(
         dom = globalThis.document,
         urls = dom?.defaultView?.URL ?? globalThis.URL,
         placeholder = "",
+        transformImage = null,
     } = {},
 ) {
     /** Object URLs by path, each with the file it was created for. */
@@ -258,10 +274,34 @@ export function createAssetManager(
         picker.value = "";
         if (!request) return;
         if (!file) return request.done({ status: "cancelled" });
-        const target = revalidate(request.token);
-        if (!target) return request.done({ status: "stale" });
-        const path = choose(target, file);
-        request.done(path ? { status: "chosen", target, path } : { status: "invalid" });
+        place(request.token, file).then(request.done);
+    }
+
+    /** Lets the author crop an image first, then stores it if the target still exists. */
+    async function place(token, file) {
+        let target = revalidate(token);
+        if (!target) return { status: "stale" };
+        let chosen = file;
+        if (transformImage && target.location !== "file" && isImageFile(file)) {
+            try {
+                const owner = target.owner === ROOT_OWNER ? null : state.index.get(target.owner);
+                chosen = await transformImage(file, { aspect: aspectFor(target, owner) });
+            } catch {
+                return { status: "invalid" };
+            }
+            if (!chosen) return { status: "cancelled" };
+            target = revalidate(token);
+            if (!target) return { status: "stale" };
+        }
+        const path = choose(target, chosen);
+        return path ? { status: "chosen", target, path } : { status: "invalid" };
+    }
+
+    /** Crops the image a field already holds. Same outcomes as pick(). */
+    function edit(target) {
+        const file = state.files.get(current(target));
+        if (!file || !transformImage) return Promise.resolve({ status: "invalid" });
+        return place(capture(target), file);
     }
 
     function settle(outcome) {
@@ -304,6 +344,11 @@ export function createAssetManager(
         choose,
         remove,
         pick,
+        edit,
+        canEdit: (target) =>
+            Boolean(transformImage) &&
+            target.location !== "file" &&
+            state.files.has(current(target)),
         missing,
         dispose() {
             state.removeEventListener("change", onChange);

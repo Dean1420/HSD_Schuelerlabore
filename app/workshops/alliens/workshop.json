@@ -1,0 +1,277 @@
+{
+    "schemaVersion": 1,
+    "slug": "alliens",
+    "published": true,
+    "title": "Alliens",
+    "teaser": "Beschreibungstext für diesen Workshop...",
+    "thumbnail": {
+        "src": "thumbnail.jpg",
+        "alt": ""
+    },
+    "slogan": "Motto/Slogan des Workshops",
+    "subject": "",
+    "gradeRange": {
+        "min": 5,
+        "max": 10
+    },
+    "tags": [
+        "science",
+        "aliens"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+        {
+            "id": "76809533-da5f-4947-a0e4-18d14778bf9a",
+            "kind": "overview",
+            "title": "Übersicht",
+            "fields": {
+                "heroImage": {
+                    "src": "images/erbeskopf.jpg",
+                    "alt": ""
+                },
+                "facts": {
+                    "location": "",
+                    "groupSize": "",
+                    "topics": "",
+                    "prerequisites": "",
+                    "duration": ""
+                }
+            },
+            "subsections": [
+                {
+                    "id": "14a34c19-6935-4d6e-a357-671a2a5739bf",
+                    "kind": "description",
+                    "title": "Beschreibung",
+                    "blocks": [
+                        {
+                            "id": "4d44e600-4308-426e-885f-1837966c31bc",
+                            "type": "quote",
+                            "text": "Mein Wunsch ist es, dass jeder lernt, wie wichtig Freiheit ist!",
+                            "author": ""
+                        },
+                        {
+                            "id": "961ce7f3-35a0-47f5-8b6d-a15f54247310",
+                            "type": "text",
+                            "text": "Freiheit ist nicht alles, aber ohne Freiheit ist man nicht. Ohne Freiheit kann man nicht träumen. Freiheit fängt aber schon bei der eigenen Einstellung und Perspektive auf die Welt an."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "21fcb817-4cec-4594-8973-7d3533759145",
+            "kind": "instructions",
+            "title": "Anleitung",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "b5132065-29da-4e97-b36c-ad59c9c36eb6",
+                    "kind": "intro",
+                    "title": "Einführung",
+                    "blocks": [
+                        {
+                            "id": "88263bc4-33cd-4ee2-b561-bd099906b28e",
+                            "type": "text",
+                            "text": "Hier erfährst du die wichtigsten Informationen zu dem Workshop"
+                        },
+                        {
+                            "id": "4865dcdd-f890-45a6-bd31-3321b3d01f1a",
+                            "type": "image",
+                            "src": "images/pear.jpg",
+                            "alt": "Eine Birne",
+                            "caption": "",
+                            "width": "full"
+                        }
+                    ]
+                },
+                {
+                    "id": "039ca191-3c61-4290-ac3b-8d4b9d8dc5b6",
+                    "kind": "schedule",
+                    "title": "Ablauf",
+                    "blocks": [
+                        {
+                            "id": "c2e5bc9e-d5e7-4cda-81bf-5496629c0b81",
+                            "type": "phases",
+                            "phases": [
+                                {
+                                    "title": "Phase 1: Vorbereitung",
+                                    "steps": [
+                                        {
+                                            "title": "Intro",
+                                            "duration": "10min",
+                                            "description": "",
+                                            "method": "Online-Glossar"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "a3f67eba-1a11-406a-9518-31f9d356cb3b",
+            "kind": "materials",
+            "title": "Materialien",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "6d685f7e-c8a6-416d-9056-0d8d3648e40e",
+                    "kind": "documents",
+                    "title": "Unterlagen",
+                    "blocks": [
+                        {
+                            "id": "0fec0051-7698-4a64-b050-3160f1708816",
+                            "type": "file",
+                            "label": "",
+                            "file": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "e08aa3af-8413-495b-84d4-1afaebe34433",
+                    "kind": "resources",
+                    "title": "Ressourcen",
+                    "blocks": [
+                        {
+                            "id": "0aac9c1d-846d-4e78-844e-481d3d60daa6",
+                            "type": "link",
+                            "label": "",
+                            "url": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "0185b5c5-d928-40e4-9ad8-f934940da39e",
+            "kind": "teachers",
+            "title": "Für Lehrende",
+            "fields": {
+                "quote": {
+                    "text": "A computer is like air conditioning – it becomes useless when you open Windows",
+                    "author": "Linus Torvalds"
+                },
+                "facts": {
+                    "schoolTypes": "Gymnasium, Gesamtschule",
+                    "requirements": "Excel, Windows, Elektrik"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "8fc926b7-9b58-43a8-a8cd-364f9b708055",
+                    "kind": "learningContent",
+                    "title": "Lerninhalt",
+                    "blocks": [
+                        {
+                            "id": "e3ea19fa-f739-4bce-9477-7fdcbd5e90b9",
+                            "type": "text",
+                            "text": "In diesem Schülerlabor lernen Schüler . . ."
+                        }
+                    ]
+                },
+                {
+                    "id": "fb045e9d-874d-4c3e-9916-aedf4e19137c",
+                    "kind": "competencies",
+                    "title": "Weiterführende Kompetenzen",
+                    "blocks": [
+                        {
+                            "id": "d2c63a5e-fa45-4999-be31-20b94a0a88cd",
+                            "type": "list",
+                            "items": [
+                                "Kollaborative Problemlösung, . . ."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "756bdada-b4e5-4968-b103-6020c0fac676",
+                    "kind": "curriculum",
+                    "title": "Lehrplanbezug",
+                    "blocks": [
+                        {
+                            "id": "e9190641-6651-407a-b92a-1122a9315cdb",
+                            "type": "text",
+                            "text": "Für den Unterricht in allen Schulformen, in NRW, mit dem Inhalt . . ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cfdda63e-9c85-45cc-b9a3-346f807f0b1f",
+            "kind": "impressions",
+            "title": "Impressionen",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "a16014ef-4101-41b2-861f-57f6081e7f3e",
+                    "kind": "highlights",
+                    "title": "Eindrücke",
+                    "blocks": [
+                        {
+                            "id": "913fcd7d-ed40-4828-b326-edb59815a70f",
+                            "type": "gallery",
+                            "images": [
+                                {
+                                    "src": "images/erbeskopf.jpg",
+                                    "alt": "Blick vom Erbeskopf",
+                                    "caption": "Beschreibung...",
+                                    "width": "full"
+                                },
+                                {
+                                    "src": "images/erbeskopf.jpg",
+                                    "alt": "Blick vom Erbeskopf",
+                                    "caption": "Beschreibung...",
+                                    "width": "full"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "8952acd8-b1da-44f0-b02d-a39ee4c973e5",
+                    "kind": "gallery",
+                    "title": "Bildergalerie",
+                    "blocks": [
+                        {
+                            "id": "8ecadf25-16c8-434e-8616-60500b21b02e",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "a5e80d1a-e542-4f85-939d-cfc913433feb",
+            "kind": "contributors",
+            "title": "Ansprechpartner",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "9640f41d-b1d7-428b-820d-f087dede5229",
+                    "kind": "people",
+                    "title": "Beteiligte",
+                    "blocks": [
+                        {
+                            "id": "ec3de9ac-5e6f-414a-9e37-09306c689c93",
+                            "type": "people",
+                            "people": [
+                                {
+                                    "image": {
+                                        "src": "images/clouds.jpg",
+                                        "alt": "Wolken am Himmel"
+                                    },
+                                    "name": "Name",
+                                    "description": "Kontakt & Beschreibung"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

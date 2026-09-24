@@ -106,7 +106,7 @@ export function mountSettings(container, state, { assets = null } = {}) {
     const published = element("div", { class: "editor-field editor-published" }, [
         element("label", {}, [publishedInput, " Im Kursangebot aufführen"]),
         element("p", { class: "editor-hint" }, [
-            "Markiert den Workshop für das Kursangebot nach Export und Build. Der Haken veröffentlicht nichts sofort; der Build prüft veröffentlichte Workshops streng.",
+            "Ohne Haken wird ein Entwurf gespeichert, der unvollständig sein darf. Mit Haken muss der Workshop vollständig sein; veröffentlicht wird er erst, wenn sein Ordner auf der Website liegt.",
         ]),
     ]);
     form.append(

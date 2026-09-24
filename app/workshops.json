@@ -1,1 +1,38 @@
-["Alliens", "Download_Test"]
+[
+    {
+        "slug": "alliens",
+        "title": "Alliens",
+        "teaser": "Beschreibungstext für diesen Workshop...",
+        "thumbnail": {
+            "src": "thumbnail.jpg",
+            "alt": ""
+        },
+        "subject": "",
+        "gradeRange": {
+            "min": 5,
+            "max": 10
+        },
+        "tags": [
+            "science",
+            "aliens"
+        ]
+    },
+    {
+        "slug": "download-test",
+        "title": "Download-Test",
+        "teaser": "Beschreibungstext für diesen Workshop...",
+        "thumbnail": {
+            "src": "thumbnail.jpg",
+            "alt": ""
+        },
+        "subject": "",
+        "gradeRange": {
+            "min": 5,
+            "max": 10
+        },
+        "tags": [
+            "science",
+            "democracy"
+        ]
+    }
+]

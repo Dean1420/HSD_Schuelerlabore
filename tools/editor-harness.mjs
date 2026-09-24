@@ -19,7 +19,10 @@ export const PLACEHOLDER = "placeholder.jpg";
 
 export function fixture(name) {
     return JSON.parse(
-        readFileSync(new URL(`./fixtures/${name}/workshop.json`, import.meta.url), "utf8"),
+        readFileSync(
+            new URL(`../app/workshops/_fixtures/${name}/workshop.json`, import.meta.url),
+            "utf8",
+        ),
     );
 }
 
@@ -59,7 +62,7 @@ export function filesFor(window, document) {
 
 export function setup(
     document = createEmptyWorkshop(),
-    { withFiles = false, confirmRemoval = () => true } = {},
+    { withFiles = false, confirmRemoval = () => true, transformImage = null } = {},
 ) {
     const { window } = new JSDOM("<!doctype html><html><body></body></html>", {
         url: "http://localhost/",
@@ -88,7 +91,12 @@ export function setup(
         for (const [path, file] of filesFor(window, document)) state.files.set(path, file);
     }
     const urls = createFakeUrls();
-    const assets = createAssetManager(state, { dom, urls, placeholder: PLACEHOLDER });
+    const assets = createAssetManager(state, {
+        dom,
+        urls,
+        placeholder: PLACEHOLDER,
+        transformImage,
+    });
     const settings = mountSettings(settingsContainer, state, { assets });
     const editor = mountEditor(editorContainer, state, { assets, confirmRemoval });
     const panel = mountValidationPanel(panelContainer, state, {

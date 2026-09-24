@@ -6,7 +6,7 @@ import { ROOT_OWNER } from "../app/workshop_creator/JS/editor-state.mjs";
 import { setup, fixture } from "./editor-harness.mjs";
 
 function fixtureResponse(url) {
-    const path = url.replace("workshops/_fixtures/", "./fixtures/");
+    const path = url.replace("workshops/_fixtures/", "../app/workshops/_fixtures/");
     const type = path.endsWith(".json")
         ? "application/json"
         : path.endsWith(".pdf")

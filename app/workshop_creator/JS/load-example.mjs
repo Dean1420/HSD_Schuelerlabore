@@ -3,7 +3,7 @@ import { collectAssetReferences } from "./editor-assets.mjs";
 
 const EXAMPLE_FOLDER = "workshops/_fixtures/example-complete/";
 
-/** Loads the development example and its files before replacing the current workshop. */
+/** Loads the example workshop and its files, then replaces the current workshop. */
 export async function loadExampleWorkshop(state, fetchResource = globalThis.fetch) {
     const response = await read("workshop.json");
     const document = migrate(await response.json());
@@ -26,8 +26,7 @@ export async function loadExampleWorkshop(state, fetchResource = globalThis.fetc
         const response = await fetchResource(EXAMPLE_FOLDER + path);
         if (!response.ok) {
             throw new Error(
-                `Beispieldatei „${path}“ konnte nicht geladen werden (HTTP ${response.status}). ` +
-                    "Die Beispieldateien werden mit npm run fixtures bereitgestellt.",
+                `Beispieldatei „${path}“ konnte nicht geladen werden (HTTP ${response.status}).`,
             );
         }
         return response;

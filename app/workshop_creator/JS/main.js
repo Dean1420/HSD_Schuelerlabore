@@ -1,22 +1,16 @@
-/**
- * Entry point of the new editor (creator-next.html): creates the document, the editor state and
- * the asset manager, then mounts header, toolbar, settings, the editable workshop and the
- * status panel.
- *
- * `?dev` adds an example with files and JSON load/download without files.
- * The real export arrives with a later step.
- */
+/** Entry point of the workshop editor. */
 import { createHeader } from "../../assets/js/header.mjs";
 import { PLACEHOLDER_URL } from "../../assets/js/assets.mjs";
 import { createEmptyWorkshop } from "../../assets/js/workshop-schema.mjs";
 import { createEditorState } from "./editor-state.mjs";
 import { createAssetManager } from "./editor-assets.mjs";
+import { openImageEditor } from "./image-editor.mjs";
 import { mountEditor } from "./workshop-editor.mjs";
 import { mountSettings } from "./workshop-settings.mjs";
 import { mountValidationPanel } from "./validation-panel.mjs";
 import { loadExampleWorkshop } from "./load-example.mjs";
+import { buildPackage, packageErrors, readPackageFolder } from "./workshop-package.mjs";
 
-const dev = new URLSearchParams(location.search).has("dev");
 const body = document.body;
 
 const editorBar = document.createElement("section");
@@ -28,15 +22,19 @@ const settingsContainer = document.createElement("div");
 const editorContainer = document.createElement("div");
 editorContainer.className = "editor-page";
 const statusContainer = document.createElement("div");
-editorBar.append(toolbar, statusContainer, settingsContainer);
+editorBar.append(toolbar, settingsContainer, statusContainer);
 body.append(editorBar, createHeader(), editorContainer);
 
 const state = createEditorState(createEmptyWorkshop());
 // Images without a selected file show the shared placeholder.
-const assets = createAssetManager(state, { dom: document, placeholder: PLACEHOLDER_URL });
+const assets = createAssetManager(state, {
+    dom: document,
+    placeholder: PLACEHOLDER_URL,
+    transformImage: (file, options) => openImageEditor(document, file, options),
+});
 const settings = mountSettings(settingsContainer, state, { assets });
 const editor = mountEditor(editorContainer, state, { assets });
-mountValidationPanel(statusContainer, state, {
+const panel = mountValidationPanel(statusContainer, state, {
     getPendingErrors: settings.getPendingErrors,
     getAssetErrors: assets.missing,
     settingsForm: settings.form,
@@ -54,71 +52,107 @@ previewButton.addEventListener("click", () => {
     previewButton.textContent = on ? "Bearbeiten" : "Vorschau";
     body.classList.toggle("editor-preview", on);
 });
-toolbar.append(previewButton);
-
-if (dev) {
-    const exampleButton = document.createElement("button");
-    exampleButton.type = "button";
-    exampleButton.className = "editor-dev";
-    exampleButton.textContent = "Beispiel laden (mit Dateien)";
-    exampleButton.addEventListener("click", async () => {
-        exampleButton.disabled = true;
-        loadInput.disabled = true;
-        exampleButton.textContent = "Beispiel wird geladen …";
-        try {
-            await loadExampleWorkshop(state);
-        } catch (error) {
-            reportError(`Beispiel nicht geladen: ${error.message}`);
-        } finally {
-            exampleButton.disabled = false;
-            loadInput.disabled = false;
-            exampleButton.textContent = "Beispiel laden (mit Dateien)";
-        }
-    });
-
-    const loadInput = document.createElement("input");
-    loadInput.type = "file";
-    loadInput.accept = "application/json,.json";
-    loadInput.id = "editor-dev-load";
-    const loadLabel = document.createElement("label");
-    loadLabel.htmlFor = loadInput.id;
-    loadLabel.className = "editor-dev";
-    loadLabel.append("JSON laden (ohne Dateien)", loadInput);
-    loadInput.addEventListener("change", async () => {
-        const file = loadInput.files?.[0];
-        if (!file) return;
-        try {
-            state.load(JSON.parse(await file.text()));
-        } catch (error) {
-            reportError(`JSON nicht geladen: ${error.message}`);
-        }
-        loadInput.value = "";
-    });
-
-    const download = document.createElement("button");
-    download.type = "button";
-    download.className = "editor-dev";
-    download.textContent = "JSON herunterladen (ohne Dateien)";
-    download.addEventListener("click", () => {
-        const blob = new Blob([JSON.stringify(state.document, null, 4)], {
-            type: "application/json",
-        });
-        const url = URL.createObjectURL(blob);
+const saveButton = document.createElement("button");
+saveButton.type = "button";
+const updateSaveLabel = () => {
+    saveButton.textContent = state.document.published ? "Workshop speichern" : "Entwurf speichern";
+};
+updateSaveLabel();
+state.addEventListener("change", updateSaveLabel);
+state.addEventListener("replace", updateSaveLabel);
+saveButton.addEventListener("click", async () => {
+    const errors = packageErrors(state, [...assets.missing(), ...settings.getPendingErrors()]);
+    if (errors.length) {
+        panel.showErrors(state.document.published ? "publish" : "draft");
+        reportMessage(
+            state.document.published
+                ? `Für das Kursangebot fehlen noch ${errors.length} Angaben, siehe Prüfung. Ohne den Haken „Im Kursangebot aufführen“ lässt sich der Stand als Entwurf speichern.`
+                : `Nicht gespeichert (${errors.length} Fehler), z. B. ${errors[0].path}: ${errors[0].message}`,
+        );
+        return;
+    }
+    saveButton.disabled = true;
+    try {
+        const { name, bytes } = await buildPackage(state);
+        const url = URL.createObjectURL(new Blob([bytes], { type: "application/zip" }));
         const link = document.createElement("a");
         link.href = url;
-        link.download = `${state.document.slug || "workshop"}.json`;
+        link.download = name;
         link.click();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
-    });
-    toolbar.append(exampleButton, loadLabel, download);
+        unsaved = false;
+        reportMessage(`${name} gespeichert. Zum Weiterbearbeiten entpacken und den Ordner laden.`);
+    } catch (error) {
+        reportMessage(`Nicht gespeichert: ${error.message}`);
+    } finally {
+        saveButton.disabled = false;
+    }
+});
+
+const folderInput = document.createElement("input");
+folderInput.type = "file";
+folderInput.webkitdirectory = true;
+folderInput.hidden = true;
+const folderButton = document.createElement("button");
+folderButton.type = "button";
+folderButton.textContent = "Workshop-Ordner laden";
+folderButton.addEventListener("click", () => {
+    if (confirmReplace()) folderInput.click();
+});
+folderInput.addEventListener("change", async () => {
+    const files = [...folderInput.files];
+    folderInput.value = "";
+    if (!files.length) return;
+    try {
+        const { document: loaded, files: selected, missing } = await readPackageFolder(files);
+        state.load(loaded, { files: selected });
+        reportMessage(
+            missing.length
+                ? `Geladen. Im Ordner fehlen: ${missing.join(", ")}`
+                : "Workshop geladen.",
+        );
+    } catch (error) {
+        reportMessage(`Nicht geladen: ${error.message}`);
+    }
+});
+toolbar.append(previewButton, saveButton, folderButton, folderInput);
+
+const exampleButton = document.createElement("button");
+exampleButton.type = "button";
+exampleButton.textContent = "Beispiel laden";
+exampleButton.addEventListener("click", async () => {
+    if (!confirmReplace()) return;
+    exampleButton.disabled = true;
+    try {
+        await loadExampleWorkshop(state);
+        reportMessage("Beispiel geladen.");
+    } catch (error) {
+        reportMessage(`Beispiel nicht geladen: ${error.message}`);
+    } finally {
+        exampleButton.disabled = false;
+    }
+});
+toolbar.append(exampleButton);
+
+// Loading replaces the current workshop; ask first when it has unsaved changes.
+let unsaved = false;
+state.addEventListener("change", () => (unsaved = true));
+state.addEventListener("replace", () => (unsaved = false));
+function confirmReplace() {
+    return (
+        !unsaved ||
+        confirm("Der aktuelle Stand ist nicht gespeichert und wird ersetzt. Fortfahren?")
+    );
 }
 
-function reportError(text) {
-    console.error(text);
-    const message = document.createElement("p");
+let message = null;
+function reportMessage(text) {
+    message?.remove();
+    message = document.createElement("p");
     message.className = "workshop-message editor-error";
-    message.setAttribute("role", "alert");
+    message.setAttribute("role", "status");
     message.textContent = text;
     toolbar.append(message);
-    setTimeout(() => message.remove(), 8000);
+    const current = message;
+    setTimeout(() => current.remove(), 10000);
 }

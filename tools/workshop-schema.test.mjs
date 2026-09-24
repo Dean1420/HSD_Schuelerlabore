@@ -662,7 +662,10 @@ test("slugify treats precomposed and decomposed umlauts alike", () => {
 
 function fixture(name) {
     return JSON.parse(
-        readFileSync(new URL(`./fixtures/${name}/workshop.json`, import.meta.url), "utf8"),
+        readFileSync(
+            new URL(`../app/workshops/_fixtures/${name}/workshop.json`, import.meta.url),
+            "utf8",
+        ),
     );
 }
 

@@ -423,3 +423,116 @@ test("disposing every module removes its listeners, URLs and picker", () => {
     assert.equal(state.files.size, 1, "a disposed manager no longer sweeps");
     return pending.then((outcome) => assert.equal(outcome.status, "stale"));
 });
+
+// ---------------------------------------------------------------------------------------
+// Crop dialog
+// ---------------------------------------------------------------------------------------
+
+test("crop geometry: initial fit, clamping, resizing with a fixed aspect, output size and name", async () => {
+    const { fitCrop, clampCrop, resizeCrop, outputSize, outputName } =
+        await import("../app/workshop_creator/JS/image-editor.mjs");
+    assert.deepEqual(fitCrop(4000, 3000, null), { x: 0, y: 0, width: 4000, height: 3000 });
+    assert.deepEqual(fitCrop(4000, 3000, 1), { x: 500, y: 0, width: 3000, height: 3000 });
+    assert.deepEqual(fitCrop(3000, 4000, 4 / 3), { x: 0, y: 875, width: 3000, height: 2250 });
+    assert.deepEqual(clampCrop({ x: -50, y: 2900, width: 1000, height: 500 }, 4000, 3000), {
+        x: 0,
+        y: 2500,
+        width: 1000,
+        height: 500,
+    });
+    assert.deepEqual(resizeCrop({ x: 100, y: 100 }, { x: 5000, y: 5000 }, 4000, 3000, 1), {
+        x: 100,
+        y: 100,
+        width: 2900,
+        height: 2900,
+    });
+    assert.deepEqual(resizeCrop({ x: 1000, y: 1000 }, { x: 400, y: 900 }, 4000, 3000, null), {
+        x: 400,
+        y: 900,
+        width: 600,
+        height: 100,
+    });
+    assert.equal(resizeCrop({ x: 10, y: 10 }, { x: 11, y: 11 }, 4000, 3000, null).width, 32);
+    assert.deepEqual(outputSize(4000, 3000), { width: 1600, height: 1200 });
+    assert.deepEqual(outputSize(800, 600), { width: 800, height: 600 });
+    assert.equal(outputName("Foto Größe.HEIC", "image/jpeg"), "Foto Größe.jpg");
+    assert.equal(outputName("logo.png", "image/png"), "logo.png");
+});
+
+test("chosen images pass through the crop step with the slot's aspect; files and cancels do not store anything", async () => {
+    const calls = [];
+    let result = (file, window) =>
+        new window.File(["klein"], "zugeschnitten.jpg", { type: "image/jpeg" });
+    const context = setup(createEmptyWorkshop(), {
+        transformImage: (file, options) => {
+            calls.push([file.name, options.aspect]);
+            return Promise.resolve(result(file, context.window));
+        },
+    });
+    const { state, settings, query, file, pickFile } = context;
+    const description = state.document.sections[0].subsections[0];
+    const image = state.addBlock(description.id, "image");
+    const download = state.addBlock(description.id, "file");
+
+    await pickFile(query("#overview-image .editor-asset-controls button"), file("Hero.JPG"));
+    await pickFile(pickerOf(query, image.id), file("Frei.jpg"));
+    await pickFile(settings.form.querySelector(".editor-thumbnail button"), file("Kachel.jpg"));
+    await pickFile(pickerOf(query, download.id), file("bild-als-download.jpg"));
+    assert.deepEqual(calls, [
+        ["Hero.JPG", 1],
+        ["Frei.jpg", 3],
+        ["Kachel.jpg", 4 / 3],
+    ]);
+    assert.equal(state.document.sections[0].fields.heroImage.src, "images/zugeschnitten.jpg");
+    assert.equal(image.src, "images/zugeschnitten-2.jpg");
+    assert.equal(download.file, "files/bild-als-download.jpg");
+
+    result = () => null;
+    await pickFile(pickerOf(query, image.id), file("abgebrochen.jpg"));
+    assert.equal(image.src, "images/zugeschnitten-2.jpg");
+    assert.equal(state.files.has("images/abgebrochen.jpg"), false);
+});
+
+test("“Zuschneiden” re-crops a chosen image and ignores the result when the block is gone", async () => {
+    let finish;
+    const context = setup(createEmptyWorkshop(), {
+        transformImage: () => new Promise((resolve) => (finish = resolve)),
+    });
+    const { window, state, assets, query, settle } = context;
+    const block = state.addBlock(state.document.sections[0].subsections[0].id, "image");
+    const target = { owner: block.id, field: "src", location: "image" };
+    assets.choose(target, new window.File(["gross"], "foto.jpg", { type: "image/jpeg" }));
+    assert.equal(
+        query(`[data-block-id="${block.id}"] [data-action="edit-asset"]`).textContent,
+        "Zuschneiden",
+    );
+
+    query(`[data-block-id="${block.id}"] [data-action="edit-asset"]`).click();
+    finish(new window.File(["klein"], "foto.jpg", { type: "image/jpeg" }));
+    await settle();
+    assert.equal(block.src, "images/foto-2.jpg");
+    assert.deepEqual([...state.files.keys()], ["images/foto-2.jpg"]);
+
+    const pendingEdit = assets.edit(target);
+    state.remove(block.id);
+    finish(new window.File(["zu spät"], "foto.jpg", { type: "image/jpeg" }));
+    assert.equal((await pendingEdit).status, "stale");
+    assert.equal(state.files.size, 0);
+});
+
+test("crop proportions follow the slot: grid modules for image blocks and gallery images", async () => {
+    const { aspectFor } = await import("../app/workshop_creator/JS/editor-assets.mjs");
+    const image = (width) => ({ type: "image", width });
+    assert.equal(aspectFor({ location: "image", field: "src" }, image("third")), 1);
+    assert.equal(aspectFor({ location: "image", field: "src" }, image("twoThirds")), 2);
+    assert.equal(aspectFor({ location: "image", field: "src" }, image("full")), 3);
+    const gallery = { type: "gallery", images: [{ width: "twoThirds" }, { width: "third" }] };
+    assert.equal(aspectFor({ location: "image", field: "images[0].src" }, gallery), 2);
+    assert.equal(aspectFor({ location: "image", field: "images[1].src" }, gallery), 1);
+    assert.equal(aspectFor({ location: "file", field: "file" }, { type: "file" }), null);
+    assert.equal(
+        aspectFor({ location: "image", field: "people[2].image.src" }, { type: "people" }),
+        1,
+    );
+    assert.equal(aspectFor({ location: "thumbnail", field: "thumbnail.src" }), 4 / 3);
+});

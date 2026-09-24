@@ -149,6 +149,13 @@ export function mountValidationPanel(
     return {
         panel,
         refresh,
+        /** Shows the errors of a mode, expanded. */
+        showErrors(nextMode) {
+            mode = nextMode;
+            const errors = refresh();
+            setExpanded(true);
+            return errors;
+        },
         /** Runs the publish check and returns its errors, including the editor's own errors. */
         checkPublish() {
             mode = "publish";

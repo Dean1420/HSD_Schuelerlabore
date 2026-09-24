@@ -19,8 +19,8 @@
         "dev": "serve app -l 5500 -c ../serve.json",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "test": "node --test",
-        "fixtures": "node tools/copy-fixtures.mjs"
+        "test": "node --test && node tools/build-workshops.mjs --check",
+        "build:workshops": "node tools/build-workshops.mjs"
     },
     "devDependencies": {
         "jsdom": "^29.1.1",

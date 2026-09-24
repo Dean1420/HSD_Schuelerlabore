@@ -13,6 +13,7 @@ const LABELS = {
         choose: "Bild wählen",
         replace: "Bild ersetzen",
         remove: "Bild entfernen",
+        edit: "Zuschneiden",
         missing: "Bilddatei fehlt",
         invalid: "Bitte eine Bilddatei wählen.",
     },
@@ -52,6 +53,24 @@ export function createAssetControls(dom, assets, target, { run, find }) {
         ),
     );
     controls.append(choose);
+
+    if (assets.canEdit?.(target)) {
+        const edit = button(dom, labels.edit, "edit-asset");
+        edit.addEventListener("click", () =>
+            run(
+                () =>
+                    assets
+                        .edit(target)
+                        .then((outcome) =>
+                            outcome.status === "chosen"
+                                ? (root) => find(root, outcome.target)
+                                : null,
+                        ),
+                edit,
+            ),
+        );
+        controls.append(edit);
+    }
 
     if (value) {
         const remove = button(dom, labels.remove, "remove-asset");
