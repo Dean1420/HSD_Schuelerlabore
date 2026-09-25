@@ -1,0 +1,257 @@
+{
+    "schemaVersion": 1,
+    "slug": "download-test",
+    "published": true,
+    "title": "Download-Test",
+    "teaser": "Beschreibungstext für diesen Workshop...",
+    "thumbnail": {
+        "src": "thumbnail.jpg",
+        "alt": ""
+    },
+    "slogan": "Motto/Slogan des Workshops",
+    "authors": "",
+    "subject": "",
+    "gradeRange": {
+        "min": 5,
+        "max": 10
+    },
+    "tags": [
+        "science",
+        "democracy"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+        {
+            "id": "b0c348b7-84af-4bec-a37e-affffa143204",
+            "kind": "overview",
+            "title": "Übersicht",
+            "fields": {
+                "heroImage": {
+                    "src": "",
+                    "alt": ""
+                },
+                "facts": {
+                    "location": "",
+                    "groupSize": "",
+                    "topics": "",
+                    "prerequisites": "",
+                    "duration": ""
+                }
+            },
+            "subsections": [
+                {
+                    "id": "b3954422-7df3-4156-9254-789491c906ab",
+                    "kind": "description",
+                    "title": "Beschreibung",
+                    "blocks": [
+                        {
+                            "id": "3044deb4-3adb-443e-9bd0-f09c6c1a03db",
+                            "type": "quote",
+                            "text": "Mein Wunsch ist es, dass jeder lernt, wie wichtig Freiheit ist!",
+                            "author": ""
+                        },
+                        {
+                            "id": "05f04a14-166d-4c37-8742-a3fb2d4dba04",
+                            "type": "text",
+                            "text": "Freiheit ist nicht alles, aber ohne Freiheit ist man nicht. Ohne Freiheit kann man nicht träumen. Freiheit fängt aber schon bei der eigenen Einstellung und Perspektive auf die Welt an."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "fd8b7fe1-d500-456a-9c84-c47bf1b45ee2",
+            "kind": "instructions",
+            "title": "Anleitung",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "a7563e80-303a-4501-b3ce-4bea2a0e0b40",
+                    "kind": "intro",
+                    "title": "Einführung",
+                    "blocks": [
+                        {
+                            "id": "273a7238-2648-4f6a-9735-58508843b994",
+                            "type": "text",
+                            "text": "Hier erfährst du die wichtigsten Informationen zu dem Workshop"
+                        }
+                    ]
+                },
+                {
+                    "id": "53ea9f40-f4fc-4815-92b1-415699542a23",
+                    "kind": "schedule",
+                    "title": "Ablauf",
+                    "blocks": [
+                        {
+                            "id": "60aee523-d15c-4a1b-b90a-e05b083a7bd7",
+                            "type": "phases",
+                            "phases": [
+                                {
+                                    "title": "Phase 1: Vorbereitung",
+                                    "steps": [
+                                        {
+                                            "title": "Intro",
+                                            "duration": "10min",
+                                            "description": "",
+                                            "method": "Online-Glossar"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ff6215b6-32f1-482b-aeb4-6772b7e6e6a7",
+            "kind": "materials",
+            "title": "Materialien",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "5a46d2f6-e92a-4a43-9c30-2b976295117c",
+                    "kind": "documents",
+                    "title": "Unterlagen",
+                    "blocks": [
+                        {
+                            "id": "6c559544-2ff4-484e-90bb-c77c09fdf691",
+                            "type": "file",
+                            "label": "mouse.jpg",
+                            "file": "files/mouse.jpg"
+                        }
+                    ]
+                },
+                {
+                    "id": "cf887718-7ef5-4969-aa0c-7be9ced58a25",
+                    "kind": "resources",
+                    "title": "Ressourcen",
+                    "blocks": [
+                        {
+                            "id": "fae580b3-1f19-43a4-9cf6-11035f549e8e",
+                            "type": "link",
+                            "label": "Link",
+                            "url": "https://modelviewer.dev/"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "7ad1c96b-196f-4f43-b35c-f60963ce4e7d",
+            "kind": "teachers",
+            "title": "Für Lehrende",
+            "fields": {
+                "quote": {
+                    "text": "A computer is like air conditioning – it becomes useless when you open Windows",
+                    "author": "Linus Torvalds"
+                },
+                "facts": {
+                    "schoolTypes": "Gymnasium, Gesamtschule",
+                    "requirements": "Excel, Windows, Elektrik"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "038941f4-0720-4486-81db-c9409cc662ae",
+                    "kind": "learningContent",
+                    "title": "Lerninhalt",
+                    "blocks": [
+                        {
+                            "id": "824bcd6b-0faa-44e0-91c4-abedf3094cfa",
+                            "type": "text",
+                            "text": "In diesem Schülerlabor lernen Schüler . . ."
+                        }
+                    ]
+                },
+                {
+                    "id": "b8d0c0d4-e114-420a-aa37-383f9c70d763",
+                    "kind": "competencies",
+                    "title": "Weiterführende Kompetenzen",
+                    "blocks": [
+                        {
+                            "id": "874eb9a2-6508-4434-933a-b42f46b5da68",
+                            "type": "list",
+                            "items": [
+                                "Kollaborative Problemlösung, . . ."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "b49e127e-8535-4b25-959a-7ba125b1edc0",
+                    "kind": "curriculum",
+                    "title": "Lehrplanbezug",
+                    "blocks": [
+                        {
+                            "id": "26db3c64-a3ee-419d-b20f-eec9aa56578e",
+                            "type": "text",
+                            "text": "Für den Unterricht in allen Schulformen, in NRW, mit dem Inhalt . . ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ffb3fa94-aa1d-4fd1-b7b3-0364b5f5de03",
+            "kind": "impressions",
+            "title": "Impressionen",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "68816286-e619-4810-97e3-145e61a690c2",
+                    "kind": "highlights",
+                    "title": "Eindrücke",
+                    "blocks": [
+                        {
+                            "id": "7c795f8c-f600-414d-ba3b-7a04682a0c09",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                },
+                {
+                    "id": "72a99207-31b8-45e6-80fc-1df3727e87a6",
+                    "kind": "gallery",
+                    "title": "Bildergalerie",
+                    "blocks": [
+                        {
+                            "id": "d911aa0a-0485-49d6-9edf-acb21e7d92d0",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "8e599255-7bed-4f4e-8d7d-6b4734e6f115",
+            "kind": "contributors",
+            "title": "Ansprechpartner",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "75e9f229-8e48-437f-9388-cb20d99086e6",
+                    "kind": "people",
+                    "title": "Beteiligte",
+                    "blocks": [
+                        {
+                            "id": "67dab938-29bc-4f0a-b6d8-222e0a2dac81",
+                            "type": "people",
+                            "people": [
+                                {
+                                    "image": {
+                                        "src": "",
+                                        "alt": ""
+                                    },
+                                    "name": "Name",
+                                    "description": "Kontakt & Beschreibung"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

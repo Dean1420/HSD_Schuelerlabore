@@ -1,0 +1,4 @@
+{
+    "cleanUrls": ["/", "/workshops/**"],
+    "trailingSlash": true
+}

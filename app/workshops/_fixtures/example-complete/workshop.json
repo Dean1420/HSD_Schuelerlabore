@@ -1,0 +1,358 @@
+{
+    "schemaVersion": 1,
+    "slug": "example-complete",
+    "published": true,
+    "title": "Beispielworkshop mit allen Inhalten",
+    "teaser": "Ein Workshop, der jeden Blocktyp, eine eigene Kategorie und ein eigenes Kapitel verwendet.",
+    "thumbnail": { "src": "thumbnail.jpg", "alt": "Schüler*innen arbeiten an einer Station" },
+    "slogan": "Alles drin",
+    "authors": "",
+    "subject": "SK",
+    "gradeRange": { "min": 5, "max": 10 },
+    "tags": ["beispiel", "vollständig", "demokratie"],
+    "moreInfoUrl": "https://www.hs-duesseldorf.de/schuelerlabore",
+    "sections": [
+        {
+            "id": "sec-overview",
+            "kind": "overview",
+            "title": "Übersicht",
+            "fields": {
+                "heroImage": { "src": "images/hero.jpg", "alt": "" },
+                "facts": {
+                    "location": "Im Klassenraum oder auf dem Campus Derendorf",
+                    "groupSize": "10 bis 30 Schüler*innen",
+                    "topics": "Vielfalt, Identität, Diskriminierung",
+                    "prerequisites": "keine",
+                    "duration": "4 Stunden"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "sub-description",
+                    "kind": "description",
+                    "title": "Beschreibung",
+                    "blocks": [
+                        {
+                            "id": "blk-vision",
+                            "type": "quote",
+                            "text": "„Al(l)iens“ eröffnet neue Perspektiven und macht Vielfalt zur Stärke.",
+                            "author": ""
+                        },
+                        {
+                            "id": "blk-summary",
+                            "type": "text",
+                            "text": "Hier entdecken Schülerinnen und Schüler, wie unterschiedlich Menschen denken, lernen, fühlen und leben.\nGemeinsam erforschen sie, was Anderssein bedeutet."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-instructions",
+            "kind": "instructions",
+            "title": "Anleitung",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "sub-intro",
+                    "kind": "intro",
+                    "title": "Einführung",
+                    "blocks": [
+                        {
+                            "id": "blk-intro-text",
+                            "type": "text",
+                            "text": "Hier erfährst du die wichtigsten Informationen zum Ablauf."
+                        },
+                        {
+                            "id": "blk-intro-banner",
+                            "type": "image",
+                            "src": "images/campus.jpg",
+                            "alt": "Der Campus Derendorf bei Sonnenschein",
+                            "caption": "Schritt für Schritt für das digitale Labor",
+                            "width": "full"
+                        }
+                    ]
+                },
+                {
+                    "id": "sub-schedule",
+                    "kind": "schedule",
+                    "title": "Ablauf",
+                    "blocks": [
+                        {
+                            "id": "blk-phases",
+                            "type": "phases",
+                            "phases": [
+                                {
+                                    "title": "Ankommen & Sensibilisierung",
+                                    "steps": [
+                                        {
+                                            "title": "Einstieg ins Thema",
+                                            "duration": "45 Min",
+                                            "description": "Gemeinsames Ankommen und spielerischer Einstieg in Begrifflichkeiten.",
+                                            "method": "Online-Glossar"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Die interaktive Reise",
+                                    "steps": [
+                                        {
+                                            "title": "Stationenarbeit mit der AR-App",
+                                            "duration": "120 Min",
+                                            "description": "Stationenarbeit in Kleingruppen mit der AR-App.",
+                                            "method": "AR-App & Rollenspiel"
+                                        },
+                                        {
+                                            "title": "Gemeinsame Auswertung",
+                                            "duration": "45 Min",
+                                            "description": "Gemeinsamer Diskurs und Auswertung.",
+                                            "method": "Diskussionsrunde"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-materials",
+            "kind": "materials",
+            "title": "Materialien",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "sub-documents",
+                    "kind": "documents",
+                    "title": "Unterlagen",
+                    "blocks": [
+                        {
+                            "id": "blk-worksheet",
+                            "type": "file",
+                            "label": "Arbeitsblatt Station 1",
+                            "file": "files/arbeitsblatt-station-1.pdf"
+                        },
+                        {
+                            "id": "blk-slides",
+                            "type": "file",
+                            "label": "",
+                            "file": "files/folien.pdf"
+                        }
+                    ]
+                },
+                {
+                    "id": "sub-resources",
+                    "kind": "resources",
+                    "title": "Ressourcen",
+                    "blocks": [
+                        {
+                            "id": "blk-literature",
+                            "type": "link",
+                            "label": "Weiterführende Literatur",
+                            "url": "https://example.org/literatur"
+                        },
+                        {
+                            "id": "blk-empty-link",
+                            "type": "link",
+                            "label": "",
+                            "url": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "sub-glossary",
+                    "kind": "custom",
+                    "title": "Glossar",
+                    "blocks": [
+                        {
+                            "id": "blk-glossary-list",
+                            "type": "list",
+                            "items": [
+                                "Alien: hier ein imaginäres Wesen",
+                                "Vorurteil",
+                                "Perspektivwechsel"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-teachers",
+            "kind": "teachers",
+            "title": "Für Lehrende",
+            "fields": {
+                "quote": {
+                    "text": "The only way to make sense out of change is to plunge into it, move with it, and join the dance.",
+                    "author": "Alan Watts"
+                },
+                "facts": {
+                    "schoolTypes": "Gymnasium, Gesamtschule",
+                    "requirements": "Tablets oder Smartphones, WLAN"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "sub-learning-content",
+                    "kind": "learningContent",
+                    "title": "Lerninhalt",
+                    "blocks": [
+                        {
+                            "id": "blk-learning-text",
+                            "type": "text",
+                            "text": "In diesem Modul tauchen die Schülerinnen und Schüler in die Grundlagen der angewandten Robotik ein."
+                        }
+                    ]
+                },
+                {
+                    "id": "sub-competencies",
+                    "kind": "competencies",
+                    "title": "Weiterführende Kompetenzen",
+                    "blocks": [
+                        {
+                            "id": "blk-competencies",
+                            "type": "list",
+                            "items": [
+                                "Algorithmisches Denken",
+                                "Kollaborative Problemlösung",
+                                "Analytische Frustrationstoleranz"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "sub-curriculum",
+                    "kind": "curriculum",
+                    "title": "Lehrplanbezug",
+                    "blocks": [
+                        {
+                            "id": "blk-curriculum-table",
+                            "type": "image",
+                            "src": "images/lehrplan-nrw.jpg",
+                            "alt": "Tabelle der Jahrgangsstufen und Schulformen in NRW",
+                            "caption": "Abbildung: Allgemeines Schulwesen in Nordrhein-Westfalen",
+                            "width": "full"
+                        },
+                        {
+                            "id": "blk-curriculum-text",
+                            "type": "text",
+                            "text": "Passgenau konzipiert für den Kernlehrplan Informatik (NRW) der Sekundarstufe I."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-impressions",
+            "kind": "impressions",
+            "title": "Impressionen",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "sub-highlights",
+                    "kind": "highlights",
+                    "title": "Eindrücke",
+                    "blocks": [
+                        {
+                            "id": "blk-highlights",
+                            "type": "gallery",
+                            "images": [
+                                {
+                                    "src": "images/illustration-1.jpg",
+                                    "alt": "Illustration zweier Personen an einem Tisch",
+                                    "caption": "Hass hinter Glas",
+                                    "width": "third"
+                                },
+                                {
+                                    "src": "images/illustration-2.jpg",
+                                    "alt": "Illustration mit Flammen und Papierbögen",
+                                    "caption": "",
+                                    "width": "twoThirds"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "sub-gallery",
+                    "kind": "gallery",
+                    "title": "Bildergalerie",
+                    "blocks": [
+                        {
+                            "id": "blk-gallery",
+                            "type": "gallery",
+                            "images": [
+                                {
+                                    "src": "images/wald.jpg",
+                                    "alt": "Winterlicher Wald im Gegenlicht",
+                                    "caption": "",
+                                    "width": "full"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "blk-empty-gallery",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-contributors",
+            "kind": "contributors",
+            "title": "Ansprechpartner",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "sub-people",
+                    "kind": "people",
+                    "title": "Beteiligte",
+                    "blocks": [
+                        {
+                            "id": "blk-people",
+                            "type": "people",
+                            "people": [
+                                {
+                                    "image": {
+                                        "src": "images/portrait.jpg",
+                                        "alt": "Porträt von Erika Mustermann"
+                                    },
+                                    "name": "Dr. Erika Mustermann",
+                                    "description": "Tel. 0211 000000\nerika.mustermann@example.org"
+                                },
+                                {
+                                    "image": { "src": "", "alt": "" },
+                                    "name": "Studentisches Team",
+                                    "description": "Konzeption und Durchführung"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-custom-notes",
+            "kind": "custom",
+            "title": "Weitere Hinweise",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "sub-differentiation",
+                    "kind": "custom",
+                    "title": "Hinweise zur Differenzierung",
+                    "blocks": [
+                        {
+                            "id": "blk-differentiation",
+                            "type": "text",
+                            "text": "Für heterogene Lerngruppen stehen Stationen in zwei Schwierigkeitsgraden bereit."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

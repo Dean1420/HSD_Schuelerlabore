@@ -1,0 +1,46 @@
+{
+    "schemaVersion": 1,
+    "slug": "",
+    "published": false,
+    "title": "",
+    "teaser": "",
+    "thumbnail": { "src": "", "alt": "" },
+    "slogan": "",
+    "authors": "",
+    "subject": "",
+    "gradeRange": null,
+    "tags": [],
+    "moreInfoUrl": "",
+    "sections": [
+        {
+            "id": "s1",
+            "kind": "overview",
+            "title": "",
+            "fields": {
+                "heroImage": { "src": "", "alt": "" },
+                "facts": {
+                    "location": "",
+                    "groupSize": "",
+                    "topics": "",
+                    "prerequisites": "",
+                    "duration": ""
+                }
+            },
+            "subsections": []
+        },
+        { "id": "s2", "kind": "instructions", "title": "", "fields": {}, "subsections": [] },
+        { "id": "s3", "kind": "materials", "title": "", "fields": {}, "subsections": [] },
+        {
+            "id": "s4",
+            "kind": "teachers",
+            "title": "",
+            "fields": {
+                "quote": { "text": "", "author": "" },
+                "facts": { "schoolTypes": "", "requirements": "" }
+            },
+            "subsections": []
+        },
+        { "id": "s5", "kind": "impressions", "title": "", "fields": {}, "subsections": [] },
+        { "id": "s6", "kind": "contributors", "title": "", "fields": {}, "subsections": [] }
+    ]
+}

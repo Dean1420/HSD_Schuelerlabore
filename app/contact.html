@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kontakt & Impressum - Schülerlabore</title>
+
+        <link rel="stylesheet" href="./assets/css/base.css" />
+        <link rel="stylesheet" href="./pages/info-contact.css" />
+
+        <script type="module" src="./pages/contact.js"></script>
+    </head>
+    <body>
+        <img src="./assets/images/campus.jpg" alt="HSD Campus" class="hero-image" />
+
+        <main class="page-container">
+            <h1 class="page-title">Kontakt & Impressum</h1>
+
+            <div class="info-section">
+                <h2 class="section-heading">
+                    <span>Empfang HSD</span>
+                </h2>
+                <p class="content-text">
+                    <strong>Postanschrift</strong><br />
+                    Münsterstraße 156<br />
+                    40476 Düsseldorf
+                </p>
+                <p class="content-text" style="margin-top: 15px">
+                    <strong>Besucheranschrift</strong><br />
+                    Münsterstraße und Toulouser Allee<br />
+                    40476 Düsseldorf<br />
+                    Tel.: +49 211 4351-0<br />
+                    <a href="mailto:empfang@hs-duesseldorf.de" style="color: #e3001b"
+                        >empfang@hs-duesseldorf.de</a
+                    >
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h2 class="section-heading">
+                    <span>Zuständigkeit</span>
+                </h2>
+                <p class="content-text">
+                    <strong>Zentrale Studienberatung</strong><br />
+                    Bei Fragen rund um Studium, Studienorientierung und Bewerbung.<br />
+                    HSD-Hotline: +49 211 4351-5555<br />
+                    WhatsApp-Beratung: +49 160 - 96609288<br />
+                    <a href="mailto:studienberatung@hs-duesseldorf.de" style="color: #e3001b"
+                        >studienberatung@hs-duesseldorf.de</a
+                    >
+                </p>
+                <p class="content-text" style="margin-top: 15px">
+                    <strong>Fachbereiche der Schülerlabore</strong><br />
+                    Dieses Angebot wird in enger Zusammenarbeit der Fachbereiche
+                    <strong>Medien</strong> sowie <strong>Architektur & Design</strong> der
+                    Hochschule Düsseldorf durchgeführt und betreut.
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h2 class="section-heading">
+                    <span>Dienstanbieter</span>
+                </h2>
+                <p class="content-text">
+                    <strong>Hochschule Düsseldorf (HSD)</strong><br />
+                    University of Applied Sciences<br />
+                    Münsterstraße 156<br />
+                    40476 Düsseldorf<br />
+                    Tel.: +49 211 4351-3186<br />
+                    <a href="mailto:pressestelle@hs-duesseldorf.de" style="color: #e3001b"
+                        >pressestelle@hs-duesseldorf.de</a
+                    >
+                </p>
+                <p class="content-text" style="margin-top: 15px">
+                    Die Hochschule Düsseldorf ist eine Körperschaft des Öffentlichen Rechts.<br />
+                    Sie wird durch die Präsidentin, Prof. Dr. Edeltraud Vomberg, gesetzlich
+                    vertreten.
+                </p>
+                <p class="content-text" style="margin-top: 15px">
+                    <strong>Zuständige Aufsichtsbehörde:</strong><br />
+                    Ministerium für Kultur und Wissenschaft des Landes Nordrhein-Westfalen<br />
+                    Völklinger Str. 49, 40221 Düsseldorf
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h2 class="section-heading">
+                    <span>Wir freuen uns auf Sie!</span>
+                </h2>
+                <p class="content-text" style="margin-bottom: 25px">
+                    Wenn Sie ein Schülerlabor anfragen möchten, kontaktieren Sie uns bitte direkt
+                    unter
+                    <a
+                        href="mailto:info@hs-duesseldorf.de"
+                        style="color: #e3001b; font-weight: bold"
+                        >info@hs-duesseldorf.de</a
+                    >
+                    oder füllen Sie das untenstehende Kontaktformular aus. So können wir Ihren
+                    Besuch bestmöglich vorbereiten.
+                </p>
+
+                <form id="contact-form" class="contact-form">
+                    <input
+                        type="text"
+                        id="form-schule"
+                        name="schule"
+                        placeholder="Name der Schule *"
+                        required
+                        class="form-input"
+                    />
+
+                    <select
+                        id="form-schulform"
+                        name="schulform"
+                        required
+                        class="form-input"
+                        style="color: #555"
+                    >
+                        <option value="" disabled selected>Schulform *</option>
+                        <option value="Grundschule">Grundschule</option>
+                        <option value="Förderschule">Förderschule</option>
+                        <option value="Sonderschule">Sonderschule</option>
+                        <option value="Hauptschule">Hauptschule</option>
+                        <option value="Sekundarschule">Sekundarschule</option>
+                        <option value="Realschule">Realschule</option>
+                        <option value="Gesamtschule">Gesamtschule</option>
+                        <option value="Gymnasium">Gymnasium</option>
+                        <option value="Berufsfachschule">Berufsfachschule</option>
+                    </select>
+
+                    <input
+                        type="text"
+                        id="form-klassenstufe"
+                        name="klassenstufe"
+                        placeholder="Klassenstufe *"
+                        required
+                        class="form-input"
+                    />
+                    <input
+                        type="text"
+                        id="form-klassengrosse"
+                        name="klassengrosse"
+                        placeholder="Klassengröße *"
+                        required
+                        class="form-input"
+                    />
+                    <input
+                        type="text"
+                        id="form-ansprechpartner"
+                        name="ansprechpartner"
+                        placeholder="Name Ansprechpartner*in *"
+                        required
+                        class="form-input"
+                    />
+                    <input
+                        type="text"
+                        id="form-kurstage"
+                        name="kurstage"
+                        placeholder="Anzahl der Kurstage (Tageskurs / Projekttage) *"
+                        required
+                        class="form-input"
+                    />
+
+                    <textarea
+                        id="form-thematik"
+                        name="thematik"
+                        placeholder="Thematik / Kursangebot *"
+                        rows="4"
+                        required
+                        class="form-input"
+                    ></textarea>
+
+                    <select
+                        id="form-ort"
+                        name="ort"
+                        required
+                        class="form-input"
+                        style="color: #555"
+                    >
+                        <option value="" disabled selected>Veranstaltungsort *</option>
+                        <option value="Mobil">Mobil</option>
+                        <option value="An der HSD">An der HSD</option>
+                    </select>
+
+                    <input
+                        type="text"
+                        id="form-datum"
+                        name="datum"
+                        placeholder="Gewünschtes Datum / Zeitraum *"
+                        required
+                        class="form-input"
+                    />
+                    <input
+                        type="email"
+                        id="form-email"
+                        name="email"
+                        placeholder="E-Mail Adresse *"
+                        required
+                        class="form-input"
+                    />
+                    <input
+                        type="tel"
+                        id="form-telefon"
+                        name="telefon"
+                        placeholder="Telefonnummer"
+                        class="form-input"
+                    />
+
+                    <p style="font-size: 0.8rem; color: #e3001b; margin: 5px 0 10px">
+                        * Pflichtfeld
+                    </p>
+
+                    <div style="display: flex; gap: 10px; margin-top: 5px">
+                        <button
+                            type="submit"
+                            class="form-button"
+                            style="
+                                background-color: #e3001b;
+                                color: white;
+                                border: none;
+                                padding: 10px 20px;
+                                font-weight: bold;
+                                cursor: pointer;
+                            "
+                        >
+                            Abschicken
+                        </button>
+                        <button
+                            type="reset"
+                            class="form-button"
+                            style="
+                                background-color: transparent;
+                                color: #333;
+                                border: 1px solid #ccc;
+                                padding: 10px 20px;
+                                font-weight: bold;
+                                cursor: pointer;
+                            "
+                        >
+                            Zurücksetzen
+                        </button>
+                    </div>
+                    <p id="form-message" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

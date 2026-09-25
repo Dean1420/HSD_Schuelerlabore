@@ -1,0 +1,444 @@
+@font-face {
+    font-family: "HSD Sans";
+    src: url("../fonts/HSDSans-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --color-ink: #1a1a1a;
+    --color-paper: #fff;
+    --color-red: #e60028;
+    --color-muted: #5c5c5c;
+    --color-placeholder: #d6d6d6;
+
+    /* HSD Sans has capitals only and one weight; never set it bold. */
+    --font-display: "HSD Sans", Arial, Helvetica, sans-serif;
+    --font-text: Arial, Helvetica, sans-serif;
+    --font-reading: "Times New Roman", Times, serif;
+
+    --fs-display: clamp(2.5rem, 1.33rem + 5.2vw, 5.5rem);
+    --fs-section: clamp(1.875rem, 1.44rem + 1.95vw, 3rem);
+    --fs-title: clamp(1.75rem, 1rem + 3.3vw, 4.5rem);
+    --fs-subhead: clamp(1.375rem, 1.23rem + 0.65vw, 1.75rem);
+    --fs-body-l: 1.25rem;
+    --fs-body: 1rem;
+    --fs-small: 0.8125rem;
+    --fs-reading: 1.0625rem;
+
+    --lh-display: 1;
+    --lh-heading: 1.2;
+    --lh-body: 1.5;
+    --tracking-caps: 0.06em;
+    --measure: 60ch;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+    --space-10: 8rem;
+
+    --grid-columns: 12;
+    --grid-gutter: 1rem;
+    --page-margin: 1.5rem;
+    --page-max: 90rem;
+
+    --border-color: var(--color-ink);
+    --border-style: solid;
+    --border-width: 0.0625rem;
+
+    /* Legacy aliases used by editor.css. */
+    --color-text: var(--color-ink);
+    --color-text-muted: var(--color-muted);
+    --font-serif: var(--font-text);
+    --font-sans: var(--font-text);
+}
+
+@media (min-width: 600px) {
+    :root {
+        --grid-gutter: 1.5rem;
+        --page-margin: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --page-margin: 5rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    :root {
+        --page-margin: 6rem;
+    }
+}
+
+/* Base typography */
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--color-ink);
+    /* Set the canvas color explicitly for embedded and dark-themed browsers. */
+    background: var(--color-paper);
+    /* German hyphenation requires lang="de" on <html>. */
+    hyphens: auto;
+    hyphenate-limit-chars: 8 4 4;
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: var(--lh-heading);
+    text-wrap: balance;
+}
+
+p,
+li,
+figcaption {
+    text-wrap: pretty;
+}
+
+/* Form controls do not inherit the font by default. */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    inline-size: min(100% - 2 * var(--page-margin), var(--page-max));
+    margin-inline: auto;
+}
+
+div,
+p,
+section,
+nav,
+header,
+aside,
+a,
+span {
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+    border-width: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Header */
+
+:root {
+    --mark-size: 3rem; /* Capitals are 0.72 times the font size. */
+    --header-clear: 1.5rem;
+    --header-height: 5.25rem; /* Keep in sync with mark size and clear space. */
+}
+
+@media (min-width: 600px) {
+    :root {
+        --mark-size: 3.5rem;
+        --header-clear: 2rem;
+        --header-height: 9.125rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --header-clear: 2.5rem;
+        --header-height: 10.0625rem;
+    }
+}
+
+/* Trim the box to the HSD Sans capitals. */
+.hsd-caps {
+    display: block;
+    position: relative;
+    top: -0.097em;
+    height: 0.72em;
+    margin-inline-start: -0.085em;
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+    hyphens: manual;
+}
+
+.hsd-mark {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    color: var(--color-red);
+}
+
+.hsd-mark__byline {
+    display: none;
+    flex-direction: column;
+    font-size: var(--fs-small);
+    line-height: 0.9375rem;
+    white-space: nowrap;
+}
+
+.hsd-mark__acronym {
+    font-size: var(--mark-size);
+    color: var(--color-red);
+}
+
+.site-header {
+    padding-block: var(--header-clear);
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+    background: var(--color-paper);
+}
+
+.site-header__inner {
+    align-items: end;
+}
+
+.site-header__home {
+    grid-column: 1 / span 6;
+    justify-self: start;
+}
+
+.site-header__home:focus-visible,
+.site-nav a:focus-visible,
+.site-header__menu-button:focus-visible,
+.site-menu a:focus-visible {
+    outline: 2px solid var(--color-red);
+    outline-offset: 4px;
+}
+
+.site-nav {
+    display: none;
+    grid-column: 9 / -1;
+    align-self: center;
+    justify-self: end;
+    gap: var(--space-6);
+    white-space: nowrap;
+}
+
+.site-nav a {
+    /* 48 px tap height without making the header taller. */
+    margin-block: -1rem;
+    padding-block: 1rem;
+    line-height: 1rem;
+}
+
+.site-nav a:hover {
+    color: var(--color-red);
+}
+
+.site-nav a[aria-current],
+.site-menu a[aria-current] {
+    font-weight: 700;
+}
+
+.site-header__menu-button {
+    grid-column: 9 / -1;
+    justify-self: end;
+    align-self: center;
+    min-height: 3rem;
+    margin-block: -0.5rem;
+    padding: 0 0 0 var(--space-5);
+    border: 0;
+    background: none;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .hsd-mark__byline {
+        display: flex;
+    }
+}
+
+/* Keep the section menu accessible on narrow screens. */
+@media (max-width: 1023px) {
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+}
+
+@media (min-width: 1024px) {
+    .site-nav {
+        display: flex;
+    }
+
+    .site-header__inner > .site-header__menu-button {
+        display: none;
+    }
+}
+
+/* Full-page menu */
+
+.site-menu {
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    overflow-y: auto;
+}
+
+.site-menu::backdrop {
+    background: var(--color-paper);
+}
+
+.site-menu__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--header-clear) var(--page-margin);
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+}
+
+.site-menu__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-5) var(--page-margin) var(--space-8);
+}
+
+.site-menu__label {
+    margin: 0;
+    padding-bottom: var(--space-2);
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+    font-size: var(--fs-small);
+    line-height: 1.4;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+}
+
+.site-menu nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-menu nav a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-height: 3rem;
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+}
+
+.site-menu__number {
+    flex: none;
+    width: 2rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.site-menu a[aria-current] .site-menu__number {
+    color: var(--color-red);
+}
+
+.site-menu__group--lead.site-menu__group--pages a {
+    min-height: 4.5rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-section);
+    font-weight: 400;
+    line-height: 1;
+    hyphens: manual;
+}
+
+.site-menu__group--lead.site-menu__group--pages a[aria-current] {
+    color: var(--color-red);
+}
+
+.site-menu__group--lead.site-menu__group--sections a {
+    min-height: 4rem;
+    font-size: var(--fs-body-l);
+}
+
+/* Footer */
+
+.site-footer a:hover {
+    color: var(--color-red);
+}
+
+.site-footer {
+    margin-top: var(--space-9);
+    padding-block: var(--space-7) var(--space-8);
+    border-top: var(--border-width) var(--border-style) var(--border-color);
+}
+
+.site-footer__inner {
+    align-items: start;
+    row-gap: var(--space-5);
+}
+
+.site-footer__mark {
+    grid-column: 1 / span 2;
+}
+
+.site-footer__mark .hsd-mark__acronym {
+    font-size: 2rem;
+}
+
+.site-footer__about {
+    grid-column: 3 / span 6;
+    margin: 0;
+    font-size: var(--fs-small);
+    line-height: 1.5;
+}
+
+.site-footer__links {
+    grid-column: 9 / -1;
+    justify-self: end;
+    font-size: var(--fs-small);
+    line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+    .site-footer__about,
+    .site-footer__links {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+}

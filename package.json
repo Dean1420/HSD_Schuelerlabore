@@ -1,23 +1,31 @@
 {
-    "description": "Builder for the Student Workshop Webpage of the HSD",
+    "name": "hsd-schuelerlabore",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Statische Website und Workshop-Creator der Schülerlabore der Hochschule Düsseldorf",
     "license": "ISC",
     "author": "Dean Braband",
-    "type": "commonjs",
-    "main": "index.js",
-    "scripts": {
-        "======= SETUP =======":"",
-        "======= BUILD =======":"",
-        "======= COMPRESS =======":"",
-        "======= RUN =======":"",
-        "======= CLEAN =======":"",
-            "CLEAN": "npm run CLEAN:dist && npm run CLEAN:dependencies",
-            "CLEAN:dist": "rm -r ./app/dist",
-            "CLEAN:dependencies": "rm -r ./node_modules"
+    "contributors": [
+        "Philipp Le",
+        "Andreas Jugueta",
+        "Berivan Altunsaray",
+        "Katrin Schöne"
+    ],
+    "type": "module",
+    "engines": {
+        "node": ">=20.19.0"
     },
-    "dependencies": {
-        "esbuild": "^0.28.0",
-        "lessc": "^1.0.2",
-        "minify": "^15.3.1",
-        "terser": "^5.47.1"
+    "scripts": {
+        "dev": "serve app -l 5500 -c ../serve.json",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "node --test && node tools/build-workshops.mjs --check",
+        "build:workshops": "node tools/build-workshops.mjs"
+    },
+    "devDependencies": {
+        "jsdom": "^29.1.1",
+        "prettier": "^3.3.0",
+        "serve": "^14.2.4",
+        "typescript": "^5.9.3"
     }
 }
