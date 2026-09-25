@@ -1,4 +1,3 @@
-/** Entry point of the workshop editor. */
 import { createHeader } from "../../assets/js/header.mjs";
 import { PLACEHOLDER_URL } from "../../assets/js/assets.mjs";
 import { createEmptyWorkshop } from "../../assets/js/workshop-schema.mjs";
@@ -26,7 +25,6 @@ editorBar.append(toolbar, settingsContainer, statusContainer);
 body.append(editorBar, createHeader(), editorContainer);
 
 const state = createEditorState(createEmptyWorkshop());
-// Images without a selected file show the shared placeholder.
 const assets = createAssetManager(state, {
     dom: document,
     placeholder: PLACEHOLDER_URL,
@@ -134,7 +132,6 @@ exampleButton.addEventListener("click", async () => {
 });
 toolbar.append(exampleButton);
 
-// Loading replaces the current workshop; ask first when it has unsaved changes.
 let unsaved = false;
 state.addEventListener("change", () => (unsaved = true));
 state.addEventListener("replace", () => (unsaved = false));

@@ -1,8 +1,4 @@
-/**
- * Lookups in the rendered editable page, shared by the editor modules. Identifiers and paths
- * are opaque strings, so elements are found by comparing attribute values; selectors are never
- * built from them.
- */
+// IDs and paths are opaque: compare attribute values instead of interpolating selectors.
 import { ROOT_OWNER } from "./editor-state.mjs";
 
 const FOCUSABLE = "[contenteditable], input, select, textarea, button, summary";
@@ -40,7 +36,6 @@ function candidates(root, attribute) {
     return root.hasAttribute(attribute) ? [root, ...nodes] : nodes;
 }
 
-/** The element of a section, subsection or block. */
 export function findOwnerNode(root, id) {
     return (
         findByAttribute(root, "data-block-id", id) ??
@@ -59,14 +54,12 @@ export function controlHolder(root, id) {
         : node;
 }
 
-/** A direct child of `node` with the class, e.g. its toolbar. */
 export function childWithClass(node, className) {
     return node
         ? ([...node.children].find((child) => child.classList.contains(className)) ?? null)
         : null;
 }
 
-/** A control by its fixed action name inside `container`. */
 export function findAction(container, action) {
     return container
         ? ([...container.querySelectorAll("[data-action]")].find(
@@ -75,13 +68,11 @@ export function findAction(container, action) {
         : null;
 }
 
-/** `node` itself or its first descendant that takes focus. */
 export function firstFocusable(node) {
     if (!node) return null;
     return node.matches(FOCUSABLE) ? node : node.querySelector(FOCUSABLE);
 }
 
-/** The asset slot of a field; its first button is the picker. */
 export function findAssetSlot(root, owner, field) {
     return findOwned(root, owner, "data-asset", field);
 }

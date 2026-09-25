@@ -8,7 +8,6 @@ import {
 import { createEditorState, ROOT_OWNER } from "../app/workshop_creator/JS/editor-state.mjs";
 import { setup, fixture } from "./editor-harness.mjs";
 
-/** The toolbar of a section, subsection or block (blocks keep it in their shell). */
 function controls(query, id) {
     const block = query(`[data-block-id="${id}"]`);
     if (block) return block.parentElement.querySelector(":scope > .editor-controls");
@@ -35,10 +34,6 @@ const detailOf = ({ owner, field, operation, target, structural }) => ({
     target,
     structural,
 });
-
-// ---------------------------------------------------------------------------------------
-// State operations
-// ---------------------------------------------------------------------------------------
 
 test("built-in sections move but are never removed; custom sections are added and removed", () => {
     const state = createEditorState(createEmptyWorkshop());
@@ -119,10 +114,6 @@ test("moving preserves ids and objects; blocks and entries only move within thei
     assert.throws(() => state.removeItem(phases.id, "phases"), RangeError);
     assert.deepEqual(validateWorkshop(state.document), []);
 });
-
-// ---------------------------------------------------------------------------------------
-// Controls on the page
-// ---------------------------------------------------------------------------------------
 
 test("section controls add a custom section, reorder navigation and numbering, and remove it", () => {
     const { state, query, queryAll, dom, type } = setup();
@@ -453,10 +444,6 @@ test("people entries keep portrait, alt text and name together when reordered", 
     assert.ok(query(`[data-block-id="${people.id}"] [data-item="people[0]"] img`));
     assert.deepEqual(validateWorkshop(state.document), []);
 });
-
-// ---------------------------------------------------------------------------------------
-// Rendering, focus, validation and listeners
-// ---------------------------------------------------------------------------------------
 
 test("structural edits keep the slug lock and files, re-render once each and never while typing", () => {
     const { state, assets, file, query, type, disconnects } = setup();

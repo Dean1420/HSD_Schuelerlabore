@@ -1,14 +1,3 @@
-/**
- * Files selected for the workshop being edited.
- *
- * state.files maps asset paths to File objects; the document stores only the paths. A selected
- * file gets a name in the schema's grammar and a path no selected file or document field uses
- * yet, so it never replaces another asset. Object URLs are cached per path for editing and
- * preview, and revoked once no field references the path or the document is replaced.
- *
- * resolve() gives the renderer its URLs: the object URL of a selected file, the placeholder for
- * an image without file, and "" for a download without file, which the renderer leaves unlinked.
- */
 import { slugify } from "../../assets/js/workshop-schema.mjs";
 import { ROOT_OWNER, parsePath, formatPath, readPath, findPath } from "./editor-state.mjs";
 
@@ -28,10 +17,7 @@ const DIRECTORIES = { image: "images/", thumbnail: "", file: "files/" };
 const FALLBACK_NAMES = { image: "bild", thumbnail: "vorschaubild", file: "datei" };
 const MAX_BASE_LENGTH = 80;
 
-/**
- * `<base>.<extension>` in the schema's file-name grammar: the base slugified, the extension kept
- * in lower case (or taken from the MIME type). Null when there is no extension.
- */
+// Slugify the base, lowercase the extension (or infer it from MIME); null if none exists.
 export function normaliseFileName(name, { type = "", location = "file" } = {}) {
     const text = String(name ?? "").trim();
     const dot = text.lastIndexOf(".");
@@ -61,7 +47,6 @@ export function isImageFile(file) {
     return !file?.type && dot > 0 && IMAGE_EXTENSIONS.has(name.slice(dot + 1).toLowerCase());
 }
 
-/** The asset path for a normalised name, with -2, -3 … appended while `taken` has it. */
 export function uniqueAssetPath(location, name, taken) {
     const directory = own(DIRECTORIES, location);
     if (directory === undefined) throw new RangeError(`Unknown asset location '${location}'`);
@@ -75,10 +60,7 @@ export function uniqueAssetPath(location, name, taken) {
 
 const IMAGE_BLOCK_ASPECTS = { third: 1, twoThirds: 2, full: 3 };
 
-/**
- * Aspect ratio (width / height) of the slot a target fills, or null for a free crop. Image
- * blocks and gallery images follow the page's grid: one module tall, one to three wide.
- */
+// Slot width / height, or null for a free crop.
 export function aspectFor({ location, field }, owner = null) {
     if (location === "thumbnail") return 4 / 3;
     if (/(^|\.)heroImage\.src$/.test(field) || /^people\[\d+\]\.image\.src$/.test(field)) return 1;
@@ -88,15 +70,11 @@ export function aspectFor({ location, field }, owner = null) {
     return null;
 }
 
-/** Fields that hold an asset path: every image `src` and the `file` of file blocks. */
 export function isAssetField(field) {
     return typeof field === "string" && /(^|\.)(src|file)$/.test(field);
 }
 
-/**
- * Every set asset path in the document with its binding (`owner`, `field`), its `location`
- * and `errorPath`, the validation-style path used to report and locate it.
- */
+// References include owner/field bindings, location and the validation error path.
 export function collectAssetReferences(document) {
     const references = [];
     const add = (path, location, owner, field, errorPath) => {
@@ -138,10 +116,7 @@ export function collectAssetReferences(document) {
     return references;
 }
 
-/**
- * Manages state.files for one editor. A target is { owner, field, location } with location
- * "image", "thumbnail" or "file".
- */
+// Targets are { owner, field, location }; location is "image", "thumbnail" or "file".
 export function createAssetManager(
     state,
     {
@@ -151,7 +126,6 @@ export function createAssetManager(
         transformImage = null,
     } = {},
 ) {
-    /** Object URLs by path, each with the file it was created for. */
     const cache = new Map();
     let picker = null;
     let pending = null;
@@ -175,7 +149,6 @@ export function createAssetManager(
         return new Set(collectAssetReferences(state.document).map((reference) => reference.path));
     }
 
-    /** Stores `file` under a free path and points the field at it. Null for unsuitable files. */
     function choose({ owner, field, location }, file) {
         if (!file || typeof file.name !== "string") return null;
         if (location !== "file" && !isImageFile(file)) return null;
@@ -195,7 +168,6 @@ export function createAssetManager(
         if (current(target) !== "") state.set(target.owner, target.field, "", { source: "assets" });
     }
 
-    /** Drops files no field references and revokes URLs whose file is gone. */
     function sweep() {
         const referenced = referencedPaths();
         for (const path of [...state.files.keys()]) {
@@ -209,7 +181,6 @@ export function createAssetManager(
         }
     }
 
-    /** Editor-side errors for referenced paths without a selected file. */
     function missing() {
         return collectAssetReferences(state.document)
             .filter((reference) => !state.files.has(reference.path))
@@ -219,11 +190,7 @@ export function createAssetManager(
             }));
     }
 
-    /**
-     * Opens the file picker. Resolves with { status: "chosen", target, path } — the target's
-     * field follows an entry that moved meanwhile — or with status "cancelled", "invalid" or
-     * "stale" when the target was removed or its value changed before the file arrived.
-     */
+    // Track moved entries; return "stale" if the target is removed or changed during selection.
     function pick(target) {
         settle({ status: "cancelled" });
         const token = capture(target);
@@ -277,7 +244,6 @@ export function createAssetManager(
         place(request.token, file).then(request.done);
     }
 
-    /** Lets the author crop an image first, then stores it if the target still exists. */
     async function place(token, file) {
         let target = revalidate(token);
         if (!target) return { status: "stale" };
@@ -297,7 +263,6 @@ export function createAssetManager(
         return path ? { status: "chosen", target, path } : { status: "invalid" };
     }
 
-    /** Crops the image a field already holds. Same outcomes as pick(). */
     function edit(target) {
         const file = state.files.get(current(target));
         if (!file || !transformImage) return Promise.resolve({ status: "invalid" });

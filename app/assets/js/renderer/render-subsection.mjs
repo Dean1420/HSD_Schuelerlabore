@@ -2,10 +2,7 @@ import { defaultTitle, isSubsectionEmpty } from "../workshop-schema.mjs";
 import { renderBlock } from "./render-blocks.mjs";
 import { createElement, markEditable, isNonBlank } from "./element.mjs";
 
-/**
- * A blank title falls back to the kind's default title on the page; custom subsections have
- * none. In editable mode the stored title is shown and the default is only the placeholder.
- */
+// Blank built-in titles use defaults; in the editor, defaults are placeholders only.
 export function renderSubsection(subsection, context) {
     if (!context.editable && isSubsectionEmpty(subsection)) return null;
     const blocks = (subsection.blocks ?? [])

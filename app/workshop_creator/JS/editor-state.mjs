@@ -1,19 +1,5 @@
-/**
- * Holds the workshop document being edited and applies every change to it.
- *
- * Owners are addressed by identifier: ROOT_OWNER for the document itself, otherwise the id of a
- * section, subsection or block (identifiers are unique across the document). Fields are paths
- * relative to the owner, e.g. "title", "fields.facts.location", "items[2]",
- * "phases[0].steps[1].duration". An index from id to object is rebuilt whenever the document
- * or its structure changes, so bindings never depend on array positions.
- *
- * Structural operations add, remove and move content in place, rebuild the index and then emit
- * one "change" event with `structural: true`. They never replace the document, so the slug lock
- * and the selected files survive them.
- *
- * The slug follows slugify(title) until the author sets one (or a loaded document already
- * has one). That lock is editor state, not part of the document.
- */
+// Owners use stable IDs (ROOT_OWNER for the document); field paths are relative to each owner.
+// Structural edits preserve the document and files, rebuild the index and emit one change event.
 import {
     slugify,
     migrate,
@@ -44,10 +30,7 @@ export function createEditorState(initialDocument) {
         addEventListener: (type, listener) => events.addEventListener(type, listener),
         removeEventListener: (type, listener) => events.removeEventListener(type, listener),
 
-        /**
-         * Replaces the whole document (new workshop, import) and notifies every listener once.
-         * The previous document's files are dropped; `files` may supply the new document's.
-         */
+        // Replacing the document drops its files unless replacements are supplied.
         replace(document, { files } = {}) {
             this.document = document;
             this.slugLocked = document.slug !== "";
@@ -57,10 +40,7 @@ export function createEditorState(initialDocument) {
             emit("replace", { document });
         },
 
-        /**
-         * Loads an external document: migrate, validate as a draft, then replace. Throws with
-         * `errors` attached when the document is rejected, leaving the current work untouched.
-         */
+        // Reject invalid imports with `errors` attached, leaving the current document untouched.
         load(raw, options) {
             const document = migrate(raw);
             const errors = validateWorkshop(document, { mode: "draft" });
@@ -102,7 +82,6 @@ export function createEditorState(initialDocument) {
             return object;
         },
 
-        /** Sets one field of an owner and emits "change". Returns the previous value. */
         set(owner, field, value, { source = "state" } = {}) {
             const object = this.resolve(owner);
             const previous = assignPath(object, field, value);
@@ -133,9 +112,6 @@ export function createEditorState(initialDocument) {
             return previous;
         },
 
-        // Structure: sections, subsections and blocks
-
-        /** Adds a custom section; the six built-in sections exist exactly once. */
         addSection({ index, source = "state" } = {}) {
             const section = createSection("custom");
             insert(this.document.sections, section, index);
@@ -144,7 +120,6 @@ export function createEditorState(initialDocument) {
             return section;
         },
 
-        /** Adds a built-in kind the section permits and lacks, or a custom subsection. */
         addSubsection(sectionId, kind, { index, source = "state" } = {}) {
             const section = this.resolve(sectionId);
             if (places.get(sectionId)?.field !== "sections") {
@@ -173,7 +148,6 @@ export function createEditorState(initialDocument) {
             return block;
         },
 
-        /** Built-in kinds permitted by the section and not yet present, then "custom". */
         addableSubsectionKinds(sectionId) {
             const section = this.resolve(sectionId);
             const permitted = Object.hasOwn(SECTION_KINDS, section.kind)
@@ -183,7 +157,6 @@ export function createEditorState(initialDocument) {
             return [...permitted.filter((kind) => !present.has(kind)), "custom"];
         },
 
-        /** Removes a section, subsection or block. Built-in sections cannot be removed. */
         remove(id, { source = "state" } = {}) {
             const { object, place } = placed(id);
             if (place.field === "sections" && object.kind !== "custom") {
@@ -195,7 +168,6 @@ export function createEditorState(initialDocument) {
             return object;
         },
 
-        /** Moves a section, subsection or block within its list. Returns false at the edges. */
         move(id, offset, { source = "state" } = {}) {
             const { object, place } = placed(id);
             if (!shift(place.list, place.list.indexOf(object), offset)) return false;
@@ -204,9 +176,8 @@ export function createEditorState(initialDocument) {
             return true;
         },
 
-        // Structure: entries of arrays inside blocks (no identifiers; addressed by path)
+        // Array entries have no IDs and are addressed by path.
 
-        /** Appends (or inserts at `index`) an empty entry. Returns the new entry's path. */
         addItem(blockId, collection, { index, source = "state" } = {}) {
             const block = itemBlock(blockId, collection);
             const list = readPath(block, collection);
@@ -217,7 +188,6 @@ export function createEditorState(initialDocument) {
             return path;
         },
 
-        /** Removes the entry at `path`, e.g. "phases[1].steps[0]". Returns the entry. */
         removeItem(blockId, path, { source = "state" } = {}) {
             const { list, position, collection } = itemPlace(blockId, path);
             const [item] = list.splice(position, 1);
@@ -226,7 +196,6 @@ export function createEditorState(initialDocument) {
             return item;
         },
 
-        /** Moves the entry at `path` by `offset`. Returns its new path, or null at the edges. */
         moveItem(blockId, path, offset, { source = "state" } = {}) {
             const { list, position, collection } = itemPlace(blockId, path);
             if (!shift(list, position, offset)) return null;
@@ -251,7 +220,6 @@ export function createEditorState(initialDocument) {
         return { object: state.index.get(id), place };
     }
 
-    /** The block owning `collection`, which must be one of the block type's arrays. */
     function itemBlock(blockId, collection) {
         if (places.get(blockId)?.field !== "blocks") {
             throw new RangeError(`'${String(blockId)}' is not a block`);
@@ -281,7 +249,6 @@ export function createEditorState(initialDocument) {
     return state;
 }
 
-/** Inserts at `index` (clamped), or appends. Returns the position used. */
 function insert(list, item, index) {
     const position =
         index === undefined ? list.length : Math.max(0, Math.min(list.length, Math.trunc(index)));
@@ -289,7 +256,6 @@ function insert(list, item, index) {
     return position;
 }
 
-/** Moves list[position] by `offset`; false when the target lies outside the list. */
 function shift(list, position, offset) {
     const target = position + offset;
     if (!Number.isInteger(offset) || offset === 0 || target < 0 || target >= list.length) {
@@ -318,7 +284,6 @@ export function parsePath(path) {
     return tokens;
 }
 
-/** The inverse of parsePath: ["phases", 1, "steps"] becomes "phases[1].steps". */
 export function formatPath(tokens) {
     return tokens.reduce(
         (path, token) =>
@@ -327,7 +292,6 @@ export function formatPath(tokens) {
     );
 }
 
-/** Reads the value at `path`; every step must exist. */
 export function readPath(object, path) {
     let target = object;
     for (const token of parsePath(path)) {
@@ -339,7 +303,6 @@ export function readPath(object, path) {
     return target;
 }
 
-/** Finds `target` inside `root` by identity and returns its path tokens, or null. */
 export function findPath(root, target) {
     if (root === target) return [];
     if (root === null || typeof root !== "object") return null;

@@ -1,8 +1,3 @@
-/**
- * Test harness for the editor modules: mounts state, asset manager, settings, editor and status
- * panel into a fresh jsdom, with a counting IntersectionObserver and fake object URLs.
- * Not a test file itself; the *.test.mjs files import it.
- */
 import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 import { createEmptyWorkshop } from "../app/assets/js/workshop-schema.mjs";
@@ -26,7 +21,6 @@ export function fixture(name) {
     );
 }
 
-/** Object URLs that are counted; `live` holds the ones not yet revoked. */
 export function createFakeUrls() {
     let next = 0;
     const urls = {
@@ -48,7 +42,6 @@ export function createFakeUrls() {
     return urls;
 }
 
-/** A File for every asset path the document references, as if the author had chosen them. */
 export function filesFor(window, document) {
     return new Map(
         collectAssetReferences(document).map(({ path, location }) => [
@@ -68,12 +61,14 @@ export function setup(
         url: "http://localhost/",
     });
     const dom = window.document;
+    // Count scroll-listener removals to track render disposal; jsdom has no animation frames.
     let disconnects = 0;
-    window.IntersectionObserver = class {
-        observe() {}
-        disconnect() {
-            disconnects += 1;
-        }
+    window.requestAnimationFrame = () => 1;
+    window.cancelAnimationFrame = () => {};
+    const removeEventListener = window.removeEventListener.bind(window);
+    window.removeEventListener = (type, ...rest) => {
+        if (type === "scroll") disconnects += 1;
+        return removeEventListener(type, ...rest);
     };
     const [settingsContainer, editorContainer, panelContainer] = [
         "settings",
@@ -130,7 +125,6 @@ export function setup(
         await settle();
     }
 
-    /** Clicks a picker button and answers the dialog. */
     async function pickFile(button, selected) {
         button.click();
         await answerPicker(selected);

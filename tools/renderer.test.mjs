@@ -16,10 +16,6 @@ import {
 } from "../app/assets/js/renderer/render-blocks.mjs";
 import { encodeAnchor, sectionAnchor } from "../app/assets/js/renderer/anchors.mjs";
 
-// ---------------------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------------------
-
 function dom() {
     return new JSDOM("<!doctype html><html><body></body></html>").window.document;
 }
@@ -43,10 +39,6 @@ function contextFor(document, editable = false) {
 
 const texts = (root, selector) =>
     [...root.querySelectorAll(selector)].map((n) => n.textContent.trim());
-
-// ---------------------------------------------------------------------------------------
-// Whole workshop
-// ---------------------------------------------------------------------------------------
 
 test("complete fixture renders all sections with contiguous numbers and matching navigation", () => {
     const main = render(fixture("example-complete"));
@@ -274,10 +266,6 @@ test("author text is rendered as text, never as markup", () => {
     );
 });
 
-// ---------------------------------------------------------------------------------------
-// Blocks
-// ---------------------------------------------------------------------------------------
-
 test("unfilled blocks and unfilled items are omitted read-only but kept when editable", () => {
     const document = dom();
     const readOnly = contextFor(document, false);
@@ -426,10 +414,6 @@ test("assets that resolve to no URL render no image and no download link", () =>
     const none = render(fixture("example-complete"), { resolveAsset: () => "" });
     assert.equal(none.querySelector("img"), null);
 });
-
-// ---------------------------------------------------------------------------------------
-// Anchors
-// ---------------------------------------------------------------------------------------
 
 test("anchors are injective, fragment-safe and never collide with fixed kinds", () => {
     const ids = [

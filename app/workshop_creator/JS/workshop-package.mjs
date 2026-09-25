@@ -1,26 +1,15 @@
-/**
- * Saves a workshop as a ZIP (<slug>/workshop.json plus the referenced files) and reopens an
- * extracted workshop folder.
- */
 import { migrate, validateWorkshop } from "../../assets/js/workshop-schema.mjs";
 import { collectAssetReferences } from "./editor-assets.mjs";
 import { createZip } from "./zip-writer.mjs";
 
 const DRAFT_NAME = "entwurf";
 
-/**
- * Errors that prevent saving. Drafts may be incomplete and unnamed; published workshops must
- * pass the publish check, which includes a valid slug.
- */
 export function packageErrors(state, extraErrors = []) {
     const mode = state.document.published ? "publish" : "draft";
     return [...validateWorkshop(state.document, { mode }), ...extraErrors];
 }
 
-/**
- * Returns { name, bytes } for the ZIP. Call packageErrors() first. Document and file map are
- * copied before any file is read, so edits during saving cannot mix into the package.
- */
+// Call packageErrors() first. Snapshot document and files before async reads to exclude later edits.
 export async function buildPackage(state, { date } = {}) {
     const document = structuredClone(state.document);
     const files = new Map(state.files);
@@ -41,10 +30,7 @@ export async function buildPackage(state, { date } = {}) {
     return { name: `${name}.zip`, bytes: createZip(entries, { date }) };
 }
 
-/**
- * Reads the files of a picked folder (File objects with webkitRelativePath). Returns
- * { document, files, missing }; only files the document references are taken.
- */
+// Expects File objects with webkitRelativePath; includes only referenced files.
 export async function readPackageFolder(fileList) {
     const entries = [...fileList].map((file) => ({
         file,

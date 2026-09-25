@@ -1,5 +1,5 @@
-/** Renders workshops/<id>/workshop.json read-only. Shared by the workshop shells and preview.html. */
 import { createHeader } from "../assets/js/header.mjs";
+import { createFooter } from "./footer.mjs";
 import { migrate, validateWorkshop } from "../assets/js/workshop-schema.mjs";
 import { renderWorkshop } from "../assets/js/renderer/render-workshop.mjs";
 
@@ -8,10 +8,12 @@ const WORKSHOPS_URL = new URL("../workshops/", import.meta.url);
 export function showWorkshopPage({ id, idPattern, publishedOnly }) {
     const body = document.body;
     body.appendChild(createHeader());
-    show(id).catch((error) => {
-        console.error("Workshop konnte nicht geladen werden:", error);
-        showMessage("Dieser Workshop konnte nicht geladen werden.");
-    });
+    show(id)
+        .catch((error) => {
+            console.error("Workshop konnte nicht geladen werden:", error);
+            showMessage("Dieser Workshop konnte nicht geladen werden.");
+        })
+        .finally(() => body.appendChild(createFooter()));
 
     async function show(workshopId) {
         if (!workshopId || !idPattern.test(workshopId)) {

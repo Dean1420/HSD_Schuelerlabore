@@ -1,12 +1,5 @@
-/**
- * Settings that are not page text: teaser, thumbnail, subject, grade range, tags, more-info URL,
- * slug and the published flag. A labelled form, collapsible above the workshop.
- *
- * The grade range is written to the document only when it is complete: both fields empty
- * means null, two integers with min ≤ max mean a range, anything in between stays in the
- * form with a hint and is reported as a pending error so a publish check cannot pass.
- */
-import { SUBJECTS, SLUG_PATTERN } from "../../assets/js/workshop-schema.mjs";
+// Incomplete grade ranges stay in the form and block publishing until resolved.
+import { SUBJECTS, SUBJECT_LABELS, SLUG_PATTERN } from "../../assets/js/workshop-schema.mjs";
 import { ROOT_OWNER } from "./editor-state.mjs";
 import { createAssetControls } from "./asset-controls.mjs";
 
@@ -16,7 +9,6 @@ const GRADE_HINT_ORDER = "Klassenstufe: „von“ darf nicht größer als „bis
 
 const THUMBNAIL = { owner: ROOT_OWNER, field: "thumbnail.src", location: "thumbnail" };
 
-/** Without `assets` the thumbnail picker is left out. */
 export function mountSettings(container, state, { assets = null } = {}) {
     const dom = container.ownerDocument;
     let pendingGradeError = null;
@@ -54,7 +46,9 @@ export function mountSettings(container, state, { assets = null } = {}) {
         "Fach",
         element("select", { name: "subject" }, [
             element("option", { value: "" }, ["keine Angabe"]),
-            ...SUBJECTS.map((value) => element("option", { value }, [value])),
+            ...SUBJECTS.map((value) =>
+                element("option", { value }, [SUBJECT_LABELS[value] ?? value]),
+            ),
         ]),
     );
     const gradeMin = element("input", {
@@ -89,6 +83,11 @@ export function mountSettings(container, state, { assets = null } = {}) {
         "Schlagwörter (durch Komma getrennt)",
         element("input", { name: "tags", type: "text" }),
     );
+    const authors = field(
+        "authors",
+        "Autor*innen des Workshops",
+        element("input", { name: "authors", type: "text" }),
+    );
     const moreInfoUrl = field(
         "moreInfoUrl",
         "Adresse für „Weitere Informationen“",
@@ -110,7 +109,9 @@ export function mountSettings(container, state, { assets = null } = {}) {
         ]),
     ]);
     form.append(
-        ...[teaser, thumbnail, subject, grade, tags, moreInfoUrl, slug, published].filter(Boolean),
+        ...[teaser, thumbnail, subject, authors, grade, tags, moreInfoUrl, slug, published].filter(
+            Boolean,
+        ),
     );
 
     function fill() {
@@ -120,6 +121,7 @@ export function mountSettings(container, state, { assets = null } = {}) {
         gradeMin.value = document.gradeRange ? String(document.gradeRange.min) : "";
         gradeMax.value = document.gradeRange ? String(document.gradeRange.max) : "";
         form.elements.tags.value = document.tags.join(", ");
+        form.elements.authors.value = document.authors;
         form.elements.moreInfoUrl.value = document.moreInfoUrl;
         slugInput.value = document.slug;
         publishedInput.checked = document.published;
@@ -133,6 +135,7 @@ export function mountSettings(container, state, { assets = null } = {}) {
         const input = event.target;
         switch (input.name) {
             case "teaser":
+            case "authors":
             case "moreInfoUrl":
             case "subject":
                 state.set(ROOT_OWNER, input.name, input.value, { source: "settings" });
@@ -208,7 +211,6 @@ export function mountSettings(container, state, { assets = null } = {}) {
         return thumbnailPreview.querySelector(".editor-asset-controls button");
     }
 
-    /** Runs a picker action and focuses the thumbnail control it names. */
     function run(action) {
         const focus = (find) => (typeof find === "function" ? find() : null)?.focus();
         const result = action();
@@ -252,7 +254,6 @@ export function mountSettings(container, state, { assets = null } = {}) {
         /** Errors that live only in the form, e.g. an unfinished grade range. */
         getPendingErrors: () =>
             pendingGradeError ? [{ path: "gradeRange", message: pendingGradeError }] : [],
-        /** The input for a root field, for the validation panel to focus; opens the box. */
         locate(fieldName) {
             const input =
                 fieldName === "gradeRange"

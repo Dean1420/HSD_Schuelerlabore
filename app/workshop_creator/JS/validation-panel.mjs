@@ -1,10 +1,4 @@
-/**
- * Shows the state of the document: draft errors after every change, the publish check on
- * demand, and the checklist of recommended subsections that are still empty. Both modes add the
- * editor's own errors (missing files, unfinished form input) to the schema's errors. Typing
- * refreshes after a pause; structural and asset changes refresh at once, so every entry's path
- * matches the current order. Each entry focuses the element or input it refers to.
- */
+// Debounce typing; validate structural and asset changes immediately so error paths stay current.
 import {
     validateWorkshop,
     SECTION_KINDS,
@@ -99,7 +93,6 @@ export function mountValidationPanel(
         return element("li", {}, [button]);
     }
 
-    /** Subsections marked `checklist` in the schema tables that are still empty. */
     function recommendations() {
         const hints = [];
         for (const section of state.document.sections) {
@@ -149,14 +142,12 @@ export function mountValidationPanel(
     return {
         panel,
         refresh,
-        /** Shows the errors of a mode, expanded. */
         showErrors(nextMode) {
             mode = nextMode;
             const errors = refresh();
             setExpanded(true);
             return errors;
         },
-        /** Runs the publish check and returns its errors, including the editor's own errors. */
         checkPublish() {
             mode = "publish";
             const errors = refresh();

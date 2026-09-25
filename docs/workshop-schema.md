@@ -62,6 +62,7 @@ The folder name is the document's `slug`.
   "teaser": "Eine Reise durch die Dimensionen der Vielfalt.",
   "thumbnail": { "src": "thumbnail.jpg", "alt": "Schüler*innen im Stuhlkreis" },
   "slogan": "Wir sind alle anders!",
+  "authors": "Studierende des Fachbereichs",
   "subject": "SK",
   "gradeRange": { "min": 5, "max": 10 },
   "tags": ["vielfalt", "identität"],
@@ -79,6 +80,7 @@ The folder name is the document's `slug`.
 | teaser        | string           | one or two sentences for the course card              | yes                  |
 | thumbnail     | image            | `src` is a bare file name in the folder root          | yes                  |
 | slogan        | string           |                                                       | no                   |
+| authors       | string           | who made the workshop, shown as a byline; free text   | no                   |
 | subject       | string           | a value of the subject vocabulary, or `""`            | no                   |
 | gradeRange    | object or `null` | `{ "min": integer, "max": integer }` with `min ≤ max` | no                   |
 | tags          | string[]         |                                                       | no                   |
@@ -243,7 +245,7 @@ Emptiness is permitted only as follows:
 | value                                                                                                  | may be empty in a draft |
 | ------------------------------------------------------------------------------------------------------ | ----------------------- |
 | slug                                                                                                   | `""`                    |
-| title, teaser, slogan, moreInfoUrl; all string fields of blocks, facts and quotes                      | `""`                    |
+| title, teaser, slogan, authors, moreInfoUrl; all string fields of blocks, facts and quotes             | `""`                    |
 | `src` of any image (thumbnail, heroImage, image blocks, gallery images, person images), `file`, `url`  | `""`                    |
 | tags, items, images, phases, steps, people, subsections, blocks                                        | `[]`                    |
 | `alt` and `caption` of every image (thumbnail, heroImage, image blocks, gallery images, person images) | `""`                    |

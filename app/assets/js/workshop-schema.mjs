@@ -1,7 +1,3 @@
-/**
- * Shared browser/Node schema.
- */
-
 /** @type {1} */
 export const SCHEMA_VERSION = 1;
 
@@ -17,6 +13,12 @@ export const WIDTHS = Object.freeze(["third", "twoThirds", "full"]);
  */
 export const SUBJECTS = Object.freeze(["D", "SK", "M"]);
 
+export const SUBJECT_LABELS = Object.freeze({
+    D: "Fachbereich Design",
+    SK: "Fachbereich Sozial- und Kulturwissenschaften",
+    M: "Fachbereich Medien",
+});
+
 export const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 const ASSET_NAME_PATTERN = /^[a-z0-9][a-z0-9._-]*\.[a-z0-9]+$/;
@@ -29,14 +31,13 @@ const ROOT_KEYS = [
     "teaser",
     "thumbnail",
     "slogan",
+    "authors",
     "subject",
     "gradeRange",
     "tags",
     "moreInfoUrl",
     "sections",
 ];
-
-// Schema tables
 
 /**
  * Default section order.
@@ -51,10 +52,7 @@ export const SECTION_ORDER = Object.freeze([
     "contributors",
 ]);
 
-/**
- * Default blocks are suggestions. `required` blocks publication when empty;
- * `checklist` only prompts the author.
- */
+// `required` blocks publication when empty; `checklist` only prompts the author.
 export const SECTION_KINDS = Object.freeze({
     overview: {
         title: "Übersicht",
@@ -158,7 +156,6 @@ export const SECTION_KINDS = Object.freeze({
     },
 });
 
-/** Section fields: defaults, validation and content detection. */
 const SECTION_FIELDS = {
     overview: {
         create: () => ({
@@ -196,10 +193,7 @@ const SECTION_FIELDS = {
     },
 };
 
-/**
- * Block defaults, validation and content detection. `collections` creates an empty entry for
- * each array inside a block; a new phase starts with one empty step.
- */
+// `collections` creates empty array entries; a new phase starts with one empty step.
 export const BLOCK_TYPES = Object.freeze({
     text: {
         keys: ["text"],
@@ -336,8 +330,6 @@ export const BLOCK_TYPES = Object.freeze({
     },
 });
 
-// Factories
-
 /**
  * Creates a draft with all standard sections and their default blocks.
  * @returns {Workshop}
@@ -351,6 +343,7 @@ export function createEmptyWorkshop() {
         teaser: "",
         thumbnail: createImage(),
         slogan: "",
+        authors: "",
         subject: "",
         gradeRange: null,
         tags: [],
@@ -467,8 +460,6 @@ export function defaultTitle(kind) {
     return "";
 }
 
-// Content detection
-
 /**
  * @param {unknown} block
  * @returns {boolean}
@@ -500,8 +491,6 @@ export function isSectionEmpty(section) {
     const fields = lookup(SECTION_FIELDS, section?.kind);
     return !(fields && fields.hasContent(section.fields));
 }
-
-// Value types
 
 /**
  * Local paths: images/<name>, files/<name>, or <name> for thumbnails.
@@ -547,8 +536,6 @@ export function slugify(text) {
         .replace(/^-+|-+$/g, "");
 }
 
-// Versioning
-
 /**
  * Keeps current documents; rejects unsupported versions. Validation is a separate step.
  * @template T
@@ -557,13 +544,14 @@ export function slugify(text) {
  */
 export function migrate(document) {
     if (!isPlainObject(document)) throw new TypeError("Expected a workshop document object");
-    if (document.schemaVersion === SCHEMA_VERSION) return document;
+    if (document.schemaVersion === SCHEMA_VERSION) {
+        // Backfill `authors` for older documents with the same schema version.
+        return "authors" in document ? document : { ...document, authors: "" };
+    }
     throw new Error(
         `Unsupported schemaVersion ${JSON.stringify(document.schemaVersion)}; supported: ${SCHEMA_VERSION}`,
     );
 }
-
-// Validation
 
 /**
  * Returns { path, message } errors, or [] when valid. Call migrate() first.
@@ -592,7 +580,7 @@ export function validateWorkshop(document, { mode = "draft" } = {}) {
         }
     }
     if (typeof document.published !== "boolean") ctx.error("published", "must be a boolean");
-    for (const key of ["title", "teaser", "slogan", "moreInfoUrl"])
+    for (const key of ["title", "teaser", "slogan", "authors", "moreInfoUrl"])
         checkString(document[key], key, ctx);
     if (ctx.publish) {
         if (!isNonBlank(document.title)) ctx.error("title", "must not be blank for publishing");
@@ -751,8 +739,6 @@ function validateImage(image, path, ctx, { location, allowEmptyAlt, extras = fal
     }
 }
 
-// Checking helpers
-
 function isPlainObject(value) {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -770,10 +756,7 @@ function isNonBlank(value) {
     return typeof value === "string" && value.trim() !== "";
 }
 
-/**
- * Rejects extra/missing keys; `ignore` is checked elsewhere.
- * Missing keys stop deeper checks to avoid duplicate errors.
- */
+// Missing keys stop deeper checks to avoid duplicate errors; `ignore` is checked elsewhere.
 function checkMembers(value, path, keys, ctx, ignore = []) {
     if (!isPlainObject(value)) {
         ctx.error(path || "document", "expected an object");
@@ -969,6 +952,7 @@ function checkId(value, path, ctx) {
  * @property {Subject | ""} subject Empty means unspecified.
  * @property {GradeRange | null} gradeRange Null means unspecified.
  * @property {string[]} tags
+ * @property {string} authors Who made the workshop, shown as a byline; free text, or empty.
  * @property {string} moreInfoUrl Absolute http(s) URL, or empty.
  * @property {Section[]} sections Ordered sections; each built-in kind occurs exactly once.
  */

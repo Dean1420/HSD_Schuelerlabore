@@ -18,10 +18,6 @@ import { setup, fixture, filesFor, PLACEHOLDER } from "./editor-harness.mjs";
 const pickerOf = (query, blockId, prefix = "") =>
     query(`[data-block-id="${blockId}"] ${prefix} .editor-asset-controls button`);
 
-// ---------------------------------------------------------------------------------------
-// File names and paths
-// ---------------------------------------------------------------------------------------
-
 test("file names are normalised to the schema grammar and keep their real extension", () => {
     assert.equal(normaliseFileName("Foto Größe.JPG"), "foto-groesse.jpg");
     assert.equal(
@@ -112,10 +108,6 @@ test("asset references cover thumbnail, hero, image, gallery, portrait and file 
     assert.equal(references[0].owner, ROOT_OWNER);
 });
 
-// ---------------------------------------------------------------------------------------
-// Picker
-// ---------------------------------------------------------------------------------------
-
 test("choosing, replacing and removing an image updates the reference, the page and the focus", async () => {
     const { state, query, dom, file, pickFile } = setup();
     const block = state.addBlock(state.document.sections[0].subsections[0].id, "image");
@@ -203,10 +195,6 @@ test("picker results follow a moved entry and are ignored when the target was re
     await answerPicker(file("anderes-dokument.jpg"));
     assert.equal(state.files.size, 0);
 });
-
-// ---------------------------------------------------------------------------------------
-// Object URLs and cleanup
-// ---------------------------------------------------------------------------------------
 
 test("object URLs are created once per file, reused across renders and preview, and revoked when released", async () => {
     const { state, editor, urls, query, file, pickFile } = setup();
@@ -339,10 +327,6 @@ test("chosen downloads link to their object URL with the file name in preview", 
     assert.equal(link.getAttribute("download"), "plan-a.pdf");
 });
 
-// ---------------------------------------------------------------------------------------
-// Thumbnail, validation and teardown
-// ---------------------------------------------------------------------------------------
-
 test("the thumbnail picker in the settings stores a root-level file with preview and alt text", async () => {
     const { state, settings, dom, urls, input, file, pickFile } = setup();
     const picker = () =>
@@ -423,10 +407,6 @@ test("disposing every module removes its listeners, URLs and picker", () => {
     assert.equal(state.files.size, 1, "a disposed manager no longer sweeps");
     return pending.then((outcome) => assert.equal(outcome.status, "stale"));
 });
-
-// ---------------------------------------------------------------------------------------
-// Crop dialog
-// ---------------------------------------------------------------------------------------
 
 test("crop geometry: initial fit, clamping, resizing with a fixed aspect, output size and name", async () => {
     const { fitCrop, clampCrop, resizeCrop, outputSize, outputName } =

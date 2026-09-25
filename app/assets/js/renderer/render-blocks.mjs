@@ -1,9 +1,3 @@
-/**
- * Renders one block (specification section 7). Read-only mode omits unfilled blocks and
- * unfilled items so nothing empty reaches the page. Editable mode keeps every block, entry and
- * image slot, marks arrays and entries (data-items, data-item) and asset fields (data-asset),
- * and adds the inputs for alt text, width and URLs; the editor adds its controls to the marks.
- */
 import { isBlockFilled, WIDTHS } from "../workshop-schema.mjs";
 import {
     createElement,
@@ -17,6 +11,8 @@ import {
 } from "./element.mjs";
 
 const WIDTH_CLASS = { third: "width-third", twoThirds: "width-two-thirds", full: "width-full" };
+// Roughly ten lines at the reading width.
+const WIDE_TEXT_LENGTH = 700;
 const WIDTH_LABELS = { third: "Ein Drittel", twoThirds: "Zwei Drittel", full: "Volle Breite" };
 
 export function renderBlock(block, context) {
@@ -31,10 +27,6 @@ export function renderBlock(block, context) {
     return node;
 }
 
-/**
- * Asset paths are resolved through the context; the renderer never knows the folder layout.
- * An image whose path resolves to no URL is not rendered.
- */
 export function renderImage(image, context, attributes = {}) {
     if (!image || !isSet(image.src)) return null;
     const src = context.resolveAsset(image.src);
@@ -48,13 +40,11 @@ export function renderImage(image, context, attributes = {}) {
     });
 }
 
-/** Replaces the width class of a figure, e.g. after the editor changed `width`. */
 export function applyWidthClass(node, width) {
     node.classList.remove(...Object.values(WIDTH_CLASS));
     node.classList.add(Object.hasOwn(WIDTH_CLASS, width) ? WIDTH_CLASS[width] : WIDTH_CLASS.full);
 }
 
-/** Editable mode: the alt-text input of an image. */
 export function renderAltInput(context, field, value, placeholder = "Alternativtext") {
     return createElement(context, "input", {
         type: "text",
@@ -74,9 +64,9 @@ function renderFigure(image, context, field) {
     const figure = createElement(context, "figure", {}, [img]);
     applyWidthClass(figure, image.width);
     if (!context.editable) {
-        if (isNonBlank(image.caption)) {
-            figure.append(createElement(context, "figcaption", {}, [image.caption]));
-        }
+        // Keep empty captions so every figure can be numbered.
+        const text = isNonBlank(image.caption) ? [image.caption] : [];
+        figure.append(createElement(context, "figcaption", {}, text));
         return figure;
     }
     markAsset(context, figure, `${prefix}src`, "image");
@@ -103,22 +93,36 @@ function renderFigure(image, context, field) {
     ]);
 }
 
-/** Link text when the label is empty: the URL without its scheme. */
 export function linkFallbackText(url) {
     return String(url)
         .replace(/^https?:\/\//i, "")
         .replace(/\/$/, "");
 }
 
-/** File link text when the label is empty: the file's base name. */
 export function fileFallbackText(path) {
     return String(path).split("/").pop();
 }
 
 const RENDERERS = {
     text(block, context) {
-        const node = createElement(context, "p", {}, [block.text]);
-        return markEditable(context, node, { field: "text", placeholder: "Text", multiline: true });
+        if (context.editable) {
+            const node = createElement(context, "p", {}, [block.text]);
+            return markEditable(context, node, {
+                field: "text",
+                placeholder: "Text",
+                multiline: true,
+            });
+        }
+        // Wrap the first paragraph for lede styling without changing text or line breaks.
+        const text = String(block.text ?? "");
+        const attributes =
+            text.trim().length > WIDE_TEXT_LENGTH ? { class: "block-text--wide" } : {};
+        const match = /^([^\n]*\S[^\n]*)(\n[\s\S]*)$/.exec(text);
+        if (!match) return createElement(context, "p", attributes, [text]);
+        return createElement(context, "p", attributes, [
+            createElement(context, "span", { class: "block-text-lead" }, [match[1]]),
+            match[2],
+        ]);
     },
 
     image(block, context) {
@@ -225,7 +229,6 @@ const RENDERERS = {
         const text = isNonBlank(block.label)
             ? block.label
             : fileFallbackText(block.file || "Datei");
-        // A download without a resolvable URL stays unlinked.
         const href = isSet(block.file) ? context.resolveAsset(block.file) : "";
         const attributes = href ? { href, download: fileFallbackText(block.file) } : {};
         return createElement(context, "p", {}, [createElement(context, "a", attributes, [text])]);

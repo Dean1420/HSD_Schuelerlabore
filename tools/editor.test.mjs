@@ -18,10 +18,6 @@ function section(state, kind) {
     return state.document.sections.find((s) => s.kind === kind);
 }
 
-// ---------------------------------------------------------------------------------------
-// State
-// ---------------------------------------------------------------------------------------
-
 test("assignPath and parsePath handle members, nested objects and indices", () => {
     assert.deepEqual(parsePath("phases[0].steps[1].title"), ["phases", 0, "steps", 1, "title"]);
     const object = { fields: { facts: { location: "" } }, items: ["a", "b"] };
@@ -104,10 +100,6 @@ test("loading validates before replacing and leaves current work untouched on fa
     state.load(fixture("example-complete"));
     assert.equal(state.document.title, "Beispielworkshop mit allen Inhalten");
 });
-
-// ---------------------------------------------------------------------------------------
-// Inline editing
-// ---------------------------------------------------------------------------------------
 
 test("root title and section title are written to different owners", () => {
     const { state, query, type } = setup();
@@ -342,10 +334,6 @@ test("loading another document re-renders once and disposal removes the listener
     assert.equal(query("#overview-workshop-name"), null);
 });
 
-// ---------------------------------------------------------------------------------------
-// Settings
-// ---------------------------------------------------------------------------------------
-
 test("settings write teaser, subject, tags, published and moreInfoUrl; the link appears on the page", () => {
     const { state, settings, query, input, window } = setup();
     const form = settings.form;
@@ -407,10 +395,6 @@ test("the slug field follows the title, locks on edit and resumes when cleared",
     type(query("#overview-workshop-name"), "Dritter Titel");
     assert.equal(slug.value, "dritter-titel");
 });
-
-// ---------------------------------------------------------------------------------------
-// Validation panel
-// ---------------------------------------------------------------------------------------
 
 test("the panel reports draft state, publish readiness and the recommended checklist", async () => {
     const { window, state, panel, query, type } = setup();

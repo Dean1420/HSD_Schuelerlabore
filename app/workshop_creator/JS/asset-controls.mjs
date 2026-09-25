@@ -1,11 +1,3 @@
-/**
- * Picker controls for asset fields: choose or replace, remove, and a note when the referenced
- * file is missing. decorateAssetSlots() adds them to every [data-asset] slot of a rendered
- * editable page; the settings use createAssetControls() for the thumbnail.
- *
- * `run(action, origin)` performs an action. An action returns, or resolves to, a function that
- * finds the element to focus after the page has been rendered again.
- */
 import { ownerOf, assetButton } from "./editor-dom.mjs";
 
 const LABELS = {
@@ -26,7 +18,7 @@ const LABELS = {
     },
 };
 
-/** `find(root, target)` returns the control to focus once the field changed. */
+// `run` executes an action; `find(root, target)` locates its focus target after rendering.
 export function createAssetControls(dom, assets, target, { run, find }) {
     const labels = LABELS[target.location === "file" ? "file" : "image"];
     const value = assets.current(target);

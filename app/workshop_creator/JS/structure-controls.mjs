@@ -1,13 +1,4 @@
-/**
- * Buttons and menus that add, remove and reorder sections, subsections, blocks and the entries
- * of arrays inside blocks. decorateStructure() adds them to a rendered editable page: a toolbar
- * per section, subsection and block (blocks are wrapped in a shell for it), an add control at
- * the end of each list and controls on every entry.
- *
- * Each control calls one state operation through `run` and returns a function that finds the
- * element to focus in the page rendered afterwards: the added or moved content, or a
- * neighbouring control after a removal.
- */
+// Actions return a function that finds the focus target after the editor renders again.
 import {
     BLOCK_TYPES,
     defaultTitle,
@@ -117,8 +108,6 @@ export function decorateStructure(main, state, { run, confirmRemoval = () => tru
         }
     }
 
-    // Sections, subsections and blocks
-
     function moveButtons(object, list) {
         const position = list.indexOf(object);
         const move = (offset, action) => () => {
@@ -193,8 +182,6 @@ export function decorateStructure(main, state, { run, confirmRemoval = () => tru
         return menu("Block hinzufügen", "block", options);
     }
 
-    // Entries of arrays inside blocks
-
     function itemControls(block, path) {
         const tokens = parsePath(path);
         const position = tokens.at(-1);
@@ -245,8 +232,6 @@ export function decorateStructure(main, state, { run, confirmRemoval = () => tru
         node.classList.add("editor-add-item");
         return node;
     }
-
-    // Building blocks
 
     function menu(label, kind, options) {
         if (options.length === 1) {
@@ -321,7 +306,6 @@ function addItemButtonOf(root, blockId, collection) {
     return next?.classList.contains("editor-add-item") ? next : null;
 }
 
-/** New image and file blocks focus their picker, list-like blocks their add button. */
 function focusTargetOfBlock(root, block) {
     const node = findOwnerNode(root, block.id);
     if (block.type === "image") return assetButton(root, block.id, "src");

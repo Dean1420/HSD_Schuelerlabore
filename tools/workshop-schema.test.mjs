@@ -24,8 +24,6 @@ import {
     defaultTitle,
 } from "../app/assets/js/workshop-schema.mjs";
 
-// Helpers
-
 const draft = (document) => validateWorkshop(document, { mode: "draft" });
 const publish = (document) => validateWorkshop(document, { mode: "publish" });
 const paths = (errors) => errors.map((error) => error.path);
@@ -75,7 +73,6 @@ function subsection(document, sectionKind, kind) {
     return /** @type {Subsection<typeof kind>} */ (found);
 }
 
-/** Covers all block types, custom content and empty optional content. */
 function completeWorkshop() {
     const ws = createEmptyWorkshop();
     Object.assign(ws, {
@@ -85,6 +82,7 @@ function completeWorkshop() {
         teaser: "Ein Workshop, der jeden Blocktyp verwendet.",
         thumbnail: { src: "thumbnail.jpg", alt: "Schüler*innen im Labor" },
         slogan: "Alles drin",
+        authors: "",
         subject: "SK",
         gradeRange: { min: 5, max: 10 },
         tags: ["beispiel", "vollständig"],
@@ -105,7 +103,6 @@ function completeWorkshop() {
     quote.author = "Team Schülerlabore";
     text.text = "Beschreibung des Workshops.";
 
-    // Leave the optional intro empty.
     const schedule = subsection(ws, "instructions", "schedule").blocks[0];
     schedule.phases.push({
         title: "Phase 1 – Ankommen",
@@ -190,8 +187,6 @@ function completeWorkshop() {
     return ws;
 }
 
-// Factory
-
 test("empty workshop is valid in draft mode and has the documented shape", () => {
     const ws = createEmptyWorkshop();
     assert.deepEqual(draft(ws), []);
@@ -254,8 +249,6 @@ test("factories reject unknown kinds and types", () => {
     assert.throws(() => createBlock(invalidInput("video")), RangeError);
 });
 
-// Complete example
-
 test("complete example is valid in both modes", () => {
     const ws = completeWorkshop();
     assert.deepEqual(draft(ws), []);
@@ -268,8 +261,6 @@ test("complete example survives a JSON round trip", () => {
     assert.deepEqual(copy, ws);
     assert.deepEqual(publish(migrate(copy)), []);
 });
-
-// Draft-mode structure
 
 test("non-objects and unknown or missing members are reported", () => {
     assert.deepEqual(paths(draft(null)), ["document"]);
@@ -392,8 +383,6 @@ test("subject must come from the vocabulary or be empty", () => {
     assert.deepEqual(paths(draft(ws)), ["subject"]);
 });
 
-// Value types
-
 test("asset path grammar rejects traversal, encoding, backslashes and nesting", () => {
     assert.equal(isAssetPath("images/aufbau.jpg", "image"), true);
     assert.equal(isAssetPath("files/arbeitsblatt.pdf", "file"), true);
@@ -415,7 +404,6 @@ test("asset path grammar rejects traversal, encoding, backslashes and nesting", 
     }
     assert.equal(isAssetPath("images/aufbau.jpg", "file"), false);
     assert.equal(isAssetPath("images/aufbau.jpg", "thumbnail"), false);
-    // An external HTTP URL is intentionally invalid here; no request is made.
     // noinspection HttpUrlsUsage
     assert.equal(isAssetPath("http://example.org/aufbau.jpg", "image"), false);
 });
@@ -438,7 +426,6 @@ test("set asset paths and URLs are validated in drafts, empty ones are accepted"
 
 test("external URLs need an http(s) scheme and a host", () => {
     assert.equal(isExternalUrl("https://example.org/x?y=1"), true);
-    // HTTP is an allowed scheme; no request is made.
     // noinspection HttpUrlsUsage
     assert.equal(isExternalUrl("http://example.org"), true);
     assert.equal(isExternalUrl("HTTPS://example.org"), true);
@@ -465,8 +452,6 @@ test("default titles are defined for every kind and empty for custom", () => {
     assert.equal(defaultTitle("custom"), "");
     assert.equal(defaultTitle("nope"), "");
 });
-
-// Filled and empty rules
 
 test("isBlockFilled follows the specification table", () => {
     const cases = [
@@ -551,8 +536,6 @@ test("section emptiness is decided by content, not by alt text or author alone",
     assert.equal(isSubsectionEmpty(subsection(ws, "materials", "documents")), true);
 });
 
-// Publish mode
-
 test("blank titles and teasers are rejected for publishing", () => {
     const ws = completeWorkshop();
     ws.title = "   ";
@@ -616,10 +599,6 @@ test("unknown validation modes are rejected", () => {
     );
 });
 
-// ---------------------------------------------------------------------------------------
-// Keys that exist on Object.prototype must not pass as kinds or types
-// ---------------------------------------------------------------------------------------
-
 test("prototype property names are rejected as kinds and types without throwing", () => {
     const ws = createEmptyWorkshop();
     subsection(ws, "overview", "description").blocks.push(
@@ -655,10 +634,6 @@ test("slugify treats precomposed and decomposed umlauts alike", () => {
     assert.equal(slugify("Gro\u00dfe A\u0308nderung"), "grosse-aenderung");
     assert.equal(slugify("o\u0308"), "oe");
 });
-
-// ---------------------------------------------------------------------------------------
-// Independent, hand-written fixtures (no factories involved)
-// ---------------------------------------------------------------------------------------
 
 function fixture(name) {
     return JSON.parse(

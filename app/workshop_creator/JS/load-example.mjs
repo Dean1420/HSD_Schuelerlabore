@@ -3,7 +3,6 @@ import { collectAssetReferences } from "./editor-assets.mjs";
 
 const EXAMPLE_FOLDER = "workshops/_fixtures/example-complete/";
 
-/** Loads the example workshop and its files, then replaces the current workshop. */
 export async function loadExampleWorkshop(state, fetchResource = globalThis.fetch) {
     const response = await read("workshop.json");
     const document = migrate(await response.json());

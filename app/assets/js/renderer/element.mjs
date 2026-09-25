@@ -1,7 +1,3 @@
-/**
- * Creates an element through the Document held in the render context, so the same renderer
- * runs in the browser and in tests. Text children become text nodes; nothing is parsed as HTML.
- */
 export function createElement(context, tag, attributes = {}, children = []) {
     const node = context.dom.createElement(tag);
     for (const [name, value] of Object.entries(attributes)) {
@@ -13,11 +9,7 @@ export function createElement(context, tag, attributes = {}, children = []) {
     return node;
 }
 
-/**
- * Appends children, skipping null, undefined, false and empty strings so callers can pass
- * conditionals and empty values. Not appending an empty text node keeps an element `:empty`,
- * which the editor's placeholder styling relies on.
- */
+// Skip empty text nodes so the editor can use :empty for placeholders.
 export function append(node, children) {
     node.append(
         ...children.filter(
@@ -27,11 +19,7 @@ export function append(node, children) {
     return node;
 }
 
-/**
- * Marks an element as an editable text field in editable mode; a no-op otherwise.
- * `field` names the member relative to the owner (block, subsection, section or the root when
- * `root` is set); `placeholder` is a display hint and never stored.
- */
+// `field` is relative to its owner; `root` selects the document instead.
 export function markEditable(
     context,
     node,
@@ -46,10 +34,7 @@ export function markEditable(
     return node;
 }
 
-/**
- * Editable mode only: `data-items` marks an array inside a block ("items", "phases[0].steps"),
- * `data-item` one of its entries ("items[2]"). The editor adds its entry controls there.
- */
+// `data-items` marks an array path; `data-item` marks an entry for editor controls.
 export function markItems(context, node, path) {
     if (context.editable) node.setAttribute("data-items", path);
     return node;
@@ -60,10 +45,7 @@ export function markItem(context, node, path) {
     return node;
 }
 
-/**
- * Editable mode only: marks the slot of an asset field (`field` is the path of the `src` or
- * `file` member, `kind` is "image" or "file"). The editor adds the file picker there.
- */
+// `field` is the src/file path; the editor adds a picker to this slot.
 export function markAsset(context, node, field, kind) {
     if (!context.editable) return node;
     node.setAttribute("data-asset", field);

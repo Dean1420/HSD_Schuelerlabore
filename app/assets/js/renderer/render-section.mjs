@@ -1,9 +1,4 @@
-/**
- * Renders a section: heading, the structured fields of the built-in kinds, then the
- * subsections. The fixed layouts keep the ids the stylesheet targets; repeated content
- * uses classes. Labels live here, not in the document (specification section 3).
- */
-import { defaultTitle } from "../workshop-schema.mjs";
+import { defaultTitle, SUBJECT_LABELS } from "../workshop-schema.mjs";
 import { renderSubsection } from "./render-subsection.mjs";
 import { renderImage, renderAltInput } from "./render-blocks.mjs";
 import { sectionAnchor } from "./anchors.mjs";
@@ -22,6 +17,23 @@ const TEACHER_FACT_LABELS = {
     schoolTypes: "Schulform",
     requirements: "Technische Voraussetzungen",
 };
+
+export function workshopKicker(workshop) {
+    const faculty = SUBJECT_LABELS[workshop.subject];
+    return faculty ? `Schülerlabor · ${faculty}` : "Schülerlabor";
+}
+
+export function workshopMeta(workshop) {
+    const range = workshop.gradeRange;
+    const overview = (workshop.sections ?? []).find((section) => section.kind === "overview");
+    const duration = overview?.fields?.facts?.duration;
+    const items = [];
+    if (range && Number.isInteger(range.min) && Number.isInteger(range.max)) {
+        items.push(`Klasse ${range.min}–${range.max}`);
+    }
+    if (isNonBlank(duration)) items.push(duration.trim());
+    return items.join(" · ");
+}
 
 /** `number` is the display number ("01"), computed by the caller over the rendered sections. */
 export function renderSection(section, number, context) {
@@ -135,9 +147,25 @@ function renderOverviewHero(section, context) {
               ["Weitere Informationen"],
           )
         : null;
+    const kicker = createElement(context, "p", { class: "workshop-kicker" }, [
+        workshopKicker(workshop),
+    ]);
+    const byline = isNonBlank(workshop.authors)
+        ? createElement(context, "p", { class: "workshop-byline" }, [
+              `Von ${workshop.authors.trim()}`,
+          ])
+        : null;
+    const metaText = workshopMeta(workshop);
+    const meta =
+        metaText || context.editable
+            ? createElement(context, "p", { class: "workshop-meta" }, [metaText])
+            : null;
     const intro = createElement(context, "div", { id: "overview-intro" }, [
+        kicker,
         title,
         slogan,
+        byline,
+        meta,
         moreInfo,
     ]);
     return createElement(context, "div", { id: "overview-impression" }, [imageBox, intro]);
@@ -230,7 +258,7 @@ function renderTeacherFacts(facts, context) {
         ]);
     });
     return createElement(context, "div", { id: "teachers-quick-facts" }, [
-        createElement(context, "p", { id: "teachers-quick-facts-title" }, ["Quick Facts"]),
+        createElement(context, "p", { id: "teachers-quick-facts-title" }, ["Auf einen Blick"]),
         createElement(context, "dl", { class: "teachers-quick-facts-list" }, items),
     ]);
 }

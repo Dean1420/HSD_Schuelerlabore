@@ -1,8 +1,4 @@
-/**
- * Checks every workshop folder under app/workshops/, then writes app/workshops.json (card data
- * of the published workshops) and a shell index.html into each published folder. `--check`
- * only verifies that these generated files are current. Folders starting with "_" are skipped.
- */
+// Generate the published workshop index and HTML shells; --check verifies without writing.
 import { readdirSync, readFileSync, writeFileSync, existsSync, statSync, rmSync } from "node:fs";
 import { join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,7 +7,6 @@ import { collectAssetReferences } from "../app/workshop_creator/JS/editor-assets
 
 const APP = fileURLToPath(new URL("../app/", import.meta.url));
 
-/** Returns { index, shells, drafts, errors }; `shells` maps slug to its index.html text. */
 export function buildWorkshops(workshopsDirectory) {
     const index = [];
     const shells = new Map();
@@ -58,7 +53,7 @@ export function formatIndex(index) {
     return `${JSON.stringify(index, null, 4)}\n`;
 }
 
-/** Title, description and preview image for crawlers and link previews; the page itself is rendered by workshop.js. */
+// Crawlers use this metadata; workshop.js renders the page content.
 export function renderShell({ slug, title, teaser, thumbnail }) {
     const [name, description, image] = [title, teaser, thumbnail.src].map(escapeHtml);
     return `<!doctype html>

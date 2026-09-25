@@ -6,6 +6,7 @@
     "teaser": "Ein Workshop, der jeden Blocktyp, eine eigene Kategorie und ein eigenes Kapitel verwendet.",
     "thumbnail": { "src": "thumbnail.jpg", "alt": "Schüler*innen arbeiten an einer Station" },
     "slogan": "Alles drin",
+    "authors": "",
     "subject": "SK",
     "gradeRange": { "min": 5, "max": 10 },
     "tags": ["beispiel", "vollständig", "demokratie"],

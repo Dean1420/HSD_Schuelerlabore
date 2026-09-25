@@ -1,14 +1,9 @@
-/**
- * Dialog to crop and rotate a chosen image. The result is a new, smaller file (longest side
- * MAX_SIDE, JPEG or PNG), which also drops EXIF data. SVG and GIF files pass through unchanged.
- * Crop rectangles are { x, y, width, height } in pixels of the rotated image.
- */
+// Crop rectangles use pixels of the rotated image. SVG and GIF pass through unchanged.
 const MAX_SIDE = 1600;
 const MIN_CROP = 32;
 const JPEG_QUALITY = 0.85;
 const PASS_THROUGH = new Set(["image/svg+xml", "image/gif"]);
 
-/** The largest centred crop with the aspect ratio (width / height), or the whole image. */
 export function fitCrop(width, height, aspect) {
     if (!aspect) return { x: 0, y: 0, width, height };
     const cropWidth = Math.min(width, height * aspect);
@@ -21,7 +16,6 @@ export function fitCrop(width, height, aspect) {
     };
 }
 
-/** Moves a crop back inside the image without changing its size. */
 export function clampCrop(crop, width, height) {
     return {
         ...crop,
@@ -30,7 +24,6 @@ export function clampCrop(crop, width, height) {
     };
 }
 
-/** The crop spanned from a fixed corner to the pointer, limited to the image and the aspect. */
 export function resizeCrop(anchor, pointer, width, height, aspect) {
     const directionX = pointer.x >= anchor.x ? 1 : -1;
     const directionY = pointer.y >= anchor.y ? 1 : -1;

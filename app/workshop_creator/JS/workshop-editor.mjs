@@ -1,16 +1,6 @@
-/**
- * Mounts the editable workshop page and turns author input into state changes.
- *
- * Delegated listeners on the container handle every text field: `input` writes the value
- * through to the state, `keydown` blocks Enter outside multi-line fields, `paste` inserts plain
- * text. Typing never re-renders. Structural changes, asset changes, page-affecting settings,
- * document replacement and the preview switch do; each render disposes the previous page and
- * adds the structure and asset controls to the new one.
- *
- * A control's action returns a function that finds the element to focus in the new page. The
- * editor focuses it and scrolls by the distance it moved, so the operation stays in view.
- */
+// Typing updates state in place; structural, asset and page-setting changes render again.
 import { renderWorkshop, disposeWorkshop } from "../../assets/js/renderer/render-workshop.mjs";
+import { workshopMeta } from "../../assets/js/renderer/render-section.mjs";
 import { applyWidthClass } from "../../assets/js/renderer/render-blocks.mjs";
 import { defaultTitle } from "../../assets/js/workshop-schema.mjs";
 import { ROOT_OWNER } from "./editor-state.mjs";
@@ -28,8 +18,7 @@ import {
 
 export { ownerOf };
 
-/** Root fields that appear on the page but are edited in the settings form. */
-const PAGE_AFFECTING_SETTINGS = new Set(["moreInfoUrl", "gradeRange"]);
+const PAGE_AFFECTING_SETTINGS = new Set(["moreInfoUrl", "gradeRange", "subject", "authors"]);
 
 export function mountEditor(
     container,
@@ -65,7 +54,7 @@ export function mountEditor(
         main = next;
     }
 
-    /** Runs a control's action and focuses what it names, now or once its promise settles. */
+    // Actions return a focus lookup to run after rendering, synchronously or via a promise.
     function run(action, origin) {
         const top = origin.getBoundingClientRect().top;
         const result = action();
@@ -98,6 +87,12 @@ export function mountEditor(
             if (figure) applyWidthClass(figure, value);
         }
         updateNavigationLabel(owner, name, value);
+        if (name === "fields.facts.duration") updateMetaLine();
+    }
+
+    function updateMetaLine() {
+        const meta = main?.querySelector(".workshop-meta");
+        if (meta) meta.textContent = workshopMeta(state.document);
     }
 
     function onKeydown(event) {
@@ -150,7 +145,6 @@ export function mountEditor(
             render();
         },
         refresh: render,
-        /** The element for a validation error path, or null if it is not on the page. */
         locate(path) {
             return locateField(state, main, path);
         },
@@ -202,11 +196,7 @@ const ID_ATTRIBUTES = {
     blocks: "data-block-id",
 };
 
-/**
- * Walks a validation path through the document to ids, then to the rendered element: a text
- * field or input, the picker of an asset field, an array entry, or the add control of a
- * missing subsection or block list. Falls back to the section, subsection or block.
- */
+// Resolve validation paths to editor controls, falling back to the containing owner.
 function locateField(state, main, path) {
     if (!main) return null;
     let rest = String(path);
