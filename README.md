@@ -57,7 +57,11 @@ Styles bleiben bei der jeweiligen Seite:
 
 Workshop-Styles sind auf `main.workshop-page` begrenzt, Editor-Styles auf
 `body.workshop-editor`. Neue Editor-UI gehört in `editor.css`, neue Regeln für den
-Workshop-Inhalt in `workshop.css`. Info und Kontakt behalten ihre Inline-Styles.
+Workshop-Inhalt in `workshop.css`. Info und Kontakt teilen sich `app/pages/info-contact.css`.
+
+Das Kontaktformular erwartet einen serverseitigen Endpunkt `send-mail.php` im Webroot.
+Dieser ist nicht im Repository enthalten; auf einem rein statischen Hosting ist kein
+Formularversand möglich. Die direkte Kontaktaufnahme per E-Mail bleibt verfügbar.
 
 ## Vorschau und Test-Fixtures
 
