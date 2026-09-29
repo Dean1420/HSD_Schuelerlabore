@@ -17,9 +17,11 @@
 }
 
 .page-title {
-    font-family: serif;
-    font-size: 3rem;
-    color: #333;
+    font-family: var(--font-reading);
+    font-size: var(--fs-section);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
     margin-bottom: 50px;
 }
 
@@ -29,23 +31,26 @@
 }
 
 .section-heading {
-    border-bottom: 1px solid #d3d3d3;
+    border-bottom: var(--border-width) var(--border-style) var(--color-ink);
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
 .section-heading span {
-    color: #333;
-    font-family: serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1.6rem;
+    color: var(--color-ink);
+    font-family: var(--font-reading);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+    line-height: 1.2;
 }
 
 .content-text,
 .content-list {
-    color: #555;
-    line-height: 1.8;
+    color: var(--color-ink);
+    font-family: var(--font-reading);
+    font-size: var(--fs-reading);
+    line-height: var(--lh-body);
 }
 
 .content-list {
@@ -62,10 +67,18 @@
 .form-input {
     padding: 12px;
     border: 1px solid #ccc;
-    font-family: sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-reading);
+    font-size: var(--fs-reading);
+    font-weight: 400;
+    line-height: var(--lh-body);
     width: 100%;
     box-sizing: border-box;
+}
+
+.form-input:focus-visible {
+    border-color: var(--color-red);
+    box-shadow: inset 0 0 0 1px var(--color-red);
+    outline: none;
 }
 
 textarea.form-input {
@@ -77,8 +90,10 @@ textarea.form-input {
     background-color: #e3001b;
     color: white;
     border: none;
-    font-weight: bold;
-    font-size: 1rem;
+    font-family: var(--font-reading);
+    font-size: var(--fs-reading);
+    font-weight: 400;
+    line-height: var(--lh-body);
     cursor: pointer;
     align-self: flex-start;
     transition: opacity 0.2s ease;

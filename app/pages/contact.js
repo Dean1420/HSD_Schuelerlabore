@@ -1,6 +1,8 @@
 import { createHeader } from "../assets/js/header.mjs";
+import { createFooter } from "./footer.mjs";
 
 document.body.prepend(createHeader());
+document.body.append(createFooter());
 
 const form = document.getElementById("contact-form");
 const formMessage = document.getElementById("form-message");
