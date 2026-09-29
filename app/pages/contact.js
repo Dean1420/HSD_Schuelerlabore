@@ -25,7 +25,7 @@ if (form && formMessage) {
         } catch {
             formMessage.style.color = "red";
             formMessage.textContent =
-                "Ihre Nachricht konnte nicht gesendet werden. Bitte kontaktieren Sie uns direkt unter info@hs-duesseldorf.de.";
+                "Ihre Nachricht konnte nicht gesendet werden. Bitte kontaktieren Sie uns direkt unter nada.ilic@hs-duesseldorf.de.";
         }
     });
 }

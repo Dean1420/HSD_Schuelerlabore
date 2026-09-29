@@ -110,12 +110,49 @@ textarea.form-input {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Creates exactly 2 equal columns */
     gap: 40px 5%; /* 40px vertical gap between rows, 5% horizontal gap between columns */
+    border-top: var(--border-width) var(--border-style) var(--border-color);
 }
 
 .team-member {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding-right: var(--grid-gutter);
+}
+
+.team-member:nth-child(2n + 1)::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -20px;
+    border-right: var(--border-width) var(--border-style) #cfcfcf;
+    content: "";
+}
+
+.team-member:nth-child(2n) {
+    padding-right: 0;
+}
+
+.team-member:nth-child(-n + 2) {
+    padding-top: 20px;
+}
+
+.team-member:nth-child(n + 2)::before {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: calc(200% + 5%);
+    border-top: var(--border-width) var(--border-style) var(--color-ink);
+    content: "";
+}
+
+.team-member:nth-child(2n)::before {
+    display: none;
+}
+
+.team-member:nth-child(2n + 1):nth-child(n + 3)::after {
+    top: -20px;
 }
 
 .team-member-text {
@@ -147,9 +184,38 @@ textarea.form-input {
     display: block;
 }
 
-/* Stacks them back to 1 per row on very small mobile screens */
-@media (max-width: 600px) {
+.team-member-img--placeholder {
+    height: 210px;
+    background: var(--color-ink);
+}
+
+/* Match the home page's single-column portrait layout. */
+@media (max-width: 768px) {
     .team-list {
         grid-template-columns: 1fr;
+    }
+
+    .team-member,
+    .team-member:nth-child(2n) {
+        padding-right: 0;
+        border-right: 0;
+    }
+
+    .team-list {
+        row-gap: 40px;
+    }
+
+    .team-member:nth-child(n + 2)::before {
+        display: block;
+        top: -20px;
+        width: 100%;
+    }
+
+    .team-member::after {
+        display: none;
+    }
+
+    .team-member:nth-child(n + 2) {
+        padding-top: 0;
     }
 }
