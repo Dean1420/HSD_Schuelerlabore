@@ -26,7 +26,7 @@ test("info and contact load their scripts, styles and images from the new webroo
     }
 });
 
-async function contactPage(t, fetch) {
+async function contactPage(t) {
     const { window } = new JSDOM(readFileSync(new URL("contact.html", APP), "utf8"), {
         url: new URL("contact.html", APP).href,
     });
@@ -34,7 +34,6 @@ async function contactPage(t, fetch) {
         document: window.document,
         location: window.location,
         FormData: window.FormData,
-        fetch,
     };
     for (const [key, value] of Object.entries(globals)) {
         const original = Object.getOwnPropertyDescriptor(globalThis, key);
@@ -45,16 +44,12 @@ async function contactPage(t, fetch) {
         });
     }
     t.after(() => window.close());
-    await import(`../app/pages/contact.js?test=${encodeURIComponent(t.name)}`);
-    return window;
+    const module = await import(`../app/pages/contact.js?test=${encodeURIComponent(t.name)}`);
+    return { window, module };
 }
 
-test("contact submits every named field and shows success with the shared header", async (t) => {
-    let request;
-    const window = await contactPage(t, async (url, options) => {
-        request = { url, ...options };
-        return { ok: true, text: async () => "Nachricht versendet." };
-    });
+test("contact opens a prefilled email with every named field", async (t) => {
+    const { window, module } = await contactPage(t);
     const form = window.document.querySelector("form");
     const fields = [...form.querySelectorAll("input, select, textarea")];
     for (const field of fields) {
@@ -67,39 +62,16 @@ test("contact submits every named field and shows success with the shared header
     await setImmediate();
 
     assert.ok(event.defaultPrevented);
-    assert.equal(request.url.href, new URL("send-mail.php", APP).href);
-    assert.equal(request.method, "POST");
-    assert.deepEqual([...request.body.entries()], expected);
+    const mailto = new URL(module.createMailtoUrl(new window.FormData(form)));
+    assert.equal(mailto.protocol, "mailto:");
+    const mailtoBody = decodeURIComponent(mailto.searchParams.get("body"));
+    for (const [, value] of expected) {
+        assert.match(mailtoBody, new RegExp(value));
+    }
     assert.equal(
         window.document.querySelector("#form-message").textContent,
-        "Nachricht versendet.",
+        "Ihr E-Mail-Programm wird geöffnet. Bitte prüfen Sie die Nachricht und senden Sie sie dort ab.",
     );
-    assert.equal(form.querySelector("input").value, "");
     const links = [...window.document.querySelectorAll(".site-nav a")];
-    assert.deepEqual(
-        links.map((link) => link.href),
-        ["index.html", "info.html", "contact.html"].map((page) => new URL(page, APP).href),
-    );
     assert.equal(links[2].getAttribute("aria-current"), "page");
-});
-
-test("unavailable contact backend keeps entered data and offers direct email", async (t) => {
-    let networkFailure = false;
-    const window = await contactPage(t, async () => {
-        if (networkFailure) throw new TypeError("Network unavailable");
-        return { ok: false, text: async () => "<html>Not Found</html>" };
-    });
-    const form = window.document.querySelector("form");
-    const school = form.querySelector("#form-schule");
-    school.value = "Beispielschule";
-    for (const failure of [false, true]) {
-        networkFailure = failure;
-        form.dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
-        await setImmediate();
-        const message = window.document.querySelector("#form-message");
-        assert.match(message.textContent, /nicht gesendet/);
-        assert.match(message.textContent, /info@hs-duesseldorf\.de/);
-        assert.doesNotMatch(message.textContent, /<html>/);
-        assert.equal(school.value, "Beispielschule");
-    }
 });

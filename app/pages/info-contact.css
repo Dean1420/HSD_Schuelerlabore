@@ -17,7 +17,7 @@
 }
 
 .page-title {
-    font-family: var(--font-reading);
+    font-family: var(--font-display);
     font-size: var(--fs-section);
     font-weight: 400;
     line-height: 1.1;
@@ -41,7 +41,7 @@
     font-family: var(--font-reading);
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+    font-size: clamp(1.6rem, 1.1rem + 1.7vw, 2.25rem);
     line-height: 1.2;
 }
 
@@ -156,8 +156,8 @@ textarea.form-input {
 }
 
 .team-member-text {
-    font-family: sans-serif;
-    font-size: 0.75rem;
+    font-family: var(--font-reading);
+    font-size: 0.875rem;
     line-height: 1.4;
     color: #333;
     margin: 0;
@@ -168,6 +168,10 @@ textarea.form-input {
     color: #000;
 }
 
+.team-member-text a {
+    font-size: 0.9em;
+}
+
 .team-email-link {
     color: #e3001b;
     text-decoration: none;
@@ -175,6 +179,15 @@ textarea.form-input {
 
 .team-email-link:hover {
     text-decoration: underline;
+}
+
+.required-note {
+    margin: 5px 0 10px;
+    color: var(--color-red);
+    font-family: var(--font-reading);
+    font-size: var(--fs-small);
+    font-style: italic;
+    line-height: var(--lh-body);
 }
 
 .team-member-img {
