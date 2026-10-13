@@ -1,20 +1,22 @@
 [
     {
         "slug": "alliens",
-        "title": "Alliens",
-        "teaser": "Beschreibungstext für diesen Workshop...",
+        "title": "AL(L)IENS",
+        "teaser": "Wir sind alle anders! – Eine Reise durch die Diversitätsdimensionen anhand spielerischer Auseinandersetzung und AR-Anwendungen.",
         "thumbnail": {
-            "src": "thumbnail.jpg",
-            "alt": ""
+            "src": "bildschirmfoto-2026-09-29-um-08-45-44.png",
+            "alt": "AL(L)IENS Teaser"
         },
-        "subject": "",
+        "subject": "D",
         "gradeRange": {
             "min": 5,
-            "max": 10
+            "max": 8
         },
         "tags": [
-            "science",
-            "aliens"
+            "diversität",
+            "inklusion",
+            "ar",
+            "gestaltung"
         ]
     },
     {
