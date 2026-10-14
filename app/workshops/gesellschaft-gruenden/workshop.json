@@ -1,0 +1,296 @@
+{
+    "schemaVersion": 1,
+    "slug": "gesellschaft-gruenden",
+    "published": true,
+    "title": "Planspiel– Eine neue Gesellschaft gründen",
+    "teaser": "Wie wollen wir zusammenleben? Verfassungsordnung, Grundrechte und Werte in einem interaktiven Planspiel gestalten.",
+    "thumbnail": {
+        "src": "democrat-gesellschaft.jpg",
+        "alt": "Abbildung"
+    },
+    "slogan": "Demokratie lernen durch Erleben",
+    "authors": "",
+    "subject": "SK",
+    "gradeRange": {
+        "min": 7,
+        "max": 10
+    },
+    "tags": [
+        "demokratie",
+        "gesellschaft",
+        "werte",
+        "verfassung",
+        "planspiel"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+        {
+            "id": "332b6036-46ba-4701-9b58-f96a559dc59e",
+            "kind": "overview",
+            "title": "Übersicht",
+            "fields": {
+                "heroImage": {
+                    "src": "images/democrat-gesellschaft.jpg",
+                    "alt": "Abbildung"
+                },
+                "facts": {
+                    "location": "Campus Derendorf ",
+                    "groupSize": "ca. 24 Personen ",
+                    "topics": "Demokratiebildung, Werte, Partizipation, Konfliktfähigkeit",
+                    "prerequisites": "Keine",
+                    "duration": "4-6 Stunden"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "622e40e7-40a5-4ded-9535-d3dcfab13ef4",
+                    "kind": "description",
+                    "title": "Beschreibung",
+                    "blocks": [
+                        {
+                            "id": "3e5bef77-fb2c-4ff5-a49c-2646e2fed843",
+                            "type": "quote",
+                            "text": "Demokratie ist die einzige Staatsform, die gelernt werden muss.",
+                            "author": "Oskar Negt"
+                        },
+                        {
+                            "id": "3aca7b80-9542-4c89-b2d4-7afb98ffa17f",
+                            "type": "text",
+                            "text": "Teams verhandeln Ressourcen und Werte, treffen demokratische Entscheidungen bei Knappheit und visualisieren gesellschaftliche Dynamiken mittels Standbildarbeit."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "5e10c4aa-11e0-4018-b742-742b1b38ec19",
+            "kind": "instructions",
+            "title": "Anleitung",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "46f05a00-478c-4f2b-9595-d168ff1f144d",
+                    "kind": "intro",
+                    "title": "Einführung",
+                    "blocks": [
+                        {
+                            "id": "8642fce2-a964-47bd-bee7-a1da2fbe373e",
+                            "type": "text",
+                            "text": "Was passiert, wenn eine Gruppe von Menschen auf einer einsamen Insel strandet und das Zusammenleben völlig neu organisieren muss? Die Teilnehmenden schlüpfen in verschiedene Rollen und verhandeln, welche Rechte unantastbar sind, wer Entscheidungen trifft und wie Konflikte friedlich gelöst werden."
+                        }
+                    ]
+                },
+                {
+                    "id": "002037a3-3e5d-4611-95fa-b231fd4bcf1c",
+                    "kind": "schedule",
+                    "title": "Ablauf",
+                    "blocks": [
+                        {
+                            "id": "3583eb38-2044-4b19-81d8-52757401e93e",
+                            "type": "phases",
+                            "phases": [
+                                {
+                                    "title": "Einstieg",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "60 Minuten",
+                                            "description": "Szenario & Ressourcen-Dilemma (Verzicht auf Ressourcen begründen).",
+                                            "method": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Vertiefung",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "60 Minuten",
+                                            "description": "Werte-Diskurs & Neuausrichtung (Konsens auf 3 Grundwerte).",
+                                            "method": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Praxis",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "90 Minuten",
+                                            "description": "Theaterpädagogische Standbildarbeit (Visualisierung sozialer Konflikte).",
+                                            "method": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Reflexion",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "60 Minuten",
+                                            "description": "Plenumsauswertung & Transfer (Machtstrukturen, Gegenwartsbezug).",
+                                            "method": ""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "a64dedfd-176f-4b96-b722-1c56bfd0ba58",
+            "kind": "materials",
+            "title": "Materialien",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "29052b92-1fba-4377-a36f-49a5593dd55a",
+                    "kind": "documents",
+                    "title": "Unterlagen",
+                    "blocks": [
+                        {
+                            "id": "526e504f-6ff9-4f9c-a221-b14f82e44e47",
+                            "type": "file",
+                            "label": "",
+                            "file": "files/uebersicht-hsd-school-labs-1.pdf"
+                        }
+                    ]
+                },
+                {
+                    "id": "759d92fd-e44e-42d3-8d10-220769c7c8d8",
+                    "kind": "resources",
+                    "title": "Ressourcen",
+                    "blocks": [
+                        {
+                            "id": "042881c3-97a8-420d-9a64-71b7da2bd804",
+                            "type": "link",
+                            "label": "",
+                            "url": "https://soz-kult.hs-duesseldorf.de/aktuelles/meldungen/democrat-abschlussveranstaltung"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "473bd187-5450-4dca-bcc3-b6b3928080cf",
+            "kind": "teachers",
+            "title": "Für Lehrende",
+            "fields": {
+                "quote": {
+                    "text": "Demokratie ist die einzige Staatsform, die gelernt werden muss.",
+                    "author": "Oskar Negt"
+                },
+                "facts": {
+                    "schoolTypes": "Gesamtschule, Realschule, Gymnasium, Sekundarschule",
+                    "requirements": "Keine"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "88f97389-01cf-4756-b0b8-277ff8000794",
+                    "kind": "learningContent",
+                    "title": "Lerninhalt",
+                    "blocks": [
+                        {
+                            "id": "2af8bddb-faac-4e4c-a9eb-e577b673cc74",
+                            "type": "text",
+                            "text": "Das Planspiel macht abstrakte Staats- und Verfassungsprinzipien unmittelbar erfahrbar. Die Schüler*innen erleben, warum Regeln notwendig sind, wie schwer gerechte Kompromisse zwischen verschiedenen Interessengruppen zu schließen sind und weshalb Gewaltenteilung und Grundrechte den Kern einer stabilen Demokratie bilden."
+                        }
+                    ]
+                },
+                {
+                    "id": "742250f3-9c68-4566-b83c-dcd02786a8a0",
+                    "kind": "competencies",
+                    "title": "Weiterführende Kompetenzen",
+                    "blocks": [
+                        {
+                            "id": "c1966c3e-2f2e-4426-8f7f-448371dd4006",
+                            "type": "list",
+                            "items": [
+                                "Urteils- und Verhandlungskompetenz: Interessen formulieren, gegensätzliche Standpunkte abwägen und tragfähige Mehrheiten bilden.",
+                                "Demokratieverständnis: Bedeutung von Verfassungstreue, Mehrheitsprinzip und partizipativer Mitbestimmung nachvollziehen.",
+                                "Rhetorik & Diskursfähigkeit: Sachlich argumentieren, Frustrationstoleranz bei Abstimmungsniederlagen beweisen und Kompromisse mittragen.",
+                                "Empathie & Solidarität: Erkennen, wie Minderheiteninteressen in Verfassungen geschützt werden müssen."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "fd39a593-7c00-4f8c-922a-abf2512ec5b2",
+                    "kind": "curriculum",
+                    "title": "Lehrplanbezug",
+                    "blocks": [
+                        {
+                            "id": "e9f2daa0-05dc-45b8-b457-b8f21f9e786a",
+                            "type": "text",
+                            "text": "Fächeranbindung: Politik / Wirtschaft-Politik, Sozialwissenschaften, Gesellschaftslehre sowie Praktische Philosophie (Sekundarstufe I).   Kernlehrplan-Schwerpunkte: Sicherung und Weiterentwicklung der Demokratie; Grundlagen des politischen Systems der Bundesrepublik Deutschland; Werteorientierung und Menschenrechte"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "c392ead3-ac2e-41a1-ae83-a3bba939b60e",
+            "kind": "impressions",
+            "title": "Impressionen",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "af831ca4-8704-40aa-b5e1-b93ce6176104",
+                    "kind": "highlights",
+                    "title": "Eindrücke",
+                    "blocks": [
+                        {
+                            "id": "292792e5-b1d8-4160-a8e5-90680954d3fa",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                },
+                {
+                    "id": "fe84ba70-99e3-4c48-b919-e2fab65efa7e",
+                    "kind": "gallery",
+                    "title": "Bildergalerie",
+                    "blocks": [
+                        {
+                            "id": "564fae25-8a31-448e-93df-1133a8540ad8",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "7589143d-d57f-4724-9edf-25877a661a6a",
+            "kind": "contributors",
+            "title": "Ansprechpartner",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "329646d0-1503-4d14-b6aa-584fc2cb214e",
+                    "kind": "people",
+                    "title": "Beteiligte",
+                    "blocks": [
+                        {
+                            "id": "bf8e179a-105c-4213-8516-1e3bb0112247",
+                            "type": "people",
+                            "people": [
+                                {
+                                    "image": {
+                                        "src": "",
+                                        "alt": "Abbildung"
+                                    },
+                                    "name": "Mitarbeitende des Forschungsprojekts “Democrat“ am FB SK unter Beteiligung von Multiplikator*innen im Bereich der Demokratiebildung",
+                                    "description": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -6,7 +6,7 @@
     "teaser": "Beschreibungstext für diesen Workshop...",
     "thumbnail": {
         "src": "thumbnail.jpg",
-        "alt": ""
+        "alt": "Abbildung"
     },
     "slogan": "Motto/Slogan des Workshops",
     "authors": "",
@@ -28,7 +28,7 @@
             "fields": {
                 "heroImage": {
                     "src": "",
-                    "alt": ""
+                    "alt": "Abbildung"
                 },
                 "facts": {
                     "location": "",
@@ -242,7 +242,7 @@
                                 {
                                     "image": {
                                         "src": "",
-                                        "alt": ""
+                                        "alt": "Abbildung"
                                     },
                                     "name": "Name",
                                     "description": "Kontakt & Beschreibung"

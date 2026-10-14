@@ -1,0 +1,305 @@
+{
+    "schemaVersion": 1,
+    "slug": "hass-hinter-glas",
+    "published": true,
+    "title": "Hass hinter Glas",
+    "teaser": "Sichtbarmachen, Widersprechen, Gestalten: Illustration und visuelle Kommunikation als Form digitaler Zivilcourage gegen Hate Speech.",
+    "thumbnail": {
+      "src": "hass-hinter-glass.png",
+      "alt": "Hass hinter Glas Vorschaubild"
+    },
+    "slogan": "Visuelle Antworten auf digitale Hetze",
+    "authors": "Prof. Mone Schliephack, Laura Sistig (M.A.)",
+    "subject": "D",
+    "gradeRange": {
+      "min": 8,
+      "max": 13
+    },
+    "tags": [
+      "hatespeech",
+      "zivilcourage",
+      "design",
+      "illustration",
+      "medienkompetenz"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+      {
+        "id": "81b1aac9-2b9a-468b-9c2b-7f1742b1bddd",
+        "kind": "overview",
+        "title": "Übersicht",
+        "fields": {
+          "heroImage": {
+            "src": "images/hass-hinter-glass.png",
+            "alt": "Hass hinter Glas Titelbild"
+          },
+          "facts": {
+            "location": "Campus Derendorf",
+            "groupSize": "12–24 Personen",
+            "topics": "Hate Speech, Zivilcourage, Illustration, Typografie, visuelle Gegenrede",
+            "prerequisites": "Keine Vorkenntnisse erforderlich; analoge und digitale Zeichenmaterialien werden gestellt",
+            "duration": "4 Stunden"
+          }
+        },
+        "subsections": [
+          {
+            "id": "11bc1e20-36e0-454f-b450-edc4ae5c2e27",
+            "kind": "description",
+            "title": "Beschreibung",
+            "blocks": [
+              {
+                "id": "11d8b744-62b1-4329-81b6-2adacad88c76",
+                "type": "quote",
+                "text": "Worte können sein wie winzige Arsendosen: Sie werden unbemerkt verschluckt, und nach einiger Zeit ist die Giftwirkung da.",
+                "author": "Victor Klemperer"
+              },
+              {
+                "id": "218ca630-7df8-4322-99b2-6342cb79400e",
+                "type": "text",
+                "text": "Sichtbarmachen, Widersprechen, Gestalten: Illustration und visuelle Kommunikation als Form digitaler Zivilcourage gegen Hate Speech."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c16ebafa-a561-4e46-9600-69ad21dbecb5",
+        "kind": "instructions",
+        "title": "Anleitung",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "d999695a-e514-45af-bfa3-3a41b526533f",
+            "kind": "intro",
+            "title": "Einführung",
+            "blocks": [
+              {
+                "id": "4ade2381-f131-4824-94f8-f0f8cd3fdbc7",
+                "type": "text",
+                "text": "Wie begegnen wir digitaler Gewalt, Diskriminierung und Hasskommentaren im Netz? In diesem Schülerlabor analysieren die Teilnehmenden sprachliche Mechanismen von Hate Speech und lernen, wie Design, Illustration und pointierte Typografie als wirksame Instrumente der Gegenrede und Haltung eingesetzt werden können."
+              }
+            ]
+          },
+          {
+            "id": "dac16d52-129f-4029-937c-9408ad7d8c73",
+            "kind": "schedule",
+            "title": "Ablauf",
+            "blocks": [
+              {
+                "id": "08474962-c838-4676-8ec3-53245e89adeb",
+                "type": "phases",
+                "phases": [
+                  {
+                    "title": "Hetze im Netz dechiffrieren",
+                    "steps": [
+                      {
+                        "title": "Analyse realer Fallbeispiele",
+                        "duration": "45 Minuten",
+                        "description": "Analyse realer Fallbeispiele: Wie funktioniert Hate Speech, welche rechtlichen Grenzen gibt es und was bewirkt sie bei Betroffenen?",
+                        "method": "Fallbeispiele-Analyse & Ampelabfrage"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Visuelle Gegenrede & Konzept",
+                    "steps": [
+                      {
+                        "title": "Ideenfindung & Konzeption",
+                        "duration": "75 Minuten",
+                        "description": "Ideenfindung und Konzeption pointierter Gegennarrative, Plakate oder Memes für digitale Zivilcourage.",
+                        "method": "Mind-Mapping, Slogan-Entwicklung & Scribble-Werkstatt"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Gestalterische Umsetzung",
+                    "steps": [
+                      {
+                        "title": "Illustrative Werkstatt",
+                        "duration": "60 Minuten",
+                        "description": "Reinzeichnung der Entwürfe wahlweise analog (Marker, Gouache, Collagen) oder digital (Tablets).",
+                        "method": "Illustrative Atelierarbeit & Feedback-Schleifen"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Die Ausstellung hinter Glas",
+                    "steps": [
+                      {
+                        "title": "Kuration & Reflexion",
+                        "duration": "45 Minuten",
+                        "description": "Präsentation der Arbeiten im Glas- und Galerierahmen sowie Ableitung konkreter Verhaltensregeln für den eigenen Klassen-Chat.",
+                        "method": "Gallery Walk, Kuration & Netiquette-Vereinbarung"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1472fe50-0cc6-4732-b744-a7c38908023e",
+        "kind": "materials",
+        "title": "Materialien",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "905268f0-5129-4bb4-b491-cf3af6b8c082",
+            "kind": "documents",
+            "title": "Unterlagen",
+            "blocks": [
+              {
+                "id": "1b91a058-8736-4885-afbe-3b87d5d9e71f",
+                "type": "file",
+                "label": "Übersicht HSD School Labs",
+                "file": "files/uebersicht-hsd-school-labs-1.pdf"
+              }
+            ]
+          },
+          {
+            "id": "62c2d15c-bc80-408f-9029-8fe4ec7a71c7",
+            "kind": "resources",
+            "title": "Ressourcen",
+            "blocks": [
+              {
+                "id": "5ff4e1c2-7b8f-48eb-ba51-a171f970da88",
+                "type": "link",
+                "label": "Hass hinter Glas",
+                "url": "https://germandesigngraduates.com/hass-hinter-glas/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "716c5b30-e560-4ff3-836c-e398f07cfccc",
+        "kind": "teachers",
+        "title": "Für Lehrende",
+        "fields": {
+          "quote": {
+            "text": "Worte können sein wie winzige Arsendosen: Sie werden unbemerkt verschluckt, und nach einiger Zeit ist die Giftwirkung da.",
+            "author": "Victor Klemperer"
+          },
+          "facts": {
+            "schoolTypes": "Gesamtschule, Realschule, Gymnasium, Berufskolleg (Klassen 8–12)",
+            "requirements": "Normale Tische zum Zeichnen oder Computer-/Tablet-Ausstattung"
+          }
+        },
+        "subsections": [
+          {
+            "id": "e0530835-2751-4ec4-a0a7-264dd2ec8958",
+            "kind": "learningContent",
+            "title": "Lerninhalt",
+            "blocks": [
+              {
+                "id": "c691ace9-2c9a-4605-8214-a310bafeaa8d",
+                "type": "text",
+                "text": "Der Workshop schult das Sensorium für digitale Grenzverletzungen und stärkt demokratische Werte im Netz. Die Schüler*innen lernen die rechtlichen Rahmenbedingungen (z. B. Netzwerkdurchsetzungsgesetz, Beleidigungstatbestände) kennen und erfahren, wie gestalterische Mittel als ermutigende Zivilcourage und Gegenrede (Counterspeech) wirken können."
+              }
+            ]
+          },
+          {
+            "id": "7c2d3fd5-f55b-4a66-8d1b-19103d8cd7f1",
+            "kind": "competencies",
+            "title": "Weiterführende Kompetenzen",
+            "blocks": [
+              {
+                "id": "efccae65-e8a7-4cc9-9a39-47ee3f862abb",
+                "type": "list",
+                "items": [
+                  "Demokratie- & Debattenkultur: Sensibilität für Ausgrenzung im Netz entwickeln und aktives Eintreten für Betroffene erproben.",
+                  "Visuelle Gestaltungskompetenz: Komplexe gesellschaftliche Botschaften in wirkungsvolle Bilder und typografische Aussagen übersetzen.",
+                  "Medienethik & Rechtsbewusstsein: Grenzen zwischen freier Meinungsäußerung und strafbarer Hetze im digitalen Raum sicher beurteilen.",
+                  "Reflexionsfähigkeit: Eigene Kommunikationsmuster in Social Media und Gruppen-Chats kritisch hinterfragen."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "455bcb1d-0eca-4ce9-b822-42bcede3e2f1",
+            "kind": "curriculum",
+            "title": "Lehrplanbezug",
+            "blocks": [
+              {
+                "id": "d0260461-ea69-443c-8d37-beae46022a7a",
+                "type": "text",
+                "text": "Fächeranbindung: Kunst, Deutsch, Praktische Philosophie / Ethik sowie Sozialwissenschaften / Politik (Sekundarstufe I und II). Kernlehrplan-Schwerpunkte: Bildgestaltung als Haltung; Analyse und Reflexion von Texten in digitalen Medien; Medienkompetenzrahmen NRW (Analysieren und Reflektieren, Kommunizieren und Kooperieren)."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bca9f100-04cf-4b90-98c6-22f8e47662d9",
+        "kind": "impressions",
+        "title": "Impressionen",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "5fc273b1-d6d5-412e-9f1a-e12cb0db4be5",
+            "kind": "gallery",
+            "title": "Bildergalerie",
+            "blocks": [
+              {
+                "id": "5412fc07-9883-4f65-8b45-ab340b6538c1",
+                "type": "gallery",
+                "images": [
+                  {
+                    "src": "images/foto-website-titel.jpg",
+                    "alt": "Foto Website Titel",
+                    "caption": "",
+                    "width": "full"
+                  },
+                  {
+                    "src": "images/fotowebsitebuch-01.jpg",
+                    "alt": "Foto Buchgestaltung",
+                    "caption": "",
+                    "width": "full"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "44d5c90c-2899-4296-b79c-0db159fccdf7",
+        "kind": "contributors",
+        "title": "Ansprechpartner",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "68c2977f-620d-4e46-b2e1-6701ef7bbf3e",
+            "kind": "people",
+            "title": "Beteiligte",
+            "blocks": [
+              {
+                "id": "32888fa8-6b83-4dfe-b58c-0892de31d10e",
+                "type": "people",
+                "people": [
+                  {
+                    "image": {
+                      "src": "images/schliephack.jpg",
+                      "alt": "Prof. Mone Schliephack"
+                    },
+                    "name": "Prof. Mone Schliephack",
+                    "description": "Betreuung und didaktische Begleitung des Projekts im Fachbereich Design, mone.schliephack@hs-duesseldorf.de"
+                  },
+                  {
+                    "image": {
+                      "src": "images/laura-sistig.png",
+                      "alt": "Laura Sistig"
+                    },
+                    "name": "Laura Sistig (M.A.)",
+                    "description": "Konzeption & Design, Laura.sistig@outlook.de"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

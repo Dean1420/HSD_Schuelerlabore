@@ -1,0 +1,300 @@
+{
+    "schemaVersion": 1,
+    "slug": "ai-to-3d",
+    "published": true,
+    "title": "AI to 3D – Dein Charakter in AR",
+    "teaser": "Eigene Charaktere mit generativer Text-zu-Bild-KI entwerfen und anschließend als 3D-Modell in die erweiterte Realität transportieren.",
+    "thumbnail": {
+      "src": "ai-kid.png",
+      "alt": "AI to 3D Vorschaubild"
+    },
+    "slogan": "Von der Textidee zum dreidimensionalen Augmented-Reality-Erlebnis",
+    "authors": "Prof. Dr.-Ing. Christian Geiger / Sandra Lohmann",
+    "subject": "M",
+    "gradeRange": {
+      "min": 8,
+      "max": 12
+    },
+    "tags": [
+      "ki",
+      "generative-ki",
+      "3d",
+      "ar",
+      "medienkompetenz",
+      "informatik"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+      {
+        "id": "59e43471-49db-43d5-836d-fbc6323f2160",
+        "kind": "overview",
+        "title": "Übersicht",
+        "fields": {
+          "heroImage": {
+            "src": "images/ai-kid.png",
+            "alt": "AI to 3D Titelbild"
+          },
+          "facts": {
+            "location": "Campus Derendorf (Labor für Medieninformatik / Virtuelle Studios)",
+            "groupSize": "12–24 Personen",
+            "topics": "Generative KI, 3D-Modellierung, Augmented Reality, Prompt Engineering",
+            "prerequisites": "Keine",
+            "duration": "4 Stunden"
+          }
+        },
+        "subsections": [
+          {
+            "id": "43b68c48-26eb-4cfa-8d9d-f6240e35d801",
+            "kind": "description",
+            "title": "Beschreibung",
+            "blocks": [
+              {
+                "id": "f2a7ac02-e3b5-4216-9b6a-5ff4b1edd880",
+                "type": "quote",
+                "text": "Die Zukunft gehört denen, die an die Schönheit ihrer Träume glauben.",
+                "author": "Eleanor Roosevelt"
+              },
+              {
+                "id": "49ec30f4-d000-4a93-9efe-adbb7ebc66a5",
+                "type": "text",
+                "text": "Eigene Charaktere mit generativer Text-zu-Bild-KI entwerfen und anschließend als 3D-Modell in die erweiterte Realität transportieren."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dde24347-5352-49de-b36b-2d7bcec57c4d",
+        "kind": "instructions",
+        "title": "Anleitung",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "283efc69-27b8-429c-8a6c-6a8dbbc9fbe7",
+            "kind": "intro",
+            "title": "Einführung",
+            "blocks": [
+              {
+                "id": "5f5831f1-b1e5-47f4-b40b-0e8493b10694",
+                "type": "text",
+                "text": "Wie verwandelt künstliche Intelligenz einfache Textbeschreibungen in Bilder und dreidimensionale Objekte? In diesem Schülerlabor experimentieren die Teilnehmenden mit generativen KI-Tools, erzeugen eigene Charakter-Assets und platzieren diese über Augmented Reality interaktiv im realen Raum."
+              }
+            ]
+          },
+          {
+            "id": "b79b1809-7000-4626-bd66-e0632b9074eb",
+            "kind": "schedule",
+            "title": "Ablauf",
+            "blocks": [
+              {
+                "id": "2cb4d64a-a691-482f-9bd9-0f4c86a4cb3c",
+                "type": "phases",
+                "phases": [
+                  {
+                    "title": "KI verstehen & Prompt Engineering",
+                    "steps": [
+                      {
+                        "title": "Grundlagen & Prompts",
+                        "duration": "45 Minuten",
+                        "description": "Funktionsweise von Diffusionsmodellen verstehen und gezielte Text-Prompts für eigene Charakterentwürfe formulieren.",
+                        "method": "Impulsvortrag & Prompting-Workshop"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Vom 2D-Bild zum 3D-Mesh",
+                    "steps": [
+                      {
+                        "title": "3D-Asset-Generierung",
+                        "duration": "75 Minuten",
+                        "description": "Umwandlung der generierten 2D-Grafiken in dreidimensionale Modelle mit Text-to-3D- und Image-to-3D-Tools.",
+                        "method": "Praktische Werkstattarbeit an Rechnern"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "AR-Inszenierung & Raum-Interaktion",
+                    "steps": [
+                      {
+                        "title": "AR-Erprobung",
+                        "duration": "60 Minuten",
+                        "description": "Einbinden der 3D-Charaktere in eine mobile AR-Umgebung und interaktive Platzierung im Campus-Raum.",
+                        "method": "AR-Testing mit Tablets / Smartphones"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Technologie-Reflexion & Präsentation",
+                    "steps": [
+                      {
+                        "title": "Diskurs & Präsentation",
+                        "duration": "45 Minuten",
+                        "description": "Kurzpräsentation der Figuren und kritische Diskussion über Urheberrecht, Datensouveränität und Zukunft von Kreativ-KI.",
+                        "method": "Gallery Walk & Debatten-Runde"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d63a10d7-114e-4243-8a2f-72bf0ceebb5c",
+        "kind": "materials",
+        "title": "Materialien",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "26846894-dd07-46ed-9071-f0abbcf5bf47",
+            "kind": "documents",
+            "title": "Unterlagen",
+            "blocks": [
+              {
+                "id": "965c9c47-850a-4553-a30e-5959434d0414",
+                "type": "file",
+                "label": "Übersicht HSD School Labs",
+                "file": "files/uebersicht-hsd-school-labs-1.pdf"
+              }
+            ]
+          },
+          {
+            "id": "fbf7d94d-08e2-48aa-87aa-c536ab6ee271",
+            "kind": "resources",
+            "title": "Ressourcen",
+            "blocks": [
+              {
+                "id": "53fa68dc-b3f3-4cce-89fb-11522e60ac37",
+                "type": "link",
+                "label": "HSD Mixed Reality Lab",
+                "url": "https://medien.hs-duesseldorf.de"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d69201b9-c4fd-4ade-8d7f-d9b71c447006",
+        "kind": "teachers",
+        "title": "Für Lehrende",
+        "fields": {
+          "quote": {
+            "text": "Die Zukunft gehört denen, die an die Schönheit ihrer Träume glauben.",
+            "author": "Eleanor Roosevelt"
+          },
+          "facts": {
+            "schoolTypes": "Gesamtschule, Realschule, Gymnasium, Berufskolleg (Klassen 8–12)",
+            "requirements": "Computerraum mit Internetzugang und AR-fähige Endgeräte"
+          }
+        },
+        "subsections": [
+          {
+            "id": "5c203e23-0889-44da-a7e7-81c36b7fbbb9",
+            "kind": "learningContent",
+            "title": "Lerninhalt",
+            "blocks": [
+              {
+                "id": "3fb5fab8-f870-4d01-abd2-7e3e676994ef",
+                "type": "text",
+                "text": "Der Workshop entmystifiziert künstliche Intelligenz und vermittelt praktische Kompetenzen im Umgang mit generativen Technologien. Die Schüler*innen lernen, wie maschinelles Lernen visuelle Daten verarbeitet, wie präzise Eingaben (Prompts) die Ausgabequalität steuern und wo die ethischen sowie rechtlichen Grenzen beim Einsatz generativer Modelle liegen."
+              }
+            ]
+          },
+          {
+            "id": "193a7960-de9f-4f07-acc1-2f31aded4f50",
+            "kind": "competencies",
+            "title": "Weiterführende Kompetenzen",
+            "blocks": [
+              {
+                "id": "578c0980-f699-4635-87e6-8ed11e25df76",
+                "type": "list",
+                "items": [
+                  "Informatische & technologische Bildung: Funktionsprinzipien moderner KI-Pipelines (Bild- und Mesh-Synthese) verstehen und anwenden.",
+                  "Medienkritik & Urteilskraft: Kritisches Hinterfragen von Trainingsdaten, Bias in KI-Modellen und Urheberrechtsfragen bei synthetischen Medien.",
+                  "Digitale Gestaltungskompetenz: Kreativer Einsatz moderner Werkzeuge zur Realisierung eigener digitaler Prototypen.",
+                  "Problemlösungskompetenz: Iteratives Verfeinern von Prompts und Parametern zur Erreichung gewünschter Ergebnisse."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2e6b1e6-bd65-4650-a9e0-1cbbed75ef26",
+            "kind": "curriculum",
+            "title": "Lehrplanbezug",
+            "blocks": [
+              {
+                "id": "a3d952d0-f180-44e4-8f7d-c31fcd5b0cc4",
+                "type": "text",
+                "text": "Fächeranbindung: Informatik, Kunst / Medienpraxis sowie Praktische Philosophie / Gesellschaftslehre (Sekundarstufe I und II). Kernlehrplan-Schwerpunkte: Medienkompetenzrahmen NRW (Bedienen und Anwenden, Informieren und Recherchieren, Analysieren und Reflektieren); Algorithmen und Datenstrukturen; Digitalisierung und Gesellschaft."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "c1a01aea-fc09-47a2-a392-ab441d569561",
+        "kind": "impressions",
+        "title": "Impressionen",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "68f4538b-8b42-42c8-b894-4643d171bd9c",
+            "kind": "gallery",
+            "title": "Bildergalerie",
+            "blocks": [
+              {
+                "id": "6f613114-f5f6-40c9-ae12-cfb08465211c",
+                "type": "gallery",
+                "images": [
+                  {
+                    "src": "images/ai-kid.png",
+                    "alt": "Eindrücke aus dem AI to 3D Workshop",
+                    "caption": "",
+                    "width": "full"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cba10029-7fbb-4511-80c8-11de7389408a",
+        "kind": "contributors",
+        "title": "Ansprechpartner",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "6b503180-18a1-4350-aeb7-68e534833ae4",
+            "kind": "people",
+            "title": "Beteiligte",
+            "blocks": [
+              {
+                "id": "a1d0f71e-ef66-4895-8af2-e9b8626d067f",
+                "type": "people",
+                "people": [
+                  {
+                    "image": {
+                      "src": "images/geiger.jpg",
+                      "alt": "Prof. Dr.-Ing. Christian Geiger"
+                    },
+                    "name": "Prof. Dr.-Ing. Christian Geiger",
+                    "description": "Professor für Mixed Reality und Visualisierung / Laborleitung Virtual Environments, christian.geiger@hs-duesseldorf.de"
+                  },
+                  {
+                    "image": {
+                      "src": "images/lohmann.jpg",
+                      "alt": "Dipl.-Päd. Sandra Lohmann"
+                    },
+                    "name": "Dipl.-Päd. Sandra Lohmann",
+                    "description": "Koordination HSD School Labs / Ansprechpartnerin Schulkooperationen, sandra.lohmann@hs-duesseldorf.de"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

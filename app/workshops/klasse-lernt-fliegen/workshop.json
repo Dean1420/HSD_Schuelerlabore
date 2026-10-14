@@ -1,0 +1,287 @@
+{
+    "schemaVersion": 1,
+    "slug": "klasse-lernt-fliegen",
+    "published": true,
+    "title": "Klasse lernt fliegen",
+    "teaser": "Physikalische Gesetze des Fliegens erforschen, eigene Flugkörper konstruieren und aerodynamische Prinzipien im Teamwettbewerb optimieren.",
+    "thumbnail": {
+      "src": "thumbnail.jpg",
+      "alt": "Klasse lernt fliegen Vorschaubild"
+    },
+    "slogan": "Gemeinsam abheben durch Teambuilding und MINT-Design",
+    "authors": "Prof. Dr.-Ing. Harald Jacques / Sandra Lohmann",
+    "subject": "M",
+    "gradeRange": {
+      "min": 5,
+      "max": 13
+    },
+    "tags": [
+      "mint",
+      "physik",
+      "aerodynamik",
+      "teamwork",
+      "konstruktion",
+      "experimente"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+      {
+        "id": "be354eae-c299-443d-b4ba-dc5dee5cfa96",
+        "kind": "overview",
+        "title": "Übersicht",
+        "fields": {
+          "heroImage": {
+            "src": "images/thumbnail.jpg",
+            "alt": "Klasse lernt fliegen Titelbild"
+          },
+          "facts": {
+            "location": "Campus Derendorf",
+            "groupSize": "14–30 Personen",
+            "topics": "Aerodynamik, Auftrieb & Widerstand, Leichtbau, Prototyping",
+            "prerequisites": "Keine Vorkenntnisse erforderlich; Experimentiermaterial wird gestellt",
+            "duration": "4 Stunden"
+          }
+        },
+        "subsections": [
+          {
+            "id": "4df5eccb-6a87-42d9-b11d-322e3b3a96a8",
+            "kind": "description",
+            "title": "Beschreibung",
+            "blocks": [
+              {
+                "id": "15ac28d6-bd62-49ed-9206-72b94804eda9",
+                "type": "quote",
+                "text": "Wenn du ein Schiff bauen willst, lehre die Menschen die Sehnsucht nach dem weiten Meer.",
+                "author": "Antoine de Saint-Exupéry"
+              },
+              {
+                "id": "a56eab63-f4e5-48d0-8f4a-b72b479dd068",
+                "type": "text",
+                "text": "Physikalische Gesetze des Fliegens erforschen, eigene Flugkörper konstruieren und aerodynamische Prinzipien im Teamwettbewerb optimieren."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "7bc82974-e6e5-426a-bd79-358886dd9fa1",
+        "kind": "instructions",
+        "title": "Anleitung",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "278a6d54-7a4b-4982-bd75-fbb1d2d85b99",
+            "kind": "intro",
+            "title": "Einführung",
+            "blocks": [
+              {
+                "id": "ddf0ceac-b0b9-432c-8975-2913127a16e0",
+                "type": "text",
+                "text": "Warum fliegen Flugzeuge und Vögel? Wie halten Strömungen schwere Objekte in der Luft? In diesem Schülerlabor erforschen Schulklassen die physikalischen Grundlagen der Aerodynamik und treten in Teams an, um aus einfachen Materialien gleitfähige und reichweitenstarke Flugmodelle zu entwickeln."
+              }
+            ]
+          },
+          {
+            "id": "bc573f31-34c7-4946-bbb5-2791cd8fb7b3",
+            "kind": "schedule",
+            "title": "Ablauf",
+            "blocks": [
+              {
+                "id": "64b8f409-f3ef-4532-b12d-8cde6923b76d",
+                "type": "phases",
+                "phases": [
+                  {
+                    "title": "Das Geheimnis des Auftriebs",
+                    "steps": [
+                      {
+                        "title": "Grundlagen & Experimente",
+                        "duration": "45 Minuten",
+                        "description": "Experimenteller Einstieg in Bernoulli-Effekt, Tragflächenprofile, Gravitation und Luftwiderstand.",
+                        "method": "Mitmach-Experimente & Strömungssimulation"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Prototyping & Bauwerkstatt",
+                    "steps": [
+                      {
+                        "title": "Konstruktion der Gleiter",
+                        "duration": "75 Minuten",
+                        "description": "Konstruktion verschiedener Fluggleiter in Kleingruppen unter Berücksichtigung von Schwerpunkt, Gewicht und Flügelgeometrie.",
+                        "method": "Rapid Prototyping & Konstruktionswerkstatt"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Der große Flugtest",
+                    "steps": [
+                      {
+                        "title": "Testflüge & Optimierung",
+                        "duration": "60 Minuten",
+                        "description": "Erprobung auf der Teststrecke, Messung von Flugweite und Gleitwinkel sowie iterative Modifikation der Modelle.",
+                        "method": "Messreihe, Testläufe & iteratives Feintuning"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Siegerehrung & MINT-Reflexion",
+                    "steps": [
+                      {
+                        "title": "Auswertung & Siegerehrung",
+                        "duration": "45 Minuten",
+                        "description": "Auswertung der Konstruktionsdaten, Prämierung der besten Teamergebnisse und Transfer zur modernen Luftfahrttechnologie.",
+                        "method": "Ergebnispräsentation & Siegerehrung"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d42549d2-f139-4866-a110-9921725e6271",
+        "kind": "materials",
+        "title": "Materialien",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "53587282-e8fb-46b7-8d92-ffa913057cf1",
+            "kind": "documents",
+            "title": "Unterlagen",
+            "blocks": [
+              {
+                "id": "5d4a1f45-3390-4a24-8b5a-af6c36222fef",
+                "type": "file",
+                "label": "Übersicht HSD School Labs",
+                "file": "files/uebersicht-hsd-school-labs-1.pdf"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "f311ce01-377e-45e5-aef2-a7bb07058d54",
+        "kind": "teachers",
+        "title": "Für Lehrende",
+        "fields": {
+          "quote": {
+            "text": "Wenn du ein Schiff bauen willst, lehre die Menschen die Sehnsucht nach dem weiten Meer.",
+            "author": "Antoine de Saint-Exupéry"
+          },
+          "facts": {
+            "schoolTypes": "Gesamtschule, Realschule, Gymnasium, Sekundarschule (Klassen 5–9)",
+            "requirements": "Klassenraum für die Theorie- und Bauphase; langer Flur, Foyer oder Aula für die Flugversuche (an der HSD vorhanden)"
+          }
+        },
+        "subsections": [
+          {
+            "id": "31914675-609e-437a-91e6-9be584d2819f",
+            "kind": "learningContent",
+            "title": "Lerninhalt",
+            "blocks": [
+              {
+                "id": "9546e1f2-7da1-426b-aa4a-3e1ff6d5eab2",
+                "type": "text",
+                "text": "Der Workshop verknüpft physikalisches Grundlagenwissen mit ingenieursmäßigem Arbeiten. Die Schüler*innen lernen die vier Kräfte des Fliegens (Auftrieb, Gewichtskraft, Vortrieb, Luftwiderstand) kennen und erproben die wissenschaftliche Methodik: Hypothese aufstellen, Prototyp bauen, testen, messen und systematisch optimieren."
+              }
+            ]
+          },
+          {
+            "id": "19405722-8f00-44a3-9196-59ad7633ae86",
+            "kind": "competencies",
+            "title": "Weiterführende Kompetenzen",
+            "blocks": [
+              {
+                "id": "697a357a-9e47-436f-ae09-c1ce9acb1888",
+                "type": "list",
+                "items": [
+                  "Naturwissenschaftliche & technische Denkweise: Kräftevektoren und Strömungsmechanik an realen Modellen begreifen.",
+                  "Iterative Problemlösungskompetenz: Fehler bei Testflügen analysieren, Flügelwinkel oder Trimmung anpassen und gezielt nachbessern.",
+                  "Team- und Kooperationsfähigkeit: Gemeinsames Entwickeln und Optimieren von Prototypen in der Gruppe.",
+                  "Messtechnisches Verständnis: Flugweiten erfassen, Versuchsreihen vergleichen und Daten interpretieren."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "d1f77c5f-09b5-40c2-8efd-6284c3fec9bb",
+            "kind": "curriculum",
+            "title": "Lehrplanbezug",
+            "blocks": [
+              {
+                "id": "614cb9aa-4d2d-4d92-856e-6146b769847c",
+                "type": "text",
+                "text": "Fächeranbindung: Physik, Naturwissenschaften (NW), Technik sowie fächerübergreifender MINT-Unterricht (Sekundarstufe I). Kernlehrplan-Schwerpunkte: Mechanik (Kräfte und ihre Wirkungen, Bewegung von Körpern); Wechselwirkung zwischen Materie und Energie; naturwissenschaftliche Erkenntnisgewinnung durch Experimentieren."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "7781b46d-2490-431f-bcdd-51c104d9b042",
+        "kind": "impressions",
+        "title": "Impressionen",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "b63a431e-c94f-44c5-898b-072de3eb46c4",
+            "kind": "gallery",
+            "title": "Bildergalerie",
+            "blocks": [
+              {
+                "id": "b7a3f772-7e74-4b18-ae96-c95b04f4af01",
+                "type": "gallery",
+                "images": [
+                  {
+                    "src": "images/thumbnail.jpg",
+                    "alt": "Eindrücke aus dem Flug-Workshop",
+                    "caption": "",
+                    "width": "full"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1068fb98-027d-46f3-989b-f3b10faf0ab5",
+        "kind": "contributors",
+        "title": "Ansprechpartner",
+        "fields": {},
+        "subsections": [
+          {
+            "id": "c32d79bf-82b5-4475-aae1-64eaa0242199",
+            "kind": "people",
+            "title": "Beteiligte",
+            "blocks": [
+              {
+                "id": "5c50bb38-d6d3-4387-b28f-1114dd927342",
+                "type": "people",
+                "people": [
+                  {
+                    "image": {
+                      "src": "images/harald-jacques.jpg",
+                      "alt": "Prof. Dr.-Ing. Harald Jacques"
+                    },
+                    "name": "Prof. Dr.-Ing. Harald Jacques",
+                    "description": "Konzeption & Leitung, harald.jacques@hs-duesseldorf.de"
+                  },
+                  {
+                    "image": {
+                      "src": "images/lohmann.jpg",
+                      "alt": "Dipl.-Päd. Sandra Lohmann"
+                    },
+                    "name": "Dipl.-Päd. Sandra Lohmann",
+                    "description": "Konzeption & Leitung, sandra.lohmann@hs-duesseldorf.de"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

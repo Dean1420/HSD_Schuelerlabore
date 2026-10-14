@@ -1,5 +1,27 @@
 [
     {
+        "slug": "ai-to-3d",
+        "title": "AI to 3D – Dein Charakter in AR",
+        "teaser": "Eigene Charaktere mit generativer Text-zu-Bild-KI entwerfen und anschließend als 3D-Modell in die erweiterte Realität transportieren.",
+        "thumbnail": {
+            "src": "ai-kid.png",
+            "alt": "AI to 3D Vorschaubild"
+        },
+        "subject": "M",
+        "gradeRange": {
+            "min": 8,
+            "max": 12
+        },
+        "tags": [
+            "ki",
+            "generative-ki",
+            "3d",
+            "ar",
+            "medienkompetenz",
+            "informatik"
+        ]
+    },
+    {
         "slug": "alliens",
         "title": "AL(L)IENS",
         "teaser": "Wir sind alle anders! – Eine Reise durch die Diversitätsdimensionen anhand spielerischer Auseinandersetzung und AR-Anwendungen.",
@@ -25,7 +47,7 @@
         "teaser": "Beschreibungstext für diesen Workshop...",
         "thumbnail": {
             "src": "thumbnail.jpg",
-            "alt": ""
+            "alt": "Abbildung"
         },
         "subject": "",
         "gradeRange": {
@@ -35,6 +57,91 @@
         "tags": [
             "science",
             "democracy"
+        ]
+    },
+    {
+        "slug": "gesellschaft-gruenden",
+        "title": "Planspiel– Eine neue Gesellschaft gründen",
+        "teaser": "Wie wollen wir zusammenleben? Verfassungsordnung, Grundrechte und Werte in einem interaktiven Planspiel gestalten.",
+        "thumbnail": {
+            "src": "democrat-gesellschaft.jpg",
+            "alt": "Abbildung"
+        },
+        "subject": "SK",
+        "gradeRange": {
+            "min": 7,
+            "max": 10
+        },
+        "tags": [
+            "demokratie",
+            "gesellschaft",
+            "werte",
+            "verfassung",
+            "planspiel"
+        ]
+    },
+    {
+        "slug": "hass-hinter-glas",
+        "title": "Hass hinter Glas",
+        "teaser": "Sichtbarmachen, Widersprechen, Gestalten: Illustration und visuelle Kommunikation als Form digitaler Zivilcourage gegen Hate Speech.",
+        "thumbnail": {
+            "src": "hass-hinter-glass.png",
+            "alt": "Hass hinter Glas Vorschaubild"
+        },
+        "subject": "D",
+        "gradeRange": {
+            "min": 8,
+            "max": 13
+        },
+        "tags": [
+            "hatespeech",
+            "zivilcourage",
+            "design",
+            "illustration",
+            "medienkompetenz"
+        ]
+    },
+    {
+        "slug": "klasse-lernt-fliegen",
+        "title": "Klasse lernt fliegen",
+        "teaser": "Physikalische Gesetze des Fliegens erforschen, eigene Flugkörper konstruieren und aerodynamische Prinzipien im Teamwettbewerb optimieren.",
+        "thumbnail": {
+            "src": "thumbnail.jpg",
+            "alt": "Klasse lernt fliegen Vorschaubild"
+        },
+        "subject": "M",
+        "gradeRange": {
+            "min": 5,
+            "max": 13
+        },
+        "tags": [
+            "mint",
+            "physik",
+            "aerodynamik",
+            "teamwork",
+            "konstruktion",
+            "experimente"
+        ]
+    },
+    {
+        "slug": "wahl-der-tiere",
+        "title": "Wahl der Tiere ",
+        "teaser": "Wahl der Tiere",
+        "thumbnail": {
+            "src": "wahl-der-tiere.jpg",
+            "alt": "Abbildung"
+        },
+        "subject": "SK",
+        "gradeRange": {
+            "min": 5,
+            "max": 7
+        },
+        "tags": [
+            "wahlen",
+            "demokratie",
+            "rollenspiel",
+            "diskurs",
+            "meinungsbildung"
         ]
     }
 ]

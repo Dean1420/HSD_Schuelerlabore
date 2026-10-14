@@ -1,0 +1,320 @@
+{
+    "schemaVersion": 1,
+    "slug": "wahl-der-tiere",
+    "published": true,
+    "title": "Wahl der Tiere ",
+    "teaser": "Wahl der Tiere",
+    "thumbnail": {
+        "src": "wahl-der-tiere.jpg",
+        "alt": "Abbildung"
+    },
+    "slogan": "Demokratie und Wahlen im Tierreich entdecken",
+    "authors": "Andreas Schmid, Jennifer Bittner, Jana Winter (FB SK Democrat-Projekt unter  Leitung v. Prof. Fabian Virchow, bei FORENA),Laura Sistig",
+    "subject": "SK",
+    "gradeRange": {
+        "min": 5,
+        "max": 7
+    },
+    "tags": [
+        "wahlen",
+        "demokratie",
+        "rollenspiel",
+        "diskurs",
+        "meinungsbildung"
+    ],
+    "moreInfoUrl": "",
+    "sections": [
+        {
+            "id": "af101cc7-9581-4dec-a25c-98ef4038c837",
+            "kind": "overview",
+            "title": "Übersicht",
+            "fields": {
+                "heroImage": {
+                    "src": "images/wahl-der-tiere.jpg",
+                    "alt": "Abbildung"
+                },
+                "facts": {
+                    "location": "Campus Derendorf",
+                    "groupSize": "15–30 Personen",
+                    "topics": "Wahlen, Argumentation, Kompromissfindung",
+                    "prerequisites": "Keine",
+                    "duration": "3–4 Stunden"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "d8df636c-8a61-4cc7-9189-c351f008b6bd",
+                    "kind": "description",
+                    "title": "Beschreibung: Im Tierreich steht die Wahl eines neuen Staatsoberhaupts an: Verschiedene Tiergruppen erarbeiten Wahlprogramme, stellen sich einer Debatte und führen eine geheime Wahl durch. ",
+                    "blocks": [
+                        {
+                            "id": "456988e7-72eb-495f-9ac0-522fa96deba7",
+                            "type": "quote",
+                            "text": " „Wer nicht wählt, wird gewählt.“",
+                            "author": ""
+                        },
+                        {
+                            "id": "c75a85b5-884b-41fc-814f-4b9b018dadec",
+                            "type": "text",
+                            "text": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "813feab1-b5db-429f-8e9d-fdebee17f8de",
+            "kind": "instructions",
+            "title": "Anleitung",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "6216b34e-9ef7-457c-8256-92a8b0ed5e47",
+                    "kind": "intro",
+                    "title": "Einführung",
+                    "blocks": [
+                        {
+                            "id": "46a70c99-dc46-424d-8571-be7e51e2e1f4",
+                            "type": "text",
+                            "text": "Die Tiere des Waldes stehen vor einer großen Entscheidung: Wer vertritt künftig ihre gemeinsamen Interessen? Anhand eines fabelhaften Rollenspiels erproben die Schüler*innen, wie Meinungen gebildet, Wahlprogramme formuliert und demokratische Wahlen fair ausgetragen werden."
+                        }
+                    ]
+                },
+                {
+                    "id": "3ecc1c15-94fa-43b6-bfec-0d39d028b327",
+                    "kind": "schedule",
+                    "title": "Ablauf",
+                    "blocks": [
+                        {
+                            "id": "6562aba9-b71f-4121-a790-b4b21b8a0ccc",
+                            "type": "phases",
+                            "phases": [
+                                {
+                                    "title": "Einstieg",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "45 Minuten",
+                                            "description": "Kandidatur & Parteiprogramme (Rollenkarten, Forderungen).",
+                                            "method": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Diskurs",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "60 Minuten",
+                                            "description": "Wahlkampf & Elefantenrunde (Öffentliche Debatte, Koalitionssuche).",
+                                            "method": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Praxis",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "30 Minuten",
+                                            "description": "Geheime Wahl & Stimmauszählung (Wahlkabine, Urne, Zählung).",
+                                            "method": ""
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Reflexion",
+                                    "steps": [
+                                        {
+                                            "title": "",
+                                            "duration": "45 Minuten",
+                                            "description": "Koalitionsbildung & Reflexion (Mehrheit vs. Minderheit, Transfer zu echten Wahlen).",
+                                            "method": ""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "4532faa7-de46-431c-a618-11137a047a0b",
+            "kind": "materials",
+            "title": "Materialien",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "44c74614-f38a-4d4c-a698-770c3c7980c0",
+                    "kind": "documents",
+                    "title": "Unterlagen",
+                    "blocks": [
+                        {
+                            "id": "3e448475-c79f-47fe-91a4-f32a1fb25ccd",
+                            "type": "file",
+                            "label": "Übersicht ",
+                            "file": "files/uebersicht-hsd-school-labs-1.pdf"
+                        }
+                    ]
+                },
+                {
+                    "id": "730aad0c-d22c-4a43-a1f1-ce20d876ec55",
+                    "kind": "resources",
+                    "title": "Ressourcen",
+                    "blocks": [
+                        {
+                            "id": "c54a1a8f-f10c-4228-a619-2a1b378e3158",
+                            "type": "link",
+                            "label": "Education for Democracy",
+                            "url": "https://soz-kult.hs-duesseldorf.de/aktuelles/meldungen/democrat-abschlussveranstaltung"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "d55097cf-def7-406a-b3dd-9da49254ecb8",
+            "kind": "teachers",
+            "title": "Für Lehrende",
+            "fields": {
+                "quote": {
+                    "text": "Wer nicht wählt, wird gewählt.",
+                    "author": ""
+                },
+                "facts": {
+                    "schoolTypes": "Grundschule (Klasse 4), Gesamtschule, Realschule, Gymnasium (Klassen 5–7)",
+                    "requirements": "Keine"
+                }
+            },
+            "subsections": [
+                {
+                    "id": "c2b487b0-45cb-47f9-9ba8-eac5cd8385a7",
+                    "kind": "learningContent",
+                    "title": "Lerninhalt",
+                    "blocks": [
+                        {
+                            "id": "a06b53d7-ed96-40ad-a8cb-b26943c3c3c1",
+                            "type": "text",
+                            "text": "Der Workshop vermittelt handlungsorientiert die Fundamente unseres demokratischen Systems. Die Schüler*innen lernen die verfassungsmäßigen Wahlgrundsätze (allgemein, unmittelbar, frei, gleich und geheim) kennen und erfahren im Rollenspiel, wie wichtig Kompromissbereitschaft, Minderheitenschutz und argumentative Überzeugungskraft für das Zusammenleben sind."
+                        }
+                    ]
+                },
+                {
+                    "id": "1e581eb7-4a18-49e6-b56d-eacd28c6045f",
+                    "kind": "competencies",
+                    "title": "Weiterführende Kompetenzen",
+                    "blocks": [
+                        {
+                            "id": "1078f22e-d4ce-4d07-96c1-fed2833b6a92",
+                            "type": "list",
+                            "items": [
+                                "Demokratie- und Argumentationskompetenz: Eigene Standpunkte sachlich begründen, Gegenargumente aushalten und Kompromisse aushandeln.",
+                                "Perspektivwechsel & Empathie: Im Rollenspiel die Interessen und Nöte anderer Gruppen (Tierarten) vertreten und verstehen.",
+                                "Medien- & Präsentationskompetenz: Botschaften auf Plakaten prägnant visualisieren und vor einer Gruppe vortragen.",
+                                "Urteilskraft: Rhetorische Versprechen kritisch hinterfragen und eine fundierte Wahlentscheidung treffen."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "17a7510c-d97a-4053-9fc6-2234c88b1b0f",
+                    "kind": "curriculum",
+                    "title": "Lehrplanbezug",
+                    "blocks": [
+                        {
+                            "id": "68d1aaff-2969-4715-97dd-36bb2fbafbfd",
+                            "type": "text",
+                            "text": "Fächeranbindung: Sachunterricht (Grundschule), Politik / Wirtschaft-Politik, Gesellschaftslehre sowie Praktische Philosophie (Sekundarstufe I).Kernlehrplan-Schwerpunkte: Demokratische Partizipation in Schule und Gemeinde; Regeln und Gesetze des Zusammenlebens; Urteilsbildung durch Perspektivwechsel."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "b110d18e-27ce-4ef1-80f8-fdeb8f5ec76b",
+            "kind": "impressions",
+            "title": "Impressionen",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "46f074de-b12f-4e4f-b873-089b33fc1f22",
+                    "kind": "highlights",
+                    "title": "Eindrücke",
+                    "blocks": [
+                        {
+                            "id": "37b22e84-bed4-42c7-ab4c-e10ad1a05904",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                },
+                {
+                    "id": "e4577b5c-7a0a-4dc0-bf66-de1a18a81176",
+                    "kind": "gallery",
+                    "title": "Bildergalerie",
+                    "blocks": [
+                        {
+                            "id": "84516f7e-2b19-47f4-9943-ebb124a5a248",
+                            "type": "gallery",
+                            "images": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "326a4ea2-0f89-48ba-932f-2304dd8c96b7",
+            "kind": "contributors",
+            "title": "Ansprechpartner",
+            "fields": {},
+            "subsections": [
+                {
+                    "id": "b6970060-62fe-4c73-b5e8-c5fc40185bfd",
+                    "kind": "people",
+                    "title": "Beteiligte",
+                    "blocks": [
+                        {
+                            "id": "d3feb183-8691-40f7-80d0-73f6694b8f98",
+                            "type": "people",
+                            "people": [
+                                {
+                                    "image": {
+                                        "src": "",
+                                        "alt": "Abbildung"
+                                    },
+                                    "name": "Andreas Schmid",
+                                    "description": "Konzept & Leitung"
+                                },
+                                {
+                                    "image": {
+                                        "src": "",
+                                        "alt": "Abbildung"
+                                    },
+                                    "name": "Jennifer Bittner",
+                                    "description": "Konzept & Leitung"
+                                },
+                                {
+                                    "image": {
+                                        "src": "",
+                                        "alt": "Abbildung"
+                                    },
+                                    "name": "Jana Winter ",
+                                    "description": "Konzept & Leitung"
+                                },
+                                {
+                                    "image": {
+                                        "src": "images/laura-sistig.png",
+                                        "alt": "Laura Sistig"
+                                    },
+                                    "name": "Laura Sistig M.A.",
+                                    "description": "Design & Konzept, Laura.sistig@outlook.de"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
